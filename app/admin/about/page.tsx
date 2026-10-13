@@ -1,0 +1,20 @@
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePlatform } from "@/components/platform-context";
+import type { AboutContent } from "@/lib/about-content";
+import "../admin.css";
+
+export default function AboutEditor() {
+  const platform=usePlatform();
+  const [draft,setDraft]=useState<AboutContent|null>(null),[collectionDrafts,setCollectionDrafts]=useState<Record<string,string>>({}),[message,setMessage]=useState(""),[busy,setBusy]=useState(false);
+  useEffect(()=>{if(platform.ready&&platform.user?.role==="admin")fetch("/api/admin/about").then(r=>r.json()).then((content:AboutContent)=>{setDraft(content);setCollectionDrafts(Object.fromEntries((["milestones","leadership","ecosystem","advisors","values","recognition","culture"] as const).map(key=>[key,JSON.stringify(content[key],null,2)])))}).catch(()=>setMessage("Could not load About content."))},[platform.ready,platform.user?.role]);
+  const set=(key:keyof AboutContent,value:AboutContent[typeof key])=>setDraft(current=>current?{...current,[key]:value}:current);
+  const save=async()=>{if(!draft)return;setBusy(true);setMessage("");try{const content={...draft};for(const key of ["milestones","leadership","ecosystem","advisors","values","recognition","culture"] as const)content[key]=JSON.parse(collectionDrafts[key]||"[]");const response=await fetch("/api/admin/about",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(content)});const result=await response.json();if(!response.ok)throw new Error(result.error||"Could not save content. Check required fields and publication status.");setDraft(result);setMessage("About page content saved.")}catch(error){setMessage((error as Error).message)}finally{setBusy(false)}};
+  if(!platform.ready)return <main className="admin-shell">Loading…</main>;
+  if(platform.user?.role!=="admin")return <main className="admin-shell"><h1>Admin access required</h1><Link href="/login">Log in as an admin</Link></main>;
+  if(!draft)return <main className="admin-shell">Loading About content…</main>;
+  const textarea=(label:string,key:"mission"|"missionSupporting"|"story"|"storySupporting"|"vision")=><label style={{display:"grid",gap:8,marginBottom:16,fontWeight:600}}>{label}<textarea style={{minHeight:90,padding:12,border:"1px solid #d5dfe9",borderRadius:8}} value={draft[key]} onChange={e=>set(key,e.target.value)}/></label>;
+  const collection=(label:string,key:"milestones"|"leadership"|"ecosystem"|"advisors"|"values"|"recognition"|"culture")=><section className="admin-card" key={key}><h2>{label}</h2><p>Structured JSON. Only entries with <code>published: true</code> appear publicly. Verify names, photos, logos and recognition before publishing.</p><textarea aria-label={label} style={{width:"100%",minHeight:240,marginTop:18,padding:12,fontFamily:"monospace",fontSize:12,border:"1px solid #d5dfe9",borderRadius:8}} value={collectionDrafts[key]||"[]"} onChange={e=>setCollectionDrafts(current=>({...current,[key]:e.target.value}))}/></section>;
+  return <main className="admin-shell"><header className="admin-header"><div><p className="admin-kicker">THE AI PODS / CONTENT</p><h1>About page</h1><p>Edit the mission and structured sections. Public content updates after saving.</p></div><div><Link href="/admin">Admin</Link><Link href="/about">View About page</Link><button onClick={save} disabled={busy}>{busy?"Saving…":"Save content"}</button></div></header>{message&&<p className="admin-notice" role="status">{message}</p>}<section className="admin-card"><h2>Editorial copy</h2>{textarea("Mission headline","mission")}{textarea("Mission supporting copy","missionSupporting")}{textarea("Story statement","story")}{textarea("Story supporting copy","storySupporting")}{textarea("Vision","vision")}</section>{collection("Product journey milestones","milestones")}{collection("Leadership · verified only","leadership")}{collection("Ecosystem · verified only","ecosystem")}{collection("Advisors · verified only","advisors")}{collection("Values · proposed draft copy","values")}{collection("Recognition · verified only","recognition")}{collection("How we build","culture")}</main>;
+}

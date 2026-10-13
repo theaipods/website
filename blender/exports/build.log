@@ -1,0 +1,55 @@
+C:\Users\admin\Downloads\Pj\AIEmployee\web\blender\scripts\create_company_brain.py:22: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.diffuse_color=(*rgb,alpha);m.use_nodes=True
+00:18.547  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\blender\exports\company_brain_preview.png'
+Info: Saved as "company_brain_master.blend"
+INFO Draco is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
+22:22:50 | INFO: Starting glTF 2.0 export
+22:22:50 | INFO: Extracting primitive: Sphere.178
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Central_Crown_Fold_00
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.052
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Central_Crown_Copper_00
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Chassis_Horizontal_00
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Chassis_Spoke_01
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Central_Crown_Fold_01
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Network_Latitude_00
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.297
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.298
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.299
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.300
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.301
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.302
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.303
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.304
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.305
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.306
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.307
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.308
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Extracting primitive: Sphere.177
+22:22:50 | INFO: Primitives created: 1
+22:22:50 | INFO: Finished glTF 2.0 export in 0.37499213218688965 s
+
+INTELLIGENCE_ENGINE_COMPLETE
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

@@ -1,0 +1,869 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T17:08:03.227Z",
+  "source": {
+    "registry": "lib/workforce.ts → lib/agent-registry.ts",
+    "roleAssignment": "lib/employee-presentation.ts",
+    "assetGenerator": "assets/ai-workforce/source/blender/generate_employee_collection.py"
+  },
+  "totals": {
+    "employees": 28,
+    "individualModels": 28,
+    "byDepartment": {
+      "data": 3,
+      "finance": 3,
+      "hr": 2,
+      "it": 3,
+      "legal": 2,
+      "marketing": 2,
+      "ops": 2,
+      "platform": 3,
+      "product": 7,
+      "sales": 1
+    }
+  },
+  "models": [
+    {
+      "id": "pod-manager",
+      "species": "Phoenix",
+      "feature": "planning board",
+      "modelSourcePath": "assets/ai-workforce/employees/models/pod-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/pod-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/pod-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/pod-manager.webp"
+    },
+    {
+      "id": "sales-sales-agent",
+      "species": "Orange fox",
+      "feature": "presentation case",
+      "modelSourcePath": "assets/ai-workforce/employees/models/sales-sales-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/sales-sales-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/sales-sales-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/sales-sales-agent.webp"
+    },
+    {
+      "id": "marketing-marketing-agent",
+      "species": "Pink bird",
+      "feature": "megaphone",
+      "modelSourcePath": "assets/ai-workforce/employees/models/marketing-marketing-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/marketing-marketing-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/marketing-marketing-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/marketing-marketing-agent.webp"
+    },
+    {
+      "id": "marketing-social-media-manager",
+      "species": "Mint rabbit",
+      "feature": "social dashboard",
+      "modelSourcePath": "assets/ai-workforce/employees/models/marketing-social-media-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/marketing-social-media-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/marketing-social-media-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/marketing-social-media-manager.webp"
+    },
+    {
+      "id": "hr-hr-agent",
+      "species": "Pink deer",
+      "feature": "heart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/hr-hr-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/hr-hr-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/hr-hr-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/hr-hr-agent.webp"
+    },
+    {
+      "id": "hr-employee-assistant",
+      "species": "Purple otter",
+      "feature": "tablet",
+      "modelSourcePath": "assets/ai-workforce/employees/models/hr-employee-assistant.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/hr-employee-assistant.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/hr-employee-assistant.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/hr-employee-assistant.webp"
+    },
+    {
+      "id": "it-systems-administrator",
+      "species": "Blue bear",
+      "feature": "gear",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-systems-administrator.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-systems-administrator.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-systems-administrator.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-systems-administrator.webp"
+    },
+    {
+      "id": "it-security-engineer",
+      "species": "Mint fox",
+      "feature": "shield",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-security-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-security-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-security-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-security-engineer.webp"
+    },
+    {
+      "id": "it-network-engineer",
+      "species": "Blue rabbit",
+      "feature": "network nodes",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-network-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-network-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-network-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-network-engineer.webp"
+    },
+    {
+      "id": "finance-finance-agent",
+      "species": "Gold squirrel",
+      "feature": "coin",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-finance-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-finance-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-finance-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-finance-agent.webp"
+    },
+    {
+      "id": "finance-audit-agent",
+      "species": "Lavender owl",
+      "feature": "magnifier",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-audit-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-audit-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-audit-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-audit-agent.webp"
+    },
+    {
+      "id": "finance-approval-router",
+      "species": "Green turtle",
+      "feature": "checklist",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-approval-router.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-approval-router.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-approval-router.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-approval-router.webp"
+    },
+    {
+      "id": "ops-project-manager",
+      "species": "Lilac unicorn",
+      "feature": "calendar",
+      "modelSourcePath": "assets/ai-workforce/employees/models/ops-project-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/ops-project-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/ops-project-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/ops-project-manager.webp"
+    },
+    {
+      "id": "ops-business-analyst",
+      "species": "Blue narwhal",
+      "feature": "data chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/ops-business-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/ops-business-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/ops-business-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/ops-business-analyst.webp"
+    },
+    {
+      "id": "product-product-manager",
+      "species": "Coral fox",
+      "feature": "idea bulb",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-product-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-product-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-product-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-product-manager.webp"
+    },
+    {
+      "id": "product-ui-ux-designer",
+      "species": "Butterfly",
+      "feature": "paint palette",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-ui-ux-designer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-ui-ux-designer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-ui-ux-designer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-ui-ux-designer.webp"
+    },
+    {
+      "id": "product-frontend-developer",
+      "species": "Blue cat",
+      "feature": "laptop",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-frontend-developer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-frontend-developer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-frontend-developer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-frontend-developer.webp"
+    },
+    {
+      "id": "product-backend-developer",
+      "species": "Green dragon",
+      "feature": "laptop",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-backend-developer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-backend-developer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-backend-developer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-backend-developer.webp"
+    },
+    {
+      "id": "product-qa-engineer",
+      "species": "Pink sheep",
+      "feature": "test checklist",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-qa-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-qa-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-qa-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-qa-engineer.webp"
+    },
+    {
+      "id": "product-cloud-engineer",
+      "species": "Blue cloud creature",
+      "feature": "cloud glyph",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-cloud-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-cloud-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-cloud-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-cloud-engineer.webp"
+    },
+    {
+      "id": "product-devops-agent",
+      "species": "Purple octopus",
+      "feature": "gear",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-devops-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-devops-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-devops-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-devops-agent.webp"
+    },
+    {
+      "id": "data-data-analyst",
+      "species": "Green sprout",
+      "feature": "data chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-data-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-data-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-data-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-data-analyst.webp"
+    },
+    {
+      "id": "data-research-agent",
+      "species": "Blue fox",
+      "feature": "magnifier",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-research-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-research-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-research-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-research-agent.webp"
+    },
+    {
+      "id": "data-market-researcher",
+      "species": "Pink flamingo",
+      "feature": "market chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-market-researcher.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-market-researcher.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-market-researcher.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-market-researcher.webp"
+    },
+    {
+      "id": "legal-compliance-analyst",
+      "species": "White deer",
+      "feature": "shield",
+      "modelSourcePath": "assets/ai-workforce/employees/models/legal-compliance-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/legal-compliance-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/legal-compliance-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/legal-compliance-analyst.webp"
+    },
+    {
+      "id": "legal-redaction-guard",
+      "species": "Midnight cat",
+      "feature": "locked document",
+      "modelSourcePath": "assets/ai-workforce/employees/models/legal-redaction-guard.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/legal-redaction-guard.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/legal-redaction-guard.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/legal-redaction-guard.webp"
+    },
+    {
+      "id": "orchestrator",
+      "species": "Blue whale",
+      "feature": "work orbits",
+      "modelSourcePath": "assets/ai-workforce/employees/models/orchestrator.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/orchestrator.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/orchestrator.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/orchestrator.webp"
+    },
+    {
+      "id": "observer",
+      "species": "Observant owl",
+      "feature": "dashboard",
+      "modelSourcePath": "assets/ai-workforce/employees/models/observer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/observer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/observer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/observer.webp"
+    }
+  ],
+  "employees": [
+    {
+      "employeeId": "pod-manager",
+      "displayName": "Pod Manager",
+      "department": "platform",
+      "jobTitle": "Every pod",
+      "characterInstanceId": "pod-manager",
+      "characterFamily": "orchestrator",
+      "characterAssetId": "pod-manager",
+      "species": "Phoenix",
+      "signatureFeature": "planning board",
+      "modelSourcePath": "assets/ai-workforce/employees/models/pod-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/pod-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/pod-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/pod-manager.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/pod-manager.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "sales-sales-agent",
+      "displayName": "Sales Agent",
+      "department": "sales",
+      "jobTitle": "Sales",
+      "characterInstanceId": "sales-sales-agent",
+      "characterFamily": "sales",
+      "characterAssetId": "sales-sales-agent",
+      "species": "Orange fox",
+      "signatureFeature": "presentation case",
+      "modelSourcePath": "assets/ai-workforce/employees/models/sales-sales-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/sales-sales-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/sales-sales-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/sales-sales-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/sales-sales-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "marketing-marketing-agent",
+      "displayName": "Marketing Agent",
+      "department": "marketing",
+      "jobTitle": "Marketing",
+      "characterInstanceId": "marketing-marketing-agent",
+      "characterFamily": "marketing",
+      "characterAssetId": "marketing-marketing-agent",
+      "species": "Pink bird",
+      "signatureFeature": "megaphone",
+      "modelSourcePath": "assets/ai-workforce/employees/models/marketing-marketing-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/marketing-marketing-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/marketing-marketing-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/marketing-marketing-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/marketing-marketing-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "marketing-social-media-manager",
+      "displayName": "Social Media Manager",
+      "department": "marketing",
+      "jobTitle": "Marketing",
+      "characterInstanceId": "marketing-social-media-manager",
+      "characterFamily": "marketing",
+      "characterAssetId": "marketing-social-media-manager",
+      "species": "Mint rabbit",
+      "signatureFeature": "social dashboard",
+      "modelSourcePath": "assets/ai-workforce/employees/models/marketing-social-media-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/marketing-social-media-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/marketing-social-media-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/marketing-social-media-manager.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/marketing-social-media-manager.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "hr-hr-agent",
+      "displayName": "HR Agent",
+      "department": "hr",
+      "jobTitle": "HR & People",
+      "characterInstanceId": "hr-hr-agent",
+      "characterFamily": "people",
+      "characterAssetId": "hr-hr-agent",
+      "species": "Pink deer",
+      "signatureFeature": "heart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/hr-hr-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/hr-hr-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/hr-hr-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/hr-hr-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/hr-hr-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "hr-employee-assistant",
+      "displayName": "Employee Assistant",
+      "department": "hr",
+      "jobTitle": "HR & People",
+      "characterInstanceId": "hr-employee-assistant",
+      "characterFamily": "people",
+      "characterAssetId": "hr-employee-assistant",
+      "species": "Purple otter",
+      "signatureFeature": "tablet",
+      "modelSourcePath": "assets/ai-workforce/employees/models/hr-employee-assistant.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/hr-employee-assistant.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/hr-employee-assistant.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/hr-employee-assistant.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/hr-employee-assistant.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "it-systems-administrator",
+      "displayName": "Systems Administrator",
+      "department": "it",
+      "jobTitle": "IT & Service Desk",
+      "characterInstanceId": "it-systems-administrator",
+      "characterFamily": "engineering",
+      "characterAssetId": "it-systems-administrator",
+      "species": "Blue bear",
+      "signatureFeature": "gear",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-systems-administrator.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-systems-administrator.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-systems-administrator.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-systems-administrator.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/it-systems-administrator.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "it-security-engineer",
+      "displayName": "Security Engineer",
+      "department": "it",
+      "jobTitle": "IT & Service Desk",
+      "characterInstanceId": "it-security-engineer",
+      "characterFamily": "security",
+      "characterAssetId": "it-security-engineer",
+      "species": "Mint fox",
+      "signatureFeature": "shield",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-security-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-security-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-security-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-security-engineer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/it-security-engineer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "it-network-engineer",
+      "displayName": "Network Engineer",
+      "department": "it",
+      "jobTitle": "IT & Service Desk",
+      "characterInstanceId": "it-network-engineer",
+      "characterFamily": "engineering",
+      "characterAssetId": "it-network-engineer",
+      "species": "Blue rabbit",
+      "signatureFeature": "network nodes",
+      "modelSourcePath": "assets/ai-workforce/employees/models/it-network-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/it-network-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/it-network-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/it-network-engineer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/it-network-engineer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "finance-finance-agent",
+      "displayName": "Finance Agent",
+      "department": "finance",
+      "jobTitle": "Finance",
+      "characterInstanceId": "finance-finance-agent",
+      "characterFamily": "finance",
+      "characterAssetId": "finance-finance-agent",
+      "species": "Gold squirrel",
+      "signatureFeature": "coin",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-finance-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-finance-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-finance-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-finance-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/finance-finance-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "finance-audit-agent",
+      "displayName": "Audit Agent",
+      "department": "finance",
+      "jobTitle": "Finance",
+      "characterInstanceId": "finance-audit-agent",
+      "characterFamily": "finance",
+      "characterAssetId": "finance-audit-agent",
+      "species": "Lavender owl",
+      "signatureFeature": "magnifier",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-audit-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-audit-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-audit-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-audit-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/finance-audit-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "finance-approval-router",
+      "displayName": "Approval Router",
+      "department": "finance",
+      "jobTitle": "Finance",
+      "characterInstanceId": "finance-approval-router",
+      "characterFamily": "operations",
+      "characterAssetId": "finance-approval-router",
+      "species": "Green turtle",
+      "signatureFeature": "checklist",
+      "modelSourcePath": "assets/ai-workforce/employees/models/finance-approval-router.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/finance-approval-router.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/finance-approval-router.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/finance-approval-router.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/finance-approval-router.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "ops-project-manager",
+      "displayName": "Project Manager",
+      "department": "ops",
+      "jobTitle": "Operations",
+      "characterInstanceId": "ops-project-manager",
+      "characterFamily": "operations",
+      "characterAssetId": "ops-project-manager",
+      "species": "Lilac unicorn",
+      "signatureFeature": "calendar",
+      "modelSourcePath": "assets/ai-workforce/employees/models/ops-project-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/ops-project-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/ops-project-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/ops-project-manager.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/ops-project-manager.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "ops-business-analyst",
+      "displayName": "Business Analyst",
+      "department": "ops",
+      "jobTitle": "Operations",
+      "characterInstanceId": "ops-business-analyst",
+      "characterFamily": "operations",
+      "characterAssetId": "ops-business-analyst",
+      "species": "Blue narwhal",
+      "signatureFeature": "data chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/ops-business-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/ops-business-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/ops-business-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/ops-business-analyst.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/ops-business-analyst.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-product-manager",
+      "displayName": "Product Manager",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-product-manager",
+      "characterFamily": "product",
+      "characterAssetId": "product-product-manager",
+      "species": "Coral fox",
+      "signatureFeature": "idea bulb",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-product-manager.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-product-manager.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-product-manager.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-product-manager.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-product-manager.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-ui-ux-designer",
+      "displayName": "UI/UX Designer",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-ui-ux-designer",
+      "characterFamily": "product",
+      "characterAssetId": "product-ui-ux-designer",
+      "species": "Butterfly",
+      "signatureFeature": "paint palette",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-ui-ux-designer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-ui-ux-designer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-ui-ux-designer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-ui-ux-designer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-ui-ux-designer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-frontend-developer",
+      "displayName": "Frontend Developer",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-frontend-developer",
+      "characterFamily": "engineering",
+      "characterAssetId": "product-frontend-developer",
+      "species": "Blue cat",
+      "signatureFeature": "laptop",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-frontend-developer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-frontend-developer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-frontend-developer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-frontend-developer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-frontend-developer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-backend-developer",
+      "displayName": "Backend Developer",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-backend-developer",
+      "characterFamily": "engineering",
+      "characterAssetId": "product-backend-developer",
+      "species": "Green dragon",
+      "signatureFeature": "laptop",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-backend-developer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-backend-developer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-backend-developer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-backend-developer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-backend-developer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-qa-engineer",
+      "displayName": "QA Engineer",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-qa-engineer",
+      "characterFamily": "quality",
+      "characterAssetId": "product-qa-engineer",
+      "species": "Pink sheep",
+      "signatureFeature": "test checklist",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-qa-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-qa-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-qa-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-qa-engineer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-qa-engineer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-cloud-engineer",
+      "displayName": "Cloud Engineer",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-cloud-engineer",
+      "characterFamily": "engineering",
+      "characterAssetId": "product-cloud-engineer",
+      "species": "Blue cloud creature",
+      "signatureFeature": "cloud glyph",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-cloud-engineer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-cloud-engineer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-cloud-engineer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-cloud-engineer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-cloud-engineer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "product-devops-agent",
+      "displayName": "DevOps Agent",
+      "department": "product",
+      "jobTitle": "Product & Engineering",
+      "characterInstanceId": "product-devops-agent",
+      "characterFamily": "engineering",
+      "characterAssetId": "product-devops-agent",
+      "species": "Purple octopus",
+      "signatureFeature": "gear",
+      "modelSourcePath": "assets/ai-workforce/employees/models/product-devops-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/product-devops-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/product-devops-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/product-devops-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/product-devops-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "data-data-analyst",
+      "displayName": "Data Analyst",
+      "department": "data",
+      "jobTitle": "Data & Research",
+      "characterInstanceId": "data-data-analyst",
+      "characterFamily": "data",
+      "characterAssetId": "data-data-analyst",
+      "species": "Green sprout",
+      "signatureFeature": "data chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-data-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-data-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-data-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-data-analyst.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/data-data-analyst.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "data-research-agent",
+      "displayName": "Research Agent",
+      "department": "data",
+      "jobTitle": "Data & Research",
+      "characterInstanceId": "data-research-agent",
+      "characterFamily": "research",
+      "characterAssetId": "data-research-agent",
+      "species": "Blue fox",
+      "signatureFeature": "magnifier",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-research-agent.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-research-agent.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-research-agent.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-research-agent.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/data-research-agent.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "data-market-researcher",
+      "displayName": "Market Researcher",
+      "department": "data",
+      "jobTitle": "Data & Research",
+      "characterInstanceId": "data-market-researcher",
+      "characterFamily": "research",
+      "characterAssetId": "data-market-researcher",
+      "species": "Pink flamingo",
+      "signatureFeature": "market chart",
+      "modelSourcePath": "assets/ai-workforce/employees/models/data-market-researcher.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/data-market-researcher.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/data-market-researcher.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/data-market-researcher.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/data-market-researcher.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "legal-compliance-analyst",
+      "displayName": "Compliance Analyst",
+      "department": "legal",
+      "jobTitle": "Legal & Compliance",
+      "characterInstanceId": "legal-compliance-analyst",
+      "characterFamily": "legal",
+      "characterAssetId": "legal-compliance-analyst",
+      "species": "White deer",
+      "signatureFeature": "shield",
+      "modelSourcePath": "assets/ai-workforce/employees/models/legal-compliance-analyst.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/legal-compliance-analyst.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/legal-compliance-analyst.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/legal-compliance-analyst.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/legal-compliance-analyst.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "legal-redaction-guard",
+      "displayName": "Redaction Guard",
+      "department": "legal",
+      "jobTitle": "Legal & Compliance",
+      "characterInstanceId": "legal-redaction-guard",
+      "characterFamily": "legal",
+      "characterAssetId": "legal-redaction-guard",
+      "species": "Midnight cat",
+      "signatureFeature": "locked document",
+      "modelSourcePath": "assets/ai-workforce/employees/models/legal-redaction-guard.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/legal-redaction-guard.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/legal-redaction-guard.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/legal-redaction-guard.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/legal-redaction-guard.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "orchestrator",
+      "displayName": "Workforce Orchestrator",
+      "department": "platform",
+      "jobTitle": "Platform",
+      "characterInstanceId": "orchestrator",
+      "characterFamily": "orchestrator",
+      "characterAssetId": "orchestrator",
+      "species": "Blue whale",
+      "signatureFeature": "work orbits",
+      "modelSourcePath": "assets/ai-workforce/employees/models/orchestrator.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/orchestrator.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/orchestrator.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/orchestrator.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/orchestrator.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    },
+    {
+      "employeeId": "observer",
+      "displayName": "Workforce Observer",
+      "department": "platform",
+      "jobTitle": "Platform",
+      "characterInstanceId": "observer",
+      "characterFamily": "data",
+      "characterAssetId": "observer",
+      "species": "Observant owl",
+      "signatureFeature": "dashboard",
+      "modelSourcePath": "assets/ai-workforce/employees/models/observer.glb",
+      "modelPublicPath": "/ai-workforce/employees/models/observer.glb",
+      "previewSourcePath": "assets/ai-workforce/employees/previews/observer.webp",
+      "previewPublicPath": "/ai-workforce/employees/previews/observer.webp",
+      "masterSourcePath": "assets/ai-workforce/employees/previews/observer.png",
+      "implementation": {
+        "directory": "transparent render of the employee's own Blender sculpture",
+        "interactive": "individual GLB profile viewer",
+        "status": "integrated"
+      }
+    }
+  ]
+}

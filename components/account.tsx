@@ -1,0 +1,30 @@
+"use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Logo } from "./ui";
+import { api, usePlatform } from "./platform-context";
+import { Button, Field, Heading, Notice } from "./platform-ui";
+
+export function Account() {
+  const s = usePlatform(); const router = useRouter();
+  const [mode, setMode] = useState<"login" | "register" | "verify">("login");
+  const [portal, setPortal] = useState<"owner" | "admin">("owner");
+  const [email, setEmail] = useState(""); const [password, setPassword] = useState(""); const [name, setName] = useState(""); const [code, setCode] = useState(""); const [error, setError] = useState(""); const [message, setMessage] = useState(""); const [busy, setBusy] = useState(false);
+  useEffect(() => { if (s.ready && s.user) router.replace(s.user.role === "admin" ? "/admin" : s.companies.some(c => c.status === "active") ? "/workspace" : "/welcome"); }, [s.ready, s.user, s.companies, router]);
+  async function submit(resend = false) {
+    setBusy(true); setError(""); setMessage("");
+    try {
+      if (resend) { const r = await api<{ message: string }>("auth/resend", "POST", { email }); setMessage(r.message); return; }
+      if (mode === "register") { const r = await api<{ message: string }>("auth/register", "POST", { email, password, name }); setMessage(r.message); setMode("verify"); return; }
+      await api(`auth/${mode}`, "POST", mode === "verify" ? { email, code } : { email, password, portal }); await s.refresh(); router.push(portal === "admin" ? "/admin" : "/welcome");
+    } catch (e) { setError((e as Error).message); } finally { setBusy(false); }
+  }
+  return <main className="wf-auth"><section className="wf-auth-story"><Logo /><div><p className="wf-eyebrow">Your business. Your workforce.</p><h1>Teach it once.<br />Give it an outcome.<br /><span>Build from there.</span></h1><p>Company knowledge, specialist teams and clear human decisions—all in one place.</p></div><p className="text-sm opacity-60">TheAI Pods · Business execution platform</p></section><section className="wf-auth-form"><form onSubmit={e => { e.preventDefault(); void submit(); }}><Heading eyebrow="TheAI Pods" title={mode === "login" ? "Welcome back" : mode === "register" ? "Create your account" : "Verify your email"}>{mode === "verify" ? "Enter the six-digit code sent to your email. Codes expire after 10 minutes." : "Your companies and work are saved to your account."}</Heading>{error && <Notice error>{error}</Notice>}{message && <Notice>{message}</Notice>}{mode === "login" && <div className="mb-6 flex gap-2 rounded-xl border border-line bg-soft p-1" role="group" aria-label="Choose login area"><button type="button" aria-pressed={portal === "owner"} onClick={() => setPortal("owner")} className={`flex-1 rounded-lg px-4 py-2 text-sm font-semibold ${portal === "owner" ? "bg-white shadow" : "text-muted"}`}>Owner login</button><button type="button" aria-pressed={portal === "admin"} onClick={() => setPortal("admin")} className={`flex-1 rounded-lg px-4 py-2 text-sm font-semibold ${portal === "admin" ? "bg-white shadow" : "text-muted"}`}>Admin login</button></div>}<div className="space-y-5">{mode === "register" && <Field label="Your name" value={name} onChange={setName} required />}<Field label={mode === "login" ? "Email or local username" : "Email"} type={mode === "login" ? "text" : "email"} value={email} onChange={setEmail} required />{mode !== "verify" ? <Field label="Password" type="password" value={password} onChange={setPassword} required hint={mode === "register" ? "At least 10 characters." : undefined} /> : <Field label="Verification code" value={code} onChange={setCode} required />}<Button type="submit" disabled={busy}>{busy ? "Please wait…" : mode === "login" ? "Log in" : mode === "register" ? "Create account" : "Verify and continue"}</Button></div><div className="flex flex-wrap gap-4 mt-6 text-sm">{mode !== "login" && <button type="button" onClick={() => setMode("login")}>Log in</button>}{mode !== "register" && <button type="button" onClick={() => setMode("register")}>Create account</button>}{mode !== "verify" ? <button type="button" onClick={() => setMode("verify")}>Verify email</button> : <button type="button" disabled={busy} onClick={() => void submit(true)}>Resend code</button>}</div><Link className="block mt-5 text-sm text-muted" href="/">← Back to website</Link></form></section></main>;
+}
+export function Welcome() {
+  const s = usePlatform(); const router = useRouter();
+  useEffect(() => { if (s.ready && !s.user) router.replace("/login"); }, [s.ready, s.user, router]);
+  if (!s.ready || !s.user) return <div className="p-10">Loading your account…</div>;
+  return <main className="max-w-5xl mx-auto w-full px-6 py-10"><Logo /><div className="py-16"><Heading eyebrow={`Welcome, ${s.user.name}`} title="Let’s teach your workforce how your business works.">Start by creating a company. Each company has its own knowledge, brand, processes and pods. You can add as many companies as you need.</Heading><div className="grid gap-6 sm:grid-cols-3 mb-10">{["Understand your business", "Map how work gets done", "Configure your workforce"].map((x, i) => <div className="wf-section" key={x}><span className="wf-number">0{i + 1}</span><h2 className="mt-4">{x}</h2><p className="text-sm text-muted">{["Capture goals, products, customers and teams.", "Document inputs, owners, handoffs and exceptions.", "Set rules, review recommendations and rehearse a pod."][i]}</p></div>)}</div><Link className="wf-button" href="/onboarding">+ Create a company</Link>{s.companies.length > 0 && <section className="mt-12"><h2 className="text-xl font-semibold mb-4">Your companies</h2>{s.companies.map(c => <Link key={c.id} href={c.status === "draft" ? `/onboarding?company=${c.id}` : "/workspace"} onClick={() => s.setActive(c.id)} className="wf-list-row"><span><b>{c.name}</b><small>{c.industry || "Onboarding in progress"}</small></span><span className="wf-badge">{c.status === "draft" ? "Resume onboarding →" : "Open workspace →"}</span></Link>)}</section>}</div></main>;
+}

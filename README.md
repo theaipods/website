@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TheAI Pods web application
 
-## Getting Started
+Public product documentation is available at [http://localhost:3000/docs](http://localhost:3000/docs). Keep `lib/docs-content.ts` and the relevant repository guides updated whenever product behavior, setup, integrations, controls or public claims change.
 
-First, run the development server:
+The approved light-theme typography and palette are recorded in [docs/design-system.md](docs/design-system.md). Shared color tokens live in `app/globals.css`; Satoshi loads through Fontshare's CSS API in the root layout.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+See [the repository README](../README.md) for complete setup, features, model integration, Resend, database transfer and validation.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Quick start: `npm ci`, copy `.env.example` to `.env.local`, then `npm run dev`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The public header and footer are shared across marketing, docs, events, login, and demo pages. Public demo scheduling uses `https://calendly.com/contact-theaipods/30min` by default. Set `NEXT_PUBLIC_CALENDLY_URL` in `.env.local` and restart Next.js only if the event link changes. The Book a Demo page embeds Calendly's scheduler and only confirms a booking after Calendly reports a scheduled event. If the configured link is invalid, it displays a setup message rather than claiming a reservation. The older internal demo-booking API remains available but is not called by this public page.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000/login and use **admin / admin** locally.
 
-## Learn More
+Choose **Admin login** for the admin console. It can show or hide the homepage team, promote verified accounts as partner admins, and inspect owners, companies, pods and tasks. The team is hidden by default. In production, set `INITIAL_ADMIN_EMAIL` to a registered, verified account; the local demo login is disabled when `ENABLE_DEMO_ADMIN=false`.
 
-To learn more about Next.js, take a look at the following resources:
+The homepage includes an interactive objective preview. The standalone Remotion film remains at `http://localhost:3000/showreel`; the previous film remains at `http://localhost:3000/showreel/legacy`. To edit the new composition with the Remotion timeline, run `npx remotion studio remotion/index.ts --no-open --port 3001` and open `http://localhost:3001`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The public agent registry is at `http://localhost:3000/agents`. The former AI Employees marketing route and the Professional Services solution page have been removed. Registry search uses `GET /api/agents` with query filters; the redundant `/api/agents/search` alias has been removed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The public integrations experience is at `http://localhost:3000/integrations`. It is a structured catalog and visual product story; catalog entries are prospective connector concepts, not connected accounts. Original procedural Three.js workers are defined in `components/WorkerScene.tsx` and rendered only near the viewport to limit WebGL contexts.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+In **Workspace → Models & integrations**, a company owner can register a public HTTPS MCP endpoint, discover its tool schemas and remove the server. The endpoint is checked against private/reserved addresses and outbound requests pin DNS to a validated public address. Discovered tools are stored disabled. Authentication-backed MCP servers, provider OAuth/API connectors, per-agent tool grants, and `tools/call` execution are not yet implemented. Model gateway configuration remains server-side; onboarding tool selections remain company context only.

@@ -1,0 +1,3 @@
+import { Megaphone, Handshake, Landmark, Code2, Boxes, Palette, Headphones, HeartHandshake, Users, ShieldCheck, Workflow, ChartNoAxesCombined, Scale, Sparkles } from 'lucide-react';
+const icons = { marketing: Megaphone, sales: Handshake, finance: Landmark, engineering: Code2, product: Boxes, design: Palette, support: Headphones, success: HeartHandshake, hr: Users, it: ShieldCheck, ops: Workflow, data: ChartNoAxesCombined, legal: Scale, custom: Sparkles };
+export function DomainIcon({ id, size = 22 }: { id: string; size?: number }) { const Icon = icons[id as keyof typeof icons] || Sparkles; return <span className={`domain-icon domain-${id}`}><Icon size={size} strokeWidth={1.8} aria-hidden="true" /></span>; }

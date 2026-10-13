@@ -1,0 +1,2170 @@
+C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\source\blender\generate_employee_collection.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+00:03.188  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\pod-manager.png'
+00:03.453  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\pod-manager.webp'
+INFO Draco is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_draco_bridge.dll
+INFO MeshOptimizer is available, use library at C:\Program Files\Blender Foundation\Blender 5.2\5.2\scripts\addons_core\io_scene_gltf2\bf_intern_meshopt_bridge.dll
+22:24:17 | INFO: Starting glTF 2.0 export
+22:24:17 | INFO: Extracting primitive: Sphere.002
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.009
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.005
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.001
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.031
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.032
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.033
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.034
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Flame-shaped flight wing mesh
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Flame-shaped flight wing mesh.001
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.008
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.004
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.013
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.014
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.015
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.016
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.017
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.022
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.023
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.024
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.025
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.026
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Cube
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.035
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.036
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.037
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.038
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.039
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.040
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.007
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.003
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.010
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.006
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Cone
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.011
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.012
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Cube.001
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Cube.002
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Cube.003
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.018
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.027
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.019
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.020
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.021
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.028
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.029
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Extracting primitive: Sphere.030
+22:24:17 | INFO: Primitives created: 1
+22:24:17 | INFO: Finished glTF 2.0 export in 0.10403847694396973 s
+
+Info: Saved as "pod-manager.blend"
+COMPLETED pod-manager
+C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\source\blender\generate_employee_collection.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.use_nodes = True
+00:04.360  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\orchestrator.png'
+00:04.610  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\orchestrator.webp'
+22:24:18 | INFO: Starting glTF 2.0 export
+22:24:18 | INFO: Extracting primitive: Sphere.005
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.011
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.007
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.008
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.013
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.014
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.002
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.016
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.017
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.018
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.019
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.020
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.021
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Curved smile
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.003
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.009
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.004
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.010
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.006
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.012
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.015
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.001
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Torus
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Torus.001
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Finished glTF 2.0 export in 0.04436445236206055 s
+
+Info: Saved as "orchestrator.blend"
+COMPLETED orchestrator
+00:05.110  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\observer.png'
+00:05.344  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\observer.webp'
+22:24:18 | INFO: Starting glTF 2.0 export
+22:24:18 | INFO: Extracting primitive: Sphere.002
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cube.001
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cube.002
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cube.003
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.019
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.015
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cone
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cone.001
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.004
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.009
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.018
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.014
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.021
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.022
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.001
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cone.002
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.003
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.008
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.023
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.024
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.025
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.026
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.027
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.028
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.005
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.006
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.007
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.010
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.011
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.012
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.017
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.013
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Cube
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.020
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Extracting primitive: Sphere.016
+22:24:18 | INFO: Primitives created: 1
+22:24:18 | INFO: Finished glTF 2.0 export in 0.05925250053405762 s
+
+Info: Saved as "observer.blend"
+COMPLETED observer
+00:05.860  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\sales-sales-agent.png'
+00:06.094  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\sales-sales-agent.webp'
+22:24:19 | INFO: Starting glTF 2.0 export
+22:24:19 | INFO: Extracting primitive: Cube.001
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Case handle
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.022
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Curved smile
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.012
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.008
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.001
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Cone.001
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Cone.003
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.004
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.005
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.002
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.014
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.023
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.024
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.025
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.011
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.007
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.017
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.018
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Cube
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.021
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.003
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.019
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.020
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.010
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.006
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.013
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.009
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.015
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Sphere.016
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Cone
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Extracting primitive: Cone.002
+22:24:19 | INFO: Primitives created: 1
+22:24:19 | INFO: Finished glTF 2.0 export in 0.05397915840148926 s
+
+Info: Saved as "sales-sales-agent.blend"
+COMPLETED sales-sales-agent
+00:06.657  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\marketing-marketing-agent.png'
+00:06.891  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\marketing-marketing-agent.webp'
+22:24:20 | INFO: Starting glTF 2.0 export
+22:24:20 | INFO: Extracting primitive: Sphere.002
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.009
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.005
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.001
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.008
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.004
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Layered bird wing mesh
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Layered bird wing mesh.001
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Torus
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Cylinder
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Cone.001
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.030
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.031
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.032
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.033
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.007
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.003
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.010
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.006
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Cone
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.011
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.012
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.027
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.028
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.029
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.013
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.014
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.015
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.020
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.021
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.022
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.016
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.023
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Tiny lashes
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Tiny lashes.001
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Tiny lashes.002
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Tiny lashes.003
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.017
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.018
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.019
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.024
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.025
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Extracting primitive: Sphere.026
+22:24:20 | INFO: Primitives created: 1
+22:24:20 | INFO: Finished glTF 2.0 export in 0.08855915069580078 s
+
+Info: Saved as "marketing-marketing-agent.blend"
+COMPLETED marketing-marketing-agent
+00:07.422  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\marketing-social-media-manager.png'
+00:07.657  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\marketing-social-media-manager.webp'
+22:24:21 | INFO: Starting glTF 2.0 export
+22:24:21 | INFO: Extracting primitive: Sphere
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.021
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Curved smile
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.003
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.005
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.012
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.008
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.011
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.007
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.017
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.018
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.019
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.020
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.001
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.014
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.010
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.006
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Cube
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.013
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.009
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.023
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.024
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.025
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.022
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.015
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.016
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.002
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.004
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Finished glTF 2.0 export in 0.0499422550201416 s
+
+Info: Saved as "marketing-social-media-manager.blend"
+COMPLETED marketing-social-media-manager
+00:08.157  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\hr-hr-agent.png'
+00:08.391  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\hr-hr-agent.webp'
+22:24:21 | INFO: Starting glTF 2.0 export
+22:24:21 | INFO: Extracting primitive: Antler tine
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Antler tine.001
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Branching antler
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Branching antler.001
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.020
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.025
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Curved smile
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.001
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.017
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.022
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.019
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.024
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.016
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.021
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.005
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.012
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.008
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.011
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.007
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.018
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.023
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.027
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.028
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Cone
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.004
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.010
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.006
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.013
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.009
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.002
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.026
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.014
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.015
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Sphere.003
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Tiny lashes
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Tiny lashes.001
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Tiny lashes.002
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Extracting primitive: Tiny lashes.003
+22:24:21 | INFO: Primitives created: 1
+22:24:21 | INFO: Finished glTF 2.0 export in 0.062033653259277344 s
+
+Info: Saved as "hr-hr-agent.blend"
+COMPLETED hr-hr-agent
+00:08.860  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\hr-employee-assistant.png'
+00:09.078  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\hr-employee-assistant.webp'
+22:24:22 | INFO: Starting glTF 2.0 export
+22:24:22 | INFO: Extracting primitive: Curved smile
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Cube.001
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Cube.002
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Cube.003
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.013
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.009
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.012
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.008
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.019
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.020
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.004
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.006
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Long swimming tail
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.001
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.002
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.016
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.015
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.017
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.018
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.003
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.005
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.011
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.007
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Cube
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.014
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere.010
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Extracting primitive: Sphere
+22:24:22 | INFO: Primitives created: 1
+22:24:22 | INFO: Finished glTF 2.0 export in 0.04647397994995117 s
+
+Info: Saved as "hr-employee-assistant.blend"
+COMPLETED hr-employee-assistant
+00:09.610  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-systems-administrator.png'
+00:09.844  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-systems-administrator.webp'
+22:24:23 | INFO: Starting glTF 2.0 export
+22:24:23 | INFO: Extracting primitive: Sphere.001
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.002
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.007
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.016
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.017
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.019
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Curved smile
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.014
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.010
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.023
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.024
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.025
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.026
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.027
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.028
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.029
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.030
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.031
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.032
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.033
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.034
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Torus
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.013
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.009
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.021
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.022
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.004
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.006
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.018
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.020
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.003
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.005
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.012
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.008
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.015
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere.011
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Extracting primitive: Sphere
+22:24:23 | INFO: Primitives created: 1
+22:24:23 | INFO: Finished glTF 2.0 export in 0.0628044605255127 s
+
+Info: Saved as "it-systems-administrator.blend"
+COMPLETED it-systems-administrator
+00:10.375  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-security-engineer.png'
+00:10.610  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-security-engineer.webp'
+22:24:24 | INFO: Starting glTF 2.0 export
+22:24:24 | INFO: Extracting primitive: Sphere.022
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Curved smile
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.012
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.008
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.001
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Cone.001
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Cone.003
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.004
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.005
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.002
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.014
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.023
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.024
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.025
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.011
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.007
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.017
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.018
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.021
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.003
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.019
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.020
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.026
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.010
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.006
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.013
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.009
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Cube
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.027
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.028
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.015
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.016
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Cone
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Cone.002
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Finished glTF 2.0 export in 0.05544710159301758 s
+
+Info: Saved as "it-security-engineer.blend"
+COMPLETED it-security-engineer
+00:11.094  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-network-engineer.png'
+00:11.328  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\it-network-engineer.webp'
+22:24:24 | INFO: Starting glTF 2.0 export
+22:24:24 | INFO: Extracting primitive: Sphere
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.021
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Curved smile
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.003
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.005
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.012
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.008
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.011
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.007
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.017
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.018
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Network edge
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Network edge.001
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Network edge.002
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.022
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.023
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.024
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.019
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.020
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.001
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.014
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.010
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.006
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.013
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.009
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.015
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.016
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.002
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Extracting primitive: Sphere.004
+22:24:24 | INFO: Primitives created: 1
+22:24:24 | INFO: Finished glTF 2.0 export in 0.05056405067443848 s
+
+Info: Saved as "it-network-engineer.blend"
+COMPLETED it-network-engineer
+00:11.828  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-finance-agent.png'
+00:12.078  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-finance-agent.webp'
+22:24:25 | INFO: Starting glTF 2.0 export
+22:24:25 | INFO: Extracting primitive: Sphere.027
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Torus
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Curved smile
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.013
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.009
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.012
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.008
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.024
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.025
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.026
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Cylinder
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.020
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.021
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.004
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.006
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.022
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.023
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.016
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.018
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.015
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.017
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.003
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.005
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.011
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.007
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.014
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.010
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.001
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.002
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Sphere.019
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Extracting primitive: Tall curling squirrel tail
+22:24:25 | INFO: Primitives created: 1
+22:24:25 | INFO: Finished glTF 2.0 export in 0.0626673698425293 s
+
+Info: Saved as "finance-finance-agent.blend"
+COMPLETED finance-finance-agent
+00:12.672  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-audit-agent.png'
+00:12.907  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-audit-agent.webp'
+22:24:26 | INFO: Starting glTF 2.0 export
+22:24:26 | INFO: Extracting primitive: Sphere.029
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.030
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.002
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.019
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.015
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Cone
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Cone.001
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.004
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.009
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.018
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.014
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.021
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.022
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.001
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Magnifier handle
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Torus
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Cone.002
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.003
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.008
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.023
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.024
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.025
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.026
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.027
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.028
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.005
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.006
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.007
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.010
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.011
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.012
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.017
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.013
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.020
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Extracting primitive: Sphere.016
+22:24:26 | INFO: Primitives created: 1
+22:24:26 | INFO: Finished glTF 2.0 export in 0.07891654968261719 s
+
+Info: Saved as "finance-audit-agent.blend"
+COMPLETED finance-audit-agent
+00:13.422  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-approval-router.png'
+00:13.657  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\finance-approval-router.webp'
+22:24:27 | INFO: Starting glTF 2.0 export
+22:24:27 | INFO: Extracting primitive: Sphere.022
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.023
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.024
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cube.001
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cube.002
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cube.003
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Curved smile
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.015
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.012
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.010
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.014
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.011
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cube
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.016
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.013
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.001
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.002
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.003
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.004
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.005
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.006
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.007
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.008
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.017
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.019
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.021
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.018
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.020
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.009
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Finished glTF 2.0 export in 0.04935789108276367 s
+
+Info: Saved as "finance-approval-router.blend"
+COMPLETED finance-approval-router
+00:14.188  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\ops-project-manager.png'
+00:14.422  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\ops-project-manager.webp'
+22:24:27 | INFO: Starting glTF 2.0 export
+22:24:27 | INFO: Extracting primitive: Sphere.001
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.027
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.028
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.029
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.030
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.031
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.032
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.023
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.025
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.010
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.006
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.017
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.018
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.019
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.020
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.021
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.022
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Flowing unicorn tail
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.009
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.005
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.024
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.026
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.003
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.013
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.015
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.002
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.014
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.016
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.008
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.004
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cube
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.011
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.007
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Tiny lashes
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Tiny lashes.001
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Tiny lashes.002
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Tiny lashes.003
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Cone
+22:24:27 | INFO: Primitives created: 1
+22:24:27 | INFO: Extracting primitive: Sphere.012
+22:24:27 | INFO: Primitives created: 1
+22:24:28 | INFO: Finished glTF 2.0 export in 0.06352734565734863 s
+
+Info: Saved as "ops-project-manager.blend"
+COMPLETED ops-project-manager
+00:14.891  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\ops-business-analyst.png'
+00:15.125  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\ops-business-analyst.webp'
+22:24:28 | INFO: Starting glTF 2.0 export
+22:24:28 | INFO: Extracting primitive: Sphere.005
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.011
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.007
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.008
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.013
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.014
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.002
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Curved smile
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Cube.001
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Cube.002
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Cube.003
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Torus
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Torus.001
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Torus.002
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Torus.003
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Torus.004
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.003
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.009
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Cube
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.004
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.010
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Cone
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.006
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.012
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.015
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Extracting primitive: Sphere.001
+22:24:28 | INFO: Primitives created: 1
+22:24:28 | INFO: Finished glTF 2.0 export in 0.04377341270446777 s
+
+Info: Saved as "ops-business-analyst.blend"
+COMPLETED ops-business-analyst
+00:15.641  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-product-manager.png'
+00:15.875  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-product-manager.webp'
+22:24:29 | INFO: Starting glTF 2.0 export
+22:24:29 | INFO: Extracting primitive: Cylinder
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.022
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Curved smile
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.012
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.008
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.001
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Cone.001
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Cone.003
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.004
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.005
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.002
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.014
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.023
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.024
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.025
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.011
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.007
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.017
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.018
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.028
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.029
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.030
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.031
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.032
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.033
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.026
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.027
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.021
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.003
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.019
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.020
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.010
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.006
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.013
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.009
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.015
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Sphere.016
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Cone
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Cone.002
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Tiny lashes
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Tiny lashes.001
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Tiny lashes.002
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Extracting primitive: Tiny lashes.003
+22:24:29 | INFO: Primitives created: 1
+22:24:29 | INFO: Finished glTF 2.0 export in 0.06767630577087402 s
+
+Info: Saved as "product-product-manager.blend"
+COMPLETED product-product-manager
+00:16.438  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-ui-ux-designer.png'
+00:16.688  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-ui-ux-designer.webp'
+22:24:30 | INFO: Starting glTF 2.0 export
+22:24:30 | INFO: Extracting primitive: Sphere.017
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.025
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Butterfly antenna
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Butterfly antenna.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.010
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.018
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.026
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Curved smile
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Expansive upper wing mesh
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Expansive upper wing mesh.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.008
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.004
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein.004
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine raised wing vein.005
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.007
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Iridescent lower wing mesh
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Iridescent lower wing mesh.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Lower wing color panel mesh
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Lower wing color panel mesh.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.027
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.028
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.029
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.030
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.011
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.012
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.013
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.019
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.020
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.021
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.006
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.009
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.005
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Upper wing color panel mesh
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Upper wing color panel mesh.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.014
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.015
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.016
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.022
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.023
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.024
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Finished glTF 2.0 export in 0.0687417984008789 s
+
+Info: Saved as "product-ui-ux-designer.blend"
+COMPLETED product-ui-ux-designer
+00:17.172  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-frontend-developer.png'
+00:17.407  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-frontend-developer.webp'
+22:24:30 | INFO: Starting glTF 2.0 export
+22:24:30 | INFO: Extracting primitive: Sphere.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cone
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cone.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cone.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cone.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.004
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Curled cat tail
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Curved smile
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.011
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.007
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine cat whisker
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine cat whisker.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine cat whisker.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Fine cat whisker.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.010
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.006
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.014
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.015
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube.003
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube.004
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube.005
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube.001
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.016
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.017
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.002
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.009
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.005
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Cube
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.012
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.008
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.018
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Extracting primitive: Sphere.013
+22:24:30 | INFO: Primitives created: 1
+22:24:30 | INFO: Finished glTF 2.0 export in 0.04751396179199219 s
+
+Info: Saved as "product-frontend-developer.blend"
+COMPLETED product-frontend-developer
+00:17.907  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-backend-developer.png'
+00:18.157  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-backend-developer.webp'
+22:24:31 | INFO: Starting glTF 2.0 export
+22:24:31 | INFO: Extracting primitive: Cone.002
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone.003
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone.004
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone.005
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone.006
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Curved smile
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.002
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cone.001
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.012
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.013
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.001
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.014
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.015
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.016
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.017
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.020
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.021
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.022
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.019
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.010
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.006
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.009
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.005
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.024
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.025
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube.002
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube.003
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube.004
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube.005
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube.001
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.003
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.018
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.023
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: S-curled dragon tail
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.008
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.004
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Cube
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.011
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Extracting primitive: Sphere.007
+22:24:31 | INFO: Primitives created: 1
+22:24:31 | INFO: Finished glTF 2.0 export in 0.058470964431762695 s
+
+Info: Saved as "product-backend-developer.blend"
+COMPLETED product-backend-developer
+00:18.766  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-qa-engineer.png'
+00:19.000  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-qa-engineer.webp'
+22:24:32 | INFO: Starting glTF 2.0 export
+22:24:32 | INFO: Extracting primitive: Sphere.035
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.036
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.037
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Cube.001
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Cube.002
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Cube.003
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.022
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.018
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.021
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.017
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.015
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.020
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.016
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Cube
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.023
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.019
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.026
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.028
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.024
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.025
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.027
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.029
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.001
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.002
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.003
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.004
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.005
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.006
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.007
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.008
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.009
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.010
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.011
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.012
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.013
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.014
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.030
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.031
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.032
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.033
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Extracting primitive: Sphere.034
+22:24:32 | INFO: Primitives created: 1
+22:24:32 | INFO: Finished glTF 2.0 export in 0.09566903114318848 s
+
+Info: Saved as "product-qa-engineer.blend"
+COMPLETED product-qa-engineer
+00:19.500  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-cloud-engineer.png'
+00:19.735  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-cloud-engineer.webp'
+22:24:33 | INFO: Starting glTF 2.0 export
+22:24:33 | INFO: Extracting primitive: Sphere.014
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.015
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.016
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.017
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.018
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.001
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.002
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.003
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.004
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Curved smile
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.010
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.007
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.009
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.006
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.005
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.011
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.008
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.012
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Extracting primitive: Sphere.013
+22:24:33 | INFO: Primitives created: 1
+22:24:33 | INFO: Finished glTF 2.0 export in 0.03855323791503906 s
+
+Info: Saved as "product-cloud-engineer.blend"
+COMPLETED product-cloud-engineer
+00:20.313  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-devops-agent.png'
+00:20.563  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\product-devops-agent.webp'
+22:24:34 | INFO: Starting glTF 2.0 export
+22:24:34 | INFO: Extracting primitive: Curved smile
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Torus
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Torus.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.008
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.004
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.035
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.036
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.037
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.038
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.039
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.040
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.041
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.042
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Torus.002
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.007
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.003
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Goggle bridge
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 0
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 1
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 2
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 3
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 4
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 5
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 6
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Independent curling arm 7
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.010
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.006
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.002
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.009
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.005
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.011
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.012
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.013
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.014
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.015
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.016
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.017
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.018
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.019
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.020
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.021
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.022
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.023
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.024
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.025
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.026
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.027
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.028
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.029
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.030
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.031
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.032
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.033
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.034
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Finished glTF 2.0 export in 0.08964395523071289 s
+
+Info: Saved as "product-devops-agent.blend"
+COMPLETED product-devops-agent
+00:21.063  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-data-analyst.png'
+00:21.282  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-data-analyst.webp'
+22:24:34 | INFO: Starting glTF 2.0 export
+22:24:34 | INFO: Extracting primitive: Curved smile
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Cube.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Cube.002
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Cube.003
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.008
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.004
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.007
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.003
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.013
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.014
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Leaf vein
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Leaf vein.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Living leaf stem
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Living leaf stem.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Living pointed leaf mesh
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Living pointed leaf mesh.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.011
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.012
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.006
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.002
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Cube
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.009
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.005
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.015
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.001
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Extracting primitive: Sphere.010
+22:24:34 | INFO: Primitives created: 1
+22:24:34 | INFO: Finished glTF 2.0 export in 0.04274582862854004 s
+
+Info: Saved as "data-data-analyst.blend"
+COMPLETED data-data-analyst
+00:21.782  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-research-agent.png'
+00:22.032  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-research-agent.webp'
+22:24:35 | INFO: Starting glTF 2.0 export
+22:24:35 | INFO: Extracting primitive: Sphere.022
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Curved smile
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.012
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.008
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.001
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Cone.001
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Cone.003
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.004
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.005
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.002
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.014
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.023
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.024
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.025
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.011
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.007
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.017
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.018
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Magnifier handle
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Torus.002
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.021
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.003
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.019
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.020
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Torus
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Torus.001
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.010
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.006
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.013
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.009
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.015
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Sphere.016
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Spectacle bridge
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Cone
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Extracting primitive: Cone.002
+22:24:35 | INFO: Primitives created: 1
+22:24:35 | INFO: Finished glTF 2.0 export in 0.06069588661193848 s
+
+Info: Saved as "data-research-agent.blend"
+COMPLETED data-research-agent
+00:22.453  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-market-researcher.png'
+00:22.672  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\data-market-researcher.webp'
+22:24:36 | INFO: Starting glTF 2.0 export
+22:24:36 | INFO: Extracting primitive: Curved swanlike neck
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cube.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cube.002
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cube.003
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cone
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.008
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.007
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.006
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cube
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Stilt leg
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Stilt leg.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.011
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.009
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.010
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.002
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.003
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.004
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.005
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Finished glTF 2.0 export in 0.03391098976135254 s
+
+Info: Saved as "data-market-researcher.blend"
+COMPLETED data-market-researcher
+00:23.141  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\legal-compliance-analyst.png'
+00:23.375  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\legal-compliance-analyst.webp'
+22:24:36 | INFO: Starting glTF 2.0 export
+22:24:36 | INFO: Extracting primitive: Antler tine
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Antler tine.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Branching antler
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Branching antler.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.019
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.023
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Curved smile
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.001
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.017
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.021
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.018
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.022
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.016
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.020
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.005
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.012
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.008
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.011
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.007
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.004
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.010
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.006
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.013
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.009
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Cube
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.025
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.026
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.002
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.024
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.014
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.015
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Extracting primitive: Sphere.003
+22:24:36 | INFO: Primitives created: 1
+22:24:36 | INFO: Finished glTF 2.0 export in 0.054937124252319336 s
+
+Info: Saved as "legal-compliance-analyst.blend"
+COMPLETED legal-compliance-analyst
+00:23.844  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\legal-redaction-guard.png'
+00:24.078  render           | Saved: 'C:\Users\admin\Downloads\Pj\AIEmployee\web\assets\ai-workforce\employees\previews\legal-redaction-guard.webp'
+22:24:37 | INFO: Starting glTF 2.0 export
+22:24:37 | INFO: Extracting primitive: Sphere.001
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cone
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cone.002
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cone.001
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cone.003
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.003
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.004
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Curled cat tail
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Curved smile
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.011
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.007
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Fine cat whisker
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Fine cat whisker.001
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Fine cat whisker.002
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Fine cat whisker.003
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.010
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.006
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.014
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.015
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.019
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cube.001
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Torus
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.016
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.017
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Cube
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.002
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.009
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.005
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.012
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.008
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.018
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Extracting primitive: Sphere.013
+22:24:37 | INFO: Primitives created: 1
+22:24:37 | INFO: Finished glTF 2.0 export in 0.04862213134765625 s
+
+Info: Saved as "legal-redaction-guard.blend"
+COMPLETED legal-redaction-guard
+Generated 28 editable 3D employees
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

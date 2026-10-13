@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { EventDetailExperience } from "@/components/EventDetailExperience";
+import { getEvent } from "@/lib/server/events";
+import "../../events.css";
+type Props={params:Promise<{slug:string}>};
+export async function generateMetadata({params}:Props):Promise<Metadata>{try{const {event}=await getEvent((await params).slug);return{title:`${event.title} | AI Pod Events`,description:event.description,alternates:{canonical:`/events/${event.slug}`},robots:{index:!event.sample,follow:true},openGraph:{title:event.title,description:event.subtitle,type:"website",url:`/events/${event.slug}`}}}catch{return{title:"Event not found | AI Pod"}}}
+export default async function EventDetailPage({params}:Props){let data;try{data=await getEvent((await params).slug)}catch{notFound()}const {event,speakers,related}=data;const schema={"@context":"https://schema.org","@type":"Event",name:event.title,description:event.description,startDate:event.startAt,endDate:event.endAt,eventStatus:event.status==="CANCELLED"?"https://schema.org/EventCancelled":"https://schema.org/EventScheduled",eventAttendanceMode:event.format==="Virtual"?"https://schema.org/OnlineEventAttendanceMode":"https://schema.org/MixedEventAttendanceMode",location:event.format==="Virtual"?{"@type":"VirtualLocation",url:event.virtualUrl||`/events/${event.slug}`}:{"@type":"Place",name:event.location},organizer:{"@type":"Organization",name:"AI Pod"}};return <>{!event.sample&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/>}<EventDetailExperience event={event} speakers={speakers} related={related}/></>}

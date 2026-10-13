@@ -1,0 +1,5 @@
+"use client";
+import { WorkerScene, type WorkerRole } from "@/components/WorkerScene";
+
+const roles:Record<string,WorkerRole[]>={LIVE_DEMO:["orchestrator","research","data","quality","operations"],WEBINAR:["product","research","support"],WORKSHOP:["orchestrator","engineering","marketing","finance"],ROUNDTABLE:["operations","finance","product","security"],CONFERENCE:["orchestrator","marketing","engineering","sales"],EXECUTIVE_SESSION:["orchestrator","finance","security"],PRODUCT_EVENT:["orchestrator","product","engineering","quality"],ON_DEMAND:["research","product","support"]};
+export function EventVisual({type="LIVE_DEMO",compact=false}:{type?:string;compact?:boolean}){return <div className={`ev-visual ev-visual-${type.toLowerCase().replaceAll("_","-")}${compact?" compact":""}`}><div className="ev-stage-screen"><span>AI POD</span><b>{type.replaceAll("_"," ")}</b><i>EVENT SERIES</i></div><WorkerScene ensemble={!compact} role={(roles[type]||roles.LIVE_DEMO)[0]} ensembleRoles={roles[type]||roles.LIVE_DEMO}/><div className="ev-stage-floor"/><div className="ev-stage-node n1"/><div className="ev-stage-node n2"/><div className="ev-stage-node n3"/></div>}
