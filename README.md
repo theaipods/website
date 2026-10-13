@@ -20,6 +20,9 @@ The homepage includes an interactive objective preview. The standalone Remotion 
 
 The public agent registry is at `http://localhost:3000/agents`. The former AI Employees marketing route and the Professional Services solution page have been removed. Registry search uses `GET /api/agents` with query filters; the redundant `/api/agents/search` alias has been removed.
 
+Generated local folders such as `.next`, `node_modules`, `.playwright-cli`, and `.tmp-video` are ignored by Git and can be regenerated. Keep `data` and `output` because they can contain persistent workspace data and deliverables. The `assets/ai-workforce` Blender scenes, models, and master renders are editable sources for the 28 employee characters; `public/ai-workforce` contains the browser copies. Temporary QA screenshots and obsolete local-storage prototype components are not part of the application.
+`npm run typecheck` regenerates Next.js route types first, so it also works after clearing `.next`.
+
 The public integrations experience is at `http://localhost:3000/integrations`. It is a structured catalog and visual product story; catalog entries are prospective connector concepts, not connected accounts. Original procedural Three.js workers are defined in `components/WorkerScene.tsx` and rendered only near the viewport to limit WebGL contexts.
 
 In **Workspace → Models & integrations**, a company owner can register a public HTTPS MCP endpoint, discover its tool schemas and remove the server. The endpoint is checked against private/reserved addresses and outbound requests pin DNS to a validated public address. Discovered tools are stored disabled. Authentication-backed MCP servers, provider OAuth/API connectors, per-agent tool grants, and `tools/call` execution are not yet implemented. Model gateway configuration remains server-side; onboarding tool selections remain company context only.

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { TaskStatus } from "@/lib/store";
 import { characterAssetForEmployee, characterAssetForRole, employeeCharacterSpecs, workerRoleForEmployee } from "@/lib/employee-presentation";
 import { siteBrand } from "@/lib/site-brand";
 
@@ -56,7 +55,7 @@ export function Monogram({ name, active }: { name: string; active?: boolean }) {
 }
 
 
-export function StatusPill({ status }: { status: TaskStatus | string }) {
+export function StatusPill({ status }: { status: string }) {
   const style =
     status === "Running"
       ? "bg-accent text-paper"

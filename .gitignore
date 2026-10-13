@@ -37,6 +37,11 @@ yarn-error.log*
 /output/
 /.playwright-cli/
 /.tmp-video/
+/artifacts/
+*.blend1
+/blender/exports/*.log
+/assets/ai-workforce/employees/*.log
+/assets/ai-workforce/employees/*-log.txt
 
 # vercel
 .vercel

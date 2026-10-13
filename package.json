@@ -11,7 +11,7 @@
     "start": "next start",
     "dev:web": "next dev",
     "worker": "node --import tsx scripts/worker.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "node scripts/typecheck.mjs",
     "test": "node --import tsx --test tests/*.test.ts",
     "db:import": "node --import tsx scripts/db-transfer.ts import",
     "db:export": "node --import tsx scripts/db-transfer.ts export",
