@@ -6,6 +6,8 @@ The approved light-theme typography and palette are recorded in [docs/design-sys
 
 See [the repository README](../README.md) for complete setup, features, model integration, Resend, database transfer and validation.
 
+For Railway deployment from the GitHub repository, see [the Railway setup guide](docs/RAILWAY.md). The web service and the background worker are separate services, both rooted at `/web` and using the same hosted database URL. Railway Variables hold the settings; the local `.env` file stays uncommitted.
+
 Quick start: `npm ci`, copy `.env.example` to `.env.local`, then `npm run dev`.
 
 The public header and footer are shared across marketing, docs, events, login, and demo pages. Public demo scheduling uses `https://calendly.com/contact-theaipods/30min` by default. Set `NEXT_PUBLIC_CALENDLY_URL` in `.env.local` and restart Next.js only if the event link changes. The Book a Demo page embeds Calendly's scheduler and only confirms a booking after Calendly reports a scheduled event. If the configured link is invalid, it displays a setup message rather than claiming a reservation. The older internal demo-booking API remains available but is not called by this public page.

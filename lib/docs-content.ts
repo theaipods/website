@@ -338,7 +338,7 @@ doc("Administration","data-storage","Data, uploads and deletion","Persistence, t
 SQLite persists accounts, companies, knowledge, Pods, approvals and results by default. Files are saved with their database records; extracted text is chunked for lexical retrieval. Session and OTP records are managed separately from the export/import flow.
 
 ## PostgreSQL
-The app includes a PostgreSQL adapter selected with DATABASE_URL. The schema initializes automatically, but a hosted PostgreSQL deployment must be verified with your actual service and TLS configuration.
+The app includes a PostgreSQL adapter selected with DATABASE_URL. Against one hosted CockroachDB cluster, its TLS connection, automatic schema creation, and a transactional insert/read/upsert check passed. This does not verify the full application on every PostgreSQL-compatible service. A URL beginning with file: selects SQLite; use the unprefixed postgresql:// URL for CockroachDB. An existing SQLite database is not migrated by changing the URL.
 
 ## Transfer and backups
 Stop both the web server and worker before exporting and importing. The export refuses to overwrite a backup; import requires an empty destination and uses a transaction. Backup files contain private documents and password hashes: secure them and never commit them.
@@ -360,8 +360,10 @@ npm run worker:production
 
 Both processes must share the same database and configuration. npm start alone does not execute queued Pods.
 
+On Railway, create two services from the GitHub repository with Root Directory /web and Node.js 24 or newer. Set the web service Build Command to npm run build and Start Command to npx next start --hostname 0.0.0.0 --port $PORT, then generate its public domain. Set the private worker service Start Command to npm run worker:production and do not give it a public domain. Add the same database and model variables to both services through Railway Variables. The worker's tsx loader is a production dependency. Optional browser-rendered research requires Chromium and Linux browser dependencies in the worker image; ordinary HTTP research can run without the browser.
+
 ## Required production choices
-Set APP_URL to the HTTPS origin, enable secure cookies, disable the local demo admin, and configure mail, database and model gateways. Use managed secrets, backups, monitoring and provider-side usage controls.
+Set APP_URL to the HTTPS origin, COOKIE_SECURE=true, ENABLE_DEMO_ADMIN=false, and INITIAL_ADMIN_EMAIL to the account to register and verify. Configure production email with MAIL_MODE=resend, RESEND_API_KEY and RESEND_FROM; new users cannot verify without working email. Set DATABASE_URL to the complete unprefixed postgresql:// URL with TLS options. If its TLS configuration names a CA certificate file, that path must exist inside both deployed services; a Windows path from local development will not work there. Use managed secrets, backups, monitoring and provider-side usage controls. Changing the database URL does not migrate existing SQLite data.
 
 ## Operational limitations
 An HTTP-only deployment cannot run background jobs. Document parsing should be isolated appropriately for your environment. Production behavior of external mail, gateways and PostgreSQL must be tested with those services. The application is not presented as security certified.
