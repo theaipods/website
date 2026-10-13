@@ -6,7 +6,7 @@ The approved light-theme typography and palette are recorded in [docs/design-sys
 
 See [the repository README](../README.md) for complete setup, features, model integration, Resend, database transfer and validation.
 
-For Railway deployment from the GitHub repository, see [the Railway setup guide](docs/RAILWAY.md). The web service and the background worker are separate services, both rooted at `/web` and using the same hosted database URL. Railway Variables hold the settings; the local `.env` file stays uncommitted.
+For Railway deployment from the GitHub repository, see [the Railway setup guide](docs/RAILWAY.md). The web service and the background worker are separate services, both rooted at `/` in that repository and using the same hosted database URL. Railway Variables hold the settings; the local `.env` file stays uncommitted.
 
 Quick start: `npm ci`, copy `.env.example` to `.env.local`, then `npm run dev`.
 

@@ -1,6 +1,6 @@
 # Railway deployment
 
-This repository runs as two Node.js 24+ processes. Deploy the **website** and **background worker** as separate Railway services from the same GitHub repository. Set each service's Root Directory to `/web` (not `/` or `/web/web`). The worker has no public domain.
+This repository runs as two Node.js 24+ processes. Deploy the **website** and **background worker** as separate Railway services from the same GitHub repository. Set each service's Root Directory to `/` (or leave the root setting blank). The local checkout happens to be named `web`, but its `package.json` is at the GitHub repository root. The worker has no public domain.
 
 | Service | Build command | Start command |
 | --- | --- | --- |
