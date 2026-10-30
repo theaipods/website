@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
+if (existsSync(".env")) process.loadEnvFile(".env");
 const children = [
   spawn(process.execPath, ["node_modules/next/dist/bin/next", "dev"], { stdio: "inherit" }),
   spawn(process.execPath, ["--import", "tsx", "scripts/worker.ts"], { stdio: "inherit" }),

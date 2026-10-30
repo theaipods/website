@@ -1,12 +1,10 @@
 /* Shared action treatment across the public site and application. Page artwork keeps its own colors. */
-.future-home .fh-brand-mark{background:linear-gradient(145deg,#90ace2,var(--brand-sapphire) 60%,var(--brand-sapphire-deep))!important}
-.future-home .fh-brand>span:last-child span{color:var(--brand-sapphire)!important}
-:is(.future-home .hd-eyebrow,.product-page .pd-kicker,.sol-page .sol-eyebrow,.ai-employees-page .aew-kicker,.bd-page .bd-kicker,.about-page .ab-kicker){color:var(--brand-copper)!important}
-:is(.future-home .fh-button,.product-page .pd-nav-demo,.product-page .pd-button,.sol-page .sol-nav-cta,.sol-page .sol-button:not(.sol-button-light),.ai-employees-page .aew-button:not(.aew-button-light),.bd-page .bd-button:not(.light),.events-page .ev-nav-demo,.events-page .ev-primary,.event-detail .ev-primary,.about-page .ab-nav-cta,.about-page .ab-button-dark,.docs-page .docs-start,.wf-button:not(.secondary)){
+:is(.future-home .hd-eyebrow,.sol-page .sol-eyebrow){color:var(--brand-copper)!important}
+:is(.sol-page .sol-button:not(.sol-button-light),.events-page .ev-primary,.event-detail .ev-primary,.wf-button:not(.secondary)){
   background:var(--brand-sapphire)!important;
   color:#fff!important;
 }
-:is(.future-home .fh-button,.product-page .pd-nav-demo,.product-page .pd-button,.sol-page .sol-nav-cta,.sol-page .sol-button:not(.sol-button-light),.ai-employees-page .aew-button:not(.aew-button-light),.bd-page .bd-button:not(.light),.events-page .ev-nav-demo,.events-page .ev-primary,.event-detail .ev-primary,.about-page .ab-nav-cta,.about-page .ab-button-dark,.docs-page .docs-start,.wf-button:not(.secondary)):hover{
+:is(.sol-page .sol-button:not(.sol-button-light),.events-page .ev-primary,.event-detail .ev-primary,.wf-button:not(.secondary)):hover{
   background:var(--brand-sapphire-deep)!important;
 }
 

@@ -1,4 +1,5 @@
 "use client";
+import { StaticEmployee } from "@/components/StaticEmployee";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -80,7 +81,7 @@ export function HomeObjectiveDemo() {
         <div className="hd-example-label">CHOOSE AN OBJECTIVE TO EXPLORE</div>
         <div className="hd-examples" role="group" aria-label="Sample objectives">
           {examples.map((item, index) => <button type="button" key={item.label} className={`hd-example${selected === index ? " is-selected" : ""}`} aria-pressed={selected === index} onClick={() => choose(index)}>
-            <img src={`/brand/homepage-3d/${item.image}.png`} alt=""/><span><strong>{item.label}</strong><small>{item.short}</small></span><ChevronRight size={17}/>
+            <StaticEmployee id={item.image === "campaign" ? "marketing-marketing-agent" : item.image === "feature" ? "product-frontend-developer" : "hr-employee-assistant"}/><span><strong>{item.label}</strong><small>{item.short}</small></span><ChevronRight size={17}/>
           </button>)}
         </div>
         <div className="hd-hero-actions">
@@ -98,7 +99,7 @@ export function HomeObjectiveDemo() {
 
           <div className={`hd-workforce-map hd-phase-${phase}`}>
             <svg className="hd-connections" viewBox="0 0 640 252" preserveAspectRatio="none" aria-hidden="true"><path d="M320 126 L110 55 M320 126 L530 55 M320 126 L110 198 M320 126 L530 198"/></svg>
-            <div className="hd-core"><img src="/brand/orchestrator-core-cinematic.png" alt=""/><span>ORCHESTRATOR</span></div>
+            <div className="hd-core"><StaticEmployee id="orchestrator"/><span>ORCHESTRATOR</span></div>
             {example.team.map((role, index) => <div key={role} className={`hd-worker hd-worker-${index + 1}${phaseIndex[phase] > 0 ? " is-active" : ""}`}>
               <span className="hd-worker-mark">{String(index + 1).padStart(2, "0")}</span><span><strong>{role}</strong><small>{phase === "ready" ? "Ready to assign" : phase === "planning" ? "Task assigned" : phase === "approved" ? "Complete" : example.assignments[index]}</small></span><span className="hd-worker-state"/>
             </div>)}

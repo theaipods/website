@@ -1,5 +1,4 @@
 import { registerRoot } from "remotion";
-import React from "react";
 import { Composition } from "remotion";
 import { WorkforceShowreel } from "./ShowreelV1";
 import { EnterpriseShowreel } from "./EnterpriseShowreel";

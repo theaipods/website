@@ -2,14 +2,16 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { agentWithOperations, eligibleAgents, registryAgent, registryCategories, registryDefinitions, type AgentSettings } from "@/lib/agent-registry";
 import { db } from "@/lib/server/db";
+import { startAuthChallenge, verifyAuthChallenge, finishAuthChallenge } from "@/lib/server/auth-challenges";
 import { getAboutContent, saveAboutContent } from "@/lib/server/about";
-import { ApiError, hash, localDemo, passwordHash, passwordMatches, rateLimit, requireAdmin, requireUser, seedAdmin, sendOtp, sessionCookie, sessionUser, verifyOtp } from "@/lib/server/auth";
+import { ApiError, hash, passwordMatches, rateLimit, requireAdmin, requireUser, seedAdmin, sessionCookie, sessionUser, requireCompanyEmail } from "@/lib/server/auth";
 import { audit, companiesFor, companyFor, knowledgeFor, podFor, saveCompany, savePod } from "@/lib/server/repository";
 import { buildRun, decideTask, event } from "@/lib/server/orchestrator";
 import { providerStatus } from "@/lib/server/providers";
 import { companyGaps, companySchema, podSchema, type Run } from "@/lib/workforce";
+import { withOutcomes } from '@/lib/company-outcomes';
 import { officeText } from "@/lib/server/extract";
-import { researchWebsite } from "@/lib/server/website-research";
+import { enqueueResearch, latestResearchJob } from "@/lib/server/research-jobs";
 import { eventRevision, operationsPods, operationsSnapshot, taskDetail } from "@/lib/server/operations";
 import { integrationCategories, integrationRegistry } from "@/lib/integration-registry";
 import { addMcpServer, listMcpServers, refreshMcpServer, validateMcpEndpoint } from "@/lib/server/mcp";
@@ -17,6 +19,12 @@ import { cancelDemoBooking, createDemoBooking, demoAvailability, getDemoBooking,
 import { recommendDemoWorkforce } from "@/lib/demo-recommendation";
 import { adminEventCatalog, cancelEventRegistration, eventMetric, getEvent, getEventRegistration, listEvents, registerForEvent, saveAdminEvent, saveAdminSpeaker } from "@/lib/server/events";
 import { eventStatuses, eventTypes, type EventSpeaker, type PodEvent } from "@/lib/events";
+import { accountPlan, insertProjectPod } from "@/lib/server/plans";
+import { buildDemoProject } from "@/lib/server/demo-projects";
+import { addProfileServer, discoverProfileServer, grantProfileTool, importProfileTool, profileServers, removeProfileServer } from "@/lib/server/profile-mcp";
+import { demoTemplates } from "@/lib/demo-templates";
+import { suggestOnboarding, prepareTrial } from "@/lib/server/onboarding-assistance";
+import { sendContactInterest } from "@/lib/server/contact";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -47,6 +55,15 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
     const route = parts.join("/");
     const method = req.method;
     await seedAdmin();
+    if (route === "contact/interest" && method === "POST") {
+      const input = z.object({ email: emailSchema, website: z.string().max(200).default("") }).parse(await body(req));
+      if (input.website) return json({ ok: true }, 201);
+      const forwarded = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+      await rateLimit(`contact-interest-ip:${forwarded}`, 8, 3600000);
+      await rateLimit(`contact-interest-email:${input.email}`, 3, 3600000);
+      await sendContactInterest(input);
+      return json({ ok: true }, 201);
+    }
     if (route === "events" && method === "GET") {
       const url=new URL(req.url);return json(await listEvents(Object.fromEntries(["q","period","category","industry","format","location","topic","speaker","sort","year"].map(key=>[key,url.searchParams.get(key)||""]))));
     }
@@ -126,35 +143,37 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
       const setting = await db().one("SELECT value FROM site_settings WHERE key='show_team'");
       return json({ showTeam: setting?.value === "true" });
     }
-    if (route === "auth/session" && method === "GET") return json({ user: await sessionUser(req), demo: localDemo() });
+    if (route === "auth/session" && method === "GET") return json({ user: await sessionUser(req), demo: false });
     if (route === "auth/login" && method === "POST") {
       const input = z.object({ email: z.string().min(1).max(254), password: z.string().min(1).max(128), portal: z.enum(["owner", "admin"]).default("owner") }).parse(await body(req));
-      const email = input.email.trim().toLowerCase() === "admin" ? "admin@local.test" : input.email.trim().toLowerCase();
+      const email = input.email.trim().toLowerCase();
+      requireCompanyEmail(email);
       await rateLimit(`login:${email}`);
       const row = await db().one("SELECT * FROM users WHERE email=?", [email]);
-      if (!row || (email === "admin@local.test" && !localDemo()) || !passwordMatches(input.password, String(row.password))) throw new ApiError(401, "Email or password is incorrect.");
-      if (!row.verified) return json({ verificationRequired: true, email }, 403);
+      if (!row || email === "admin@local.test" || !passwordMatches(input.password, String(row.password))) throw new ApiError(401, "Email or password is incorrect.");
+      if (!row.verified) throw new ApiError(403, "Verify your email using Create account to finish setup.");
       if (input.portal === "admin" && !(await db().one("SELECT user_id FROM admins WHERE user_id=?", [String(row.id)]))) throw new ApiError(403, "This account does not have admin access.");
-      return json({ ok: true }, 200, { "Set-Cookie": await sessionCookie(String(row.id)) });
+      return json({ ok: true }, 200, { "Set-Cookie": await sessionCookie(String(row.id), String(row.password)) });
     }
-    if (route === "auth/register" && method === "POST") {
-      const input = z.object({ email: emailSchema, name: z.string().trim().min(1).max(120), password: z.string().min(10).max(128) }).parse(await body(req));
-      await rateLimit(`register:${input.email}`, 5, 3600000);
-      if (await db().one("SELECT id FROM users WHERE email=?", [input.email])) throw new ApiError(409, "This email is already registered. Log in or resend verification.");
-      const id = randomUUID();
-      await db().query("INSERT INTO users(id,email,name,password,verified,created) VALUES(?,?,?,?,0,?)", [id, input.email, input.name, passwordHash(input.password), new Date().toISOString()]);
-      try { return json({ email: input.email, message: await sendOtp(id, input.email) }, 201); }
-      catch (error) { if (error instanceof ApiError) return json({ email: input.email, verificationRequired: true, message: error.message }, 201); throw error; }
-    }
-    if ((route === "auth/verify" || route === "auth/resend") && method === "POST") {
-      const input = z.object({ email: emailSchema, code: z.string().regex(/^\d{6}$/).optional() }).parse(await body(req));
-      await rateLimit(`verification:${input.email}`, 15);
-      const row = await db().one("SELECT id,verified FROM users WHERE email=?", [input.email]);
-      if (!row || row.verified) throw new ApiError(400, "No pending verification. Please log in or register.");
-      if (route.endsWith("resend")) return json({ message: await sendOtp(String(row.id), input.email) });
-      if (!input.code) throw new ApiError(400, "Enter the six-digit code.");
-      await verifyOtp(String(row.id), input.code);
-      return json({ ok: true }, 200, { "Set-Cookie": await sessionCookie(String(row.id)) });
+    if (["auth/register", "auth/password-reset", "auth/resend", "auth/verify", "auth/complete-signup", "auth/reset-password"].includes(route) && method === "POST") {
+      // The trusted reverse proxy must replace (not append untrusted) client-IP headers.
+      const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+      await rateLimit(`auth-flow-ip:${ip}`, 40, 900000);
+      const payload = await body(req);
+      if (["auth/register", "auth/password-reset", "auth/resend"].includes(route)) {
+        const input = z.object({ email: emailSchema, purpose: z.enum(["signup", "reset"]).default("signup") }).parse(payload);
+        const purpose = route === "auth/password-reset" ? "reset" : route === "auth/register" ? "signup" : input.purpose;
+        return json(await startAuthChallenge(input.email, purpose));
+      }
+      if (route === "auth/verify") {
+        const input = z.object({ email: emailSchema, purpose: z.enum(["signup", "reset"]), challengeId: z.string().uuid(), code: z.string().regex(/^\d{6}$/) }).parse(payload);
+        return json(await verifyAuthChallenge(input.email, input.purpose, input.challengeId, input.code));
+      }
+      const input = z.object({ email: emailSchema, grant: z.string().regex(/^[a-f0-9]{64}$/), password: z.string().min(10).max(128), name: z.string().trim().min(1).max(120).optional() }).parse(payload);
+      const purpose = route === "auth/reset-password" ? "reset" : "signup";
+      const id = await finishAuthChallenge(input.email, purpose, input.grant, input.password, input.name);
+      if (purpose === "reset") return json({ ok: true, message: "Password changed. Please log in with your new password." }, 200, { "Set-Cookie": "workforce_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0" });
+      return json({ ok: true }, 201, { "Set-Cookie": await sessionCookie(id) });
     }
     if (route === "auth/logout" && method === "POST") {
       const token = req.headers.get("cookie")?.split(";").map(x => x.trim()).find(x => x.startsWith("workforce_session="))?.slice(18);
@@ -162,6 +181,41 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
       return json({ ok: true }, 200, { "Set-Cookie": "workforce_session=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0" });
     }
     const user = await requireUser(req);
+    if (parts[0] === "profile-mcp") {
+      if (method === "GET" && parts.length === 1) return json({ servers: await profileServers(user.id) });
+      await rateLimit(`profile-mcp:${user.id}`, 60, 3600000);
+      if (method === "POST" && parts.length === 1) {
+        const input = z.object({name:z.string().trim().min(2).max(80),endpoint:z.string().url().max(500),token:z.string().max(8000).default("")}).parse(await body(req));
+        return json({id:await addProfileServer(user.id,input.name,input.endpoint,input.token)},201);
+      }
+      if (method === "DELETE" && parts.length === 2) { await removeProfileServer(user.id,parts[1]); return json({ok:true}); }
+      if (method === "POST" && parts[2] === "discover") { await discoverProfileServer(user.id,parts[1]); return json({ok:true}); }
+      if (method === "POST" && parts[2] === "grant") {
+        const input=z.object({name:z.string(),enabled:z.boolean()}).parse(await body(req)); await grantProfileTool(user.id,parts[1],input.name,input.enabled); return json({ok:true});
+      }
+      if (method === "POST" && parts[2] === "read") {
+        const input=z.object({companyId:z.string(),name:z.string(),arguments:z.record(z.string(),z.unknown())}).parse(await body(req));
+        return json(await importProfileTool(user.id,input.companyId,parts[1],input.name,input.arguments));
+      }
+      throw new ApiError(404,"Unknown profile MCP operation.");
+    }
+    if (route === "demo-projects" && method === "GET") return json({ templates: demoTemplates, plan: await accountPlan(user.id) });
+    if (route === "demo-projects" && method === "POST") {
+      const input = z.object({ requestKey: z.string().uuid().optional(), companyId: z.string(), templateId: z.string(), prompt: z.string().trim().min(20).max(12000), mode: z.enum(["live", "simulation"]), approvalMode: z.enum(["manual", "smart", "auto"]), knowledgeIds: z.array(z.string()).max(100).default([]) }).parse(await body(req));
+      const company = await companyFor(input.companyId, user.id);
+      const available = await knowledgeFor(company.id);
+      const gaps = companyGaps(company, available.filter(k => k.category === "SOPs").length);
+      if (gaps.length) throw new ApiError(400, `Complete onboarding before sending a demo brief: ${gaps.join("; ")}`);
+      if (input.knowledgeIds.some(id => !available.some(k => k.id === id))) throw new ApiError(400, "Evidence must belong to the selected company.");
+      if (input.mode === "live") {
+        const required = input.templateId === "development-build" ? ["chat", "code"] : ["chat"];
+        const missing = providerStatus().filter(p => required.includes(p.capability) && !p.configured);
+        if (missing.length) throw new ApiError(400, `Configure ${missing.map(p => p.capability).join(" and ")} models in your environment before sending. No project has been created.`);
+      }
+      const pod = await insertProjectPod(user.id, buildDemoProject(company, input.templateId, input.prompt, input.mode, input.approvalMode, input.knowledgeIds),input.requestKey);
+      await audit(user.id, company.id, `Sent demo project ${pod.name}; approval policy ${pod.approvalMode}`);
+      return json(pod, 201);
+    }
     if (parts[0] === "mcp" && parts[1] === "servers") {
       const companyId = new URL(req.url).searchParams.get("companyId") || "";
       if (!companyId) throw new ApiError(400, "Choose a company.");
@@ -254,6 +308,14 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
     }
     if (parts[0] === "admin") {
       await requireAdmin(req);
+      if (route === "admin/plans" && method === "POST") {
+        const input = z.object({ email: emailSchema, plan: z.enum(["starter", "founders", "enterprise"]) }).parse(await body(req));
+        const account = await db().one("SELECT id FROM users WHERE email=? AND verified=1", [input.email]);
+        if (!account) throw new ApiError(404, "Verified account not found.");
+        await db().query("INSERT INTO account_plans(user_id,plan,updated) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET plan=excluded.plan,updated=excluded.updated", [String(account.id), input.plan, new Date().toISOString()]);
+        await audit(user.id, null, `Assigned ${input.plan} plan to ${input.email}`);
+        return json(await accountPlan(String(account.id)));
+      }
       if (route === "admin/about" && method === "GET") return json(await getAboutContent());
       if (route === "admin/about" && method === "POST") { const saved = await saveAboutContent(await body(req)); await audit(user.id, null, "Updated About page content"); return json(saved); }
       if(route==="admin/events"&&method==="GET")return json(await adminEventCatalog());
@@ -263,7 +325,7 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
         const users = await db().all("SELECT u.id,u.name,u.email,u.verified,u.created,CASE WHEN a.user_id IS NULL THEN 'owner' ELSE 'admin' END AS role FROM users u LEFT JOIN admins a ON a.user_id=u.id ORDER BY u.created DESC");
         const companies = await db().all("SELECT c.id,c.owner_id,c.data,c.created,u.name AS owner_name,u.email AS owner_email FROM companies c JOIN users u ON u.id=c.owner_id ORDER BY c.created DESC");
         const pods = await db().all("SELECT p.id,p.company_id,p.data,p.created,c.owner_id FROM pods p JOIN companies c ON c.id=p.company_id ORDER BY p.created DESC");
-        const knowledge = await db().all("SELECT k.id,k.company_id,k.name,k.category,k.status,k.created FROM knowledge k ORDER BY k.created DESC LIMIT 500");
+        const knowledge = await db().all("SELECT k.id,k.company_id,k.name,k.category,k.status,k.created FROM knowledge k ORDER BY k.created DESC");
         return json({ users, companies: companies.map(c => ({ id: c.id, ownerId: c.owner_id, ownerName: c.owner_name, ownerEmail: c.owner_email, created: c.created, ...JSON.parse(String(c.data)) })),
           pods: pods.map(p => ({ id: p.id, companyId: p.company_id, ownerId: p.owner_id, created: p.created, ...JSON.parse(String(p.data)) })), knowledge });
       }
@@ -308,26 +370,35 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
     if (parts[0] === "companies") {
       const id = parts[1];
       if (method === "POST" && parts.length === 1 || method === "PUT" && parts.length === 2) {
-        const raw = await body(req); const input = companySchema.parse(raw);
+        const raw = await body(req); const parsed = companySchema.parse(raw);
+        const input = parsed.outcomes === undefined ? parsed : withOutcomes(parsed, parsed.outcomes);
         const documents = id ? (await knowledgeFor((await companyFor(id, user.id)).id)).filter(k => k.category === "SOPs").length : 0;
         const gaps = input.status === "active" ? companyGaps(input, documents) : [];
         if (gaps.length) throw new ApiError(400, `Complete onboarding: ${gaps.join("; ")}`);
         return json(await saveCompany(user.id, input, id, raw.version));
       }
       const company = await companyFor(id, user.id);
+      if (parts[2] === 'quickstart' && parts.length === 3 && method === 'POST') {
+        await rateLimit(`onboarding-quickstart:${user.id}`, 6, 3600000);
+        const result=await prepareTrial(id,await body(req));
+        await audit(user.id,id,'Prepared trial onboarding and local process check; no external actions');
+        return json(result);
+      }
+      if (parts[2] === "assist" && parts.length === 3 && method === "POST") {
+        await rateLimit(`onboarding-assist:${user.id}`, 60, 3600000);
+        const result = await suggestOnboarding(id, await body(req));
+        await audit(user.id, id, `Generated ${result.suggestions.length} onboarding suggestions for review`);
+        return json(result);
+      }
       if (parts[2] === "research") {
+        if (method === "GET" && parts[3] === "status") return json(await latestResearchJob(id));
         if (method === "GET") { const row = await db().one("SELECT blob FROM knowledge WHERE company_id=? AND category='Website research' ORDER BY created DESC LIMIT 1", [id]); return json(row ? JSON.parse(Buffer.from(String(row.blob), 'base64').toString()) : null); }
         if (method === "POST") {
           await rateLimit(`research:${user.id}`, 5, 3600000);
           const input = z.object({ website: z.string().min(3).max(2000), extraUrls: z.array(z.string().max(2000)).max(10).default([]), render: z.boolean().default(true), mode: z.enum(['auto','free','api']).default('auto'), maxPages: z.number().int().min(1).max(30).default(15) }).parse(await body(req));
           if ((await knowledgeFor(id)).length >= 100) throw new ApiError(400, 'Remove unused files before adding a research report.');
-          let report; try { report = await researchWebsite({ ...input, name: company.name }); } catch (e) { throw new ApiError(400, (e as Error).message); }
-          const kid = randomUUID(); report.knowledgeId = kid;
-          const content = report.sources.map(s => `Source: ${s.url}\n${s.title}\nStatus: ${s.status}\n${s.kind === 'directory' ? 'UNVERIFIED DIRECTORY: confirm company identity.\n' : ''}${s.text}`).join('\n\n').slice(0,1000000);
-          const blob = Buffer.from(JSON.stringify(report, null, 2));
-          await db().query('INSERT INTO knowledge(id,company_id,name,size,type,category,status,content,blob,created) VALUES(?,?,?,?,?,?,?,?,?,?)', [kid,id,`website-research-${report.at.slice(0,10)}.json`,blob.length,'application/json','Website research',`${report.sources.filter(s => s.status === 'Stored').length} pages stored`,content,blob.toString('base64'),report.at]);
-          for (let pos=0, ordinal=0; pos<content.length; pos+=1000, ordinal++) await db().query('INSERT INTO chunks(id,knowledge_id,company_id,content,ordinal) VALUES(?,?,?,?,?)', [`${kid}:${ordinal}`,kid,id,content.slice(pos,pos+1200),ordinal]);
-          await audit(user.id,id,`Website research: ${report.sources.length} sources attempted`); return json(report,201);
+          const snapshot=Object.fromEntries(['name','industry','size','businessModel','geography','products','about'].map(key=>[key,String(company[key as keyof typeof company]||'')]));
+          return json(await enqueueResearch(id,user.id,{...input,name:company.name,snapshot}),202);
         }
       }
       if (method === "DELETE" && parts.length === 2) {
@@ -365,8 +436,8 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
         const available = await knowledgeFor(id);
         if (input.knowledgeIds.some(k => !available.some(a => a.id === k))) throw new ApiError(400, "Selected knowledge does not belong to this company.");
         const pod = buildRun(company, input, await agentLimits(id));
-        await db().query("INSERT INTO pods(id,company_id,data,created) VALUES(?,?,?,?)", [pod.id, id, JSON.stringify(pod), pod.created]);
-        await audit(user.id, id, `Created ${input.mode} pod: ${pod.name}`); return json(pod, 201);
+        const saved = await insertProjectPod(user.id, pod);
+        await audit(user.id, id, `Created ${input.mode} pod: ${pod.name}`); return json(saved, 201);
       }
     }
     if (parts[0] === "knowledge" && parts[1]) {
@@ -410,6 +481,16 @@ async function handle(req: Request, ctx: Context): Promise<Response> {
           if (!["Ready", "Blocked"].includes(pod.status)) throw new ApiError(409, "This pod is already running, awaiting a decision, or finished.");
           for (const task of pod.tasks) if (task.status === "Blocked") { task.status = "Planned"; task.progress = 0; }
           pod.status = "Queued"; pod.paused = false; event(pod, "Owner", "Queued execution."); return json(await savePod(pod));
+        }
+        if (parts[2] === "retry-blocked" && pod.templateId) {
+          if (["Completed", "Rejected"].includes(pod.status)) throw new ApiError(409, "This project is finished.");
+          const company = await companyFor(pod.companyId, user.id);
+          if (company.version !== pod.contextVersion) throw new ApiError(409, "Company context changed. Create a new project with the updated blueprint.");
+          if (!pod.tasks.some(t => t.status === "Blocked")) throw new ApiError(409, "No blocked tasks to retry.");
+          for (const task of pod.tasks) if (task.status === "Blocked") { task.status = "Planned"; task.progress = 0; task.leaseId = undefined; }
+          const { demoStatus } = await import("@/lib/server/demo-worker");
+          demoStatus(pod); event(pod, "Owner", "Queued blocked tasks for retry; completed work and pending approvals are preserved.");
+          return json(await savePod(pod));
         }
         if (parts[2] === "pause") { pod.paused = z.boolean().parse(raw.paused); if (pod.status === "Running") { pod.status = "Queued"; for (const task of pod.tasks) if (task.status === "Running") { task.status = "Planned"; task.progress = 0; } } event(pod, "Owner", pod.paused ? "Paused pod." : "Resumed pod."); return json(await savePod(pod)); }
       }

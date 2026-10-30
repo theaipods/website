@@ -1,18 +1,19 @@
 "use client";
+import Image from "next/image";
+import { HomeConnectedContext } from "@/components/HomeConnectedContext";
+import { HomeWorkforceHero } from "@/components/HomeWorkforceHero";
 
 import { HomeObjectiveDemo } from "@/components/HomeObjectiveDemo";
 import { SpecialistWorkforce } from "@/components/SpecialistWorkforce";
-import type { WorkerRole } from "@/components/WorkerScene";
-import { WorkerScene } from "@/components/WorkerScene";
 import { Contact } from "@/components/landing";
 import { ToolLogo } from "@/components/tool-logo";
 import { registryDefinitions } from "@/lib/agent-registry";
 import { autonomyLevels,faqs } from "@/lib/catalog";
 import { integrationRegistry } from "@/lib/integration-registry";
 import { solutions } from "@/lib/solutions";
-import { ArrowRight,ArrowUpRight,BookOpen,Check,CheckCircle2,ChevronRight,CirclePlay,ClipboardCheck,FileText,GitBranch,LockKeyhole,Pause,Play,RotateCcw,ShieldCheck,Sparkles,UsersRound } from "lucide-react";
+import { ArrowRight,ArrowUpRight,BookOpen,Check,CheckCircle2,ChevronRight,ClipboardCheck,FileText,GitBranch,LockKeyhole,Pause,Play,RotateCcw,ShieldCheck,Sparkles,UsersRound, Headphones, HeartPulse, ChartNoAxesCombined, Megaphone, BriefcaseBusiness, Zap, Smile, TrendingUp } from "lucide-react";
 import Link from "next/link";
-import { useEffect,useMemo,useState } from "react";
+import { useEffect,useMemo,useRef,useState } from "react";
 
 const logoNames = ["Slack", "Microsoft Teams", "Google Drive", "Salesforce", "Notion", "Jira", "Gmail", "GitHub"];
 const phases = [
@@ -29,16 +30,15 @@ const tasks = [
   { name: "Route for review", detail: "Send work to the right person", icon: ShieldCheck },
 ];
 const entryPoints = [
-  { title: "Run a single team", description: "Start with one objective and a focused specialist pod.", href: "/workspace/pods/new", image: "ready-team" },
-  { title: "Modernize a function", description: "Bring a department's work into a coordinated flow.", href: "/solutions", image: "industry" },
-  { title: "Build a system", description: "Plan connected work across teams and business functions.", href: "/product", image: "custom-pod" },
+  { title: "Run a single team", description: "Start with one objective and a focused specialist pod.", href: "/workspace/pods/new", image: "orchestrator" },
+  { title: "Modernize a function", description: "Bring a department's work into a coordinated flow.", href: "/solutions", image: "sales-sales-agent" },
+  { title: "Build a system", description: "Plan connected work across teams and business functions.", href: "/product", image: "product-backend-developer" },
 ];
 const categoryOptions = [
   { id: "", label: "All" }, { id: "sales", label: "Sales" }, { id: "marketing", label: "Marketing" },
   { id: "hr", label: "People & HR" }, { id: "finance", label: "Finance" },
   { id: "product", label: "Product" }, { id: "it", label: "IT" }, { id: "data", label: "Data" },
 ];
-const roleForCategory: Record<string, WorkerRole> = { sales: "sales", marketing: "marketing", hr: "people", finance: "finance", product: "product", it: "security", data: "data", ops: "operations", platform: "orchestrator", legal: "legal", support: "support" };
 const solutionSummaries: Record<string, string> = {
   "customer-experience": "Organize requests and prepare reviewed responses.",
   "finance-operations": "Keep reporting, evidence, and exceptions visible.",
@@ -48,30 +48,36 @@ const solutionSummaries: Record<string, string> = {
   insurance: "Organize policy and claims work for reviewers.",
 };
 
+function HomeEmployee({id, eager = false}: {id:string; eager?:boolean}) {
+  return <Image src={`/ai-workforce/avatars-hd/${id}.png`} width={480} height={400} alt="" sizes={eager ? "(max-width: 650px) 260px, 450px" : "(max-width: 650px) 200px, 320px"} loading={eager ? "eager" : "lazy"} className="hm-character"/>;
+}
+const solutionIcons = [UsersRound, Headphones, ChartNoAxesCombined, Megaphone, HeartPulse, ShieldCheck];
 function Eyebrow({ children }: { children: React.ReactNode }) { return <span className="hm-eyebrow"><i/>{children}</span>; }
 function ButtonLink({ href, children }: { href: string; children: React.ReactNode }) { return <Link href={href} className="hm-button">{children}<ArrowRight size={17}/></Link>; }
 function SectionHead({ eyebrow, title, copy }: { eyebrow: string; title: React.ReactNode; copy?: string }) { return <div className="hm-section-head"><div><Eyebrow>{eyebrow}</Eyebrow><h2>{title}</h2></div>{copy && <p>{copy}</p>}</div>; }
 
-function WorkflowDemo() {
+function WorkflowDemo({motion}: {motion:boolean}) {
   const [step, setStep] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [showOriginal, setShowOriginal] = useState(false);
+  useEffect(() => { if (!motion) setPlaying(false); }, [motion]);
   useEffect(() => {
-    if (!playing) return;
-    const timer = window.setInterval(() => setStep(current => {
-      if (current >= phases.length - 1) { setPlaying(false); return current; }
-      return current + 1;
-    }), 1350);
+    if (!playing || !motion) return;
+    const timer = window.setInterval(() => {
+      if (document.hidden || !document.getElementById("how-it-works")?.classList.contains("hm-in-view")) return;
+      setStep(current => Math.min(current + 1, phases.length - 1));
+    }, 1500);
     return () => window.clearInterval(timer);
-  }, [playing]);
-  return <section className="hm-section hm-demo" id="how-it-works"><div className="hm-shell"><SectionHead eyebrow="SEE IT IN ACTION" title={<>Watch the pod move <em>work forward.</em></>} copy="Give a sample workforce an objective and see the work move from context to a review-ready result."/><div className="hm-demo-board"><div className="hm-demo-objective"><div className="hm-demo-card"><small>EXAMPLE OBJECTIVE</small><h3>Customer onboarding</h3><p>Prepare the next customer handoff with a clear plan, relevant context, and a person at the review point.</p><div className="hm-demo-avatars"><WorkerScene role="orchestrator"/><WorkerScene role="research"/><WorkerScene role="operations"/></div></div><button type="button" className="hm-demo-play" onClick={() => { setStep(0); setPlaying(true); }}>{playing ? <Pause size={16}/> : step === phases.length - 1 ? <RotateCcw size={16}/> : <Play size={16} fill="currentColor"/>}{playing ? "Playing sample" : step === phases.length - 1 ? "Replay sample" : "Watch sample"}</button><span className="hm-demo-caption">Illustrative simulation · no external action</span></div><div className={`hm-demo-core hm-step-${step}`}><span className="hm-demo-ring"/><span className="hm-demo-center"><WorkerScene role="orchestrator" characterId="orchestrator"/></span>{logoNames.slice(0,6).map((name,index)=><span className={`hm-demo-tool tool-${index}`} key={name}><ToolLogo name={name} size={22}/></span>)}<span className="hm-demo-signal"/></div><div className="hm-demo-tasks">{tasks.map((task,index) => { const Icon = task.icon; const state = step >= 4 ? "Prepared" : step > index ? "Prepared" : step === index ? "In view" : "Next"; return <div key={task.name} className={step >= index + 1 ? "ready" : step === index ? "current" : ""}><span><Icon size={19}/></span><span><b>{task.name}</b><small>{task.detail}</small></span><em>{state}</em></div>; })}</div><div className="hm-demo-timeline" role="group" aria-label="Illustrative workflow stages">{phases.map((phase,index) => { const Icon = phase.icon; return <button type="button" key={phase.name} className={step === index ? "active" : step > index ? "done" : ""} aria-pressed={step === index} onClick={() => { setPlaying(false); setStep(index); }}><Icon size={14}/><span>{phase.name}</span></button>; })}</div></div><p className="hm-demo-status" role="status"><strong>{phases[step].name}:</strong> {phases[step].detail}</p><details className="hm-deep-demo" onToggle={event => setShowOriginal(event.currentTarget.open)}><summary>Explore the original objective simulator <ChevronRight size={16}/></summary>{showOriginal && <HomeObjectiveDemo/>}</details></div></section>;
+  }, [playing, motion]);
+  useEffect(() => { if (step === phases.length - 1) setPlaying(false); }, [step]);
+  return <section className="hm-section hm-demo" id="how-it-works"><div className="hm-shell"><SectionHead eyebrow="SEE IT IN ACTION" title={<>Watch the pod move <em>work forward.</em></>} copy="Give a sample workforce an objective and see the work move from context to a review-ready result."/><div className="hm-demo-board"><div className="hm-demo-objective"><div className="hm-demo-card"><small>EXAMPLE OBJECTIVE</small><h3>Customer onboarding</h3><p>Prepare the next customer handoff with a clear plan, relevant context, and a person at the review point.</p><div className="hm-demo-logos">{["Slack","Jira","Google Drive"].map(name=><ToolLogo key={name} name={name} size={27}/>)}</div></div><button type="button" className="hm-demo-play" onClick={() => { if(playing) setPlaying(false); else if(!motion) setStep(current=>(current+1)%phases.length); else {setStep(0);setPlaying(true);} }}>{playing ? <Pause size={16}/> : step === phases.length - 1 ? <RotateCcw size={16}/> : <Play size={16} fill="currentColor"/>}{playing ? "Pause sample" : !motion ? "Next sample step" : step === phases.length - 1 ? "Replay sample" : "Watch sample"}</button><span className="hm-demo-caption">Illustrative simulation · no external action</span></div><div className={`hm-demo-core hm-step-${step}`}><span className="hm-demo-ring"/><span className="hm-demo-center"><HomeEmployee id="orchestrator"/></span>{logoNames.slice(0,6).map((name,index)=><span className={`hm-demo-tool tool-${index}`} key={name}><ToolLogo name={name} size={22}/></span>)}<span className="hm-demo-signal"/></div><div className="hm-demo-tasks">{tasks.map((task,index) => { const Icon = task.icon; const state = step >= 4 ? "Prepared" : step > index ? "Prepared" : step === index ? "In view" : "Next"; return <div key={task.name} className={step >= index + 1 ? "ready" : step === index ? "current" : ""}><span><Icon size={19}/></span><span><b>{task.name}</b><small>{task.detail}</small></span><em>{state}</em></div>; })}</div><div className="hm-demo-timeline" role="group" aria-label="Illustrative workflow stages">{phases.map((phase,index) => { return <button type="button" key={phase.name} className={step === index ? "active" : step > index ? "done" : ""} aria-pressed={step === index} onClick={() => { setPlaying(false); setStep(index); }}><span className="hm-phase-number">{step>index?<Check size={19}/>:index+1}</span><span><b>{phase.name}</b><small>{["Gather information","Break down work","Prepare scoped actions","Human decision","Deliver the draft"][index]}</small></span></button>; })}</div></div><p className="hm-demo-status" role="status"><strong>{phases[step].name}:</strong> {phases[step].detail}</p><details className="hm-deep-demo" onToggle={event => setShowOriginal(event.currentTarget.open)}><summary>Explore the sample workflow in detail <ChevronRight size={16}/></summary>{showOriginal && <HomeObjectiveDemo/>}</details></div></section>;
 }
 
 function EmployeePreview() {
   const [category, setCategory] = useState("");
   const [showRegistry, setShowRegistry] = useState(false);
   const visible = useMemo(() => registryDefinitions.filter(agent => !category || agent.category === category).slice(0,4), [category]);
-  return <section className="hm-section hm-employees" id="workforce"><div className="hm-shell"><div className="hm-employees-top"><SectionHead eyebrow="MEET YOUR AI WORKFORCE" title={<>Specialized AI employees.<br/><em>Real work, visible progress.</em></>} copy="Explore real roles in the current registry. Each specialist has a defined responsibility and works within the permissions of its pod."/><div className="hm-facts"><span><strong>{registryDefinitions.length}</strong><small>registry roles</small></span><span><strong>{integrationRegistry.length}</strong><small>catalog examples</small></span><span><strong>{solutions.length}</strong><small>solution areas</small></span></div></div><div className="hm-filter" role="group" aria-label="Filter AI employees">{categoryOptions.map(option => <button type="button" key={option.label} className={category === option.id ? "active" : ""} aria-pressed={category === option.id} onClick={() => setCategory(option.id)}>{option.label}</button>)}</div><div className="hm-employee-grid">{visible.length ? visible.map(agent => <Link key={agent.id} href={`/agents?category=${encodeURIComponent(agent.category)}`} className="hm-employee-card"><span className="hm-employee-art"><WorkerScene role={roleForCategory[agent.category] || "operations"} characterId={agent.id}/></span><strong>{agent.name}</strong><p>{agent.description}</p><ArrowUpRight size={17}/></Link>) : <div className="hm-empty">No employees in this category. Choose another team.</div>}</div><div className="hm-centered"><Link href="/agents" className="hm-dark-button">Explore the full registry <ArrowRight size={16}/></Link></div><details className="hm-registry-detail" onToggle={event => setShowRegistry(event.currentTarget.open)}><summary>Open the full registry explorer <ChevronRight size={16}/></summary>{showRegistry && <SpecialistWorkforce/>}</details></div></section>;
+  return <section className="hm-section hm-employees" id="workforce"><div className="hm-shell"><div className="hm-employees-top"><SectionHead eyebrow="MEET YOUR AI WORKFORCE" title={<>Specialized AI employees.{" "}<br/><em>Real work, visible progress.</em></>} copy="Explore real roles in the current registry. Each specialist has a defined responsibility and works within the permissions of its pod."/><div className="hm-facts"><span><strong>{registryDefinitions.length}</strong><small>registry roles</small></span><span><strong>{integrationRegistry.length}</strong><small>catalog examples</small></span><span><strong>{solutions.length}</strong><small>solution areas</small></span></div></div><div className="hm-filter" role="group" aria-label="Filter AI employees">{categoryOptions.map(option => <button type="button" key={option.label} className={category === option.id ? "active" : ""} aria-pressed={category === option.id} onClick={() => setCategory(option.id)}>{option.label}</button>)}</div><div className="hm-employee-grid">{visible.length ? visible.map(agent => <Link key={agent.id} href={`/agents?category=${encodeURIComponent(agent.category)}`} className="hm-employee-card"><span className="hm-employee-art"><HomeEmployee id={agent.id}/></span><strong>{agent.name}</strong><p>{agent.description}</p><ArrowUpRight size={17}/></Link>) : <div className="hm-empty">No employees in this category. Choose another team.</div>}</div><div className="hm-centered"><Link href="/agents" className="hm-dark-button">Explore the full registry <ArrowRight size={16}/></Link></div><details className="hm-registry-detail" onToggle={event => setShowRegistry(event.currentTarget.open)}><summary>Open the full registry explorer <ChevronRight size={16}/></summary>{showRegistry && <SpecialistWorkforce/>}</details></div></section>;
 }
 
 function GovernanceSection() {
@@ -80,18 +86,30 @@ function GovernanceSection() {
 }
 
 export function HomeRedesign() {
-  const [connection, setConnection] = useState(0);
+  const [motion, setMotion] = useState(true);
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const media = matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => setMotion(!media.matches);
+    updateMotion(); media.addEventListener("change", updateMotion);
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      entry.target.classList.toggle("hm-in-view", entry.isIntersecting);
+      if(entry.isIntersecting) entry.target.classList.add("hm-revealed");
+    }), {threshold: .08});
+    root.current?.querySelectorAll("main > section").forEach(section => observer.observe(section));
+    return () => { observer.disconnect(); media.removeEventListener("change", updateMotion); };
+  }, []);
   const featured = integrationRegistry.filter(entry => logoNames.includes(entry.name));
-  return <div className="future-home hm-page" id="top"><main>
-    <section className="hm-hero"><div className="hm-shell hm-hero-grid"><div className="hm-hero-copy"><Eyebrow>AI WORKFORCE PLATFORM</Eyebrow><h1>One objective.<br/>A whole team<br/><em>in motion.</em></h1><p>Give AI a job to do. A team of specialized employees can plan the work, use approved context and tools, and bring decisions back to your people.</p><div className="hm-hero-actions"><ButtonLink href="/book-demo">Book a demo</ButtonLink><Link href="#how-it-works" className="hm-secondary">See how it works <CirclePlay size={18}/></Link></div><div className="hm-benefits"><span><UsersRound size={20}/><b>Specialized employees</b><small>Defined roles for real work</small></span><span><GitBranch size={20}/><b>Works with your tools</b><small>Connect approved systems</small></span><span><ShieldCheck size={20}/><b>Governed work</b><small>People review key decisions</small></span></div></div><div className="hm-hero-scene"><span className="hm-scene-orbit orbit-one"/><span className="hm-scene-orbit orbit-two"/><span className="hm-scene-platform"/><span className="hm-scene-mascot"><WorkerScene role="orchestrator" characterId="orchestrator" eager/></span>{[["Understand","Read approved context",BookOpen],["Plan","Break work into steps",GitBranch],["Take action","Prepare scoped work",Sparkles],["Review","Check the output",ClipboardCheck],["Human review","Route to a person",UsersRound],["Complete","Present reviewed work",CheckCircle2]].map(([title, detail, Icon],index)=>{const CardIcon=Icon as typeof BookOpen;return <span className={`hm-scene-card card-${index}`} key={String(title)}><CardIcon size={19}/><span><b>{String(title)}</b><small>{String(detail)}</small></span></span>})}<span className="hm-scene-light light-a"/><span className="hm-scene-light light-b"/><span className="hm-scene-light light-c"/></div></div></section>
+  return <div ref={root} className="future-home hm-page" id="top" data-motion={motion?"playing":"paused"}><main>
+    <HomeWorkforceHero motion={motion}/>
     <section className="hm-logo-strip" aria-label="Example tools in the integration catalog"><div className="hm-shell"><span>CATALOG EXAMPLES · SETUP REQUIRED</span><div>{featured.map(entry => <span key={entry.id} title={`${entry.name}: ${entry.mode === "planned_adapter" ? "adapter configuration required" : "connection configuration required"}`}><ToolLogo name={entry.name} size={24}/><b>{entry.name}</b></span>)}</div></div></section>
-    <section className="hm-section hm-entry"><div className="hm-shell"><SectionHead eyebrow="BUILT FOR REAL WORK" title={<>One platform. <em>Three ways in.</em></>} copy="Start where you are. Bring a use case, a department, or a broader transformation."/><div className="hm-entry-grid">{entryPoints.map(entry => <Link href={entry.href} key={entry.title}><span className="hm-entry-art"><img src={`/brand/homepage-3d/${entry.image}.png`} alt="" loading="lazy"/></span><ArrowUpRight className="hm-entry-arrow" size={18}/><h3>{entry.title}</h3><p>{entry.description}</p></Link>)}</div></div></section>
-    <WorkflowDemo/>
+    <section className="hm-section hm-entry"><div className="hm-shell"><SectionHead eyebrow="BUILT FOR REAL WORK" title={<>One platform. <em>Three ways in.</em></>} copy="Start where you are. Bring a use case, a department, or a broader transformation."/><div className="hm-entry-grid">{entryPoints.map(entry => <Link href={entry.href} key={entry.title}><span className="hm-entry-art"><HomeEmployee id={entry.image}/></span><ArrowUpRight className="hm-entry-arrow" size={18}/><h3>{entry.title}</h3><p>{entry.description}</p></Link>)}</div></div></section>
+    <WorkflowDemo motion={motion}/>
     <EmployeePreview/>
-    <section className="hm-section hm-integrations" id="platform"><div className="hm-shell"><SectionHead eyebrow="EVERYTHING CONNECTED" title={<>Everything the pod <em>needs to work.</em></>} copy="Bring context from approved tools into a workforce with defined access and clear review boundaries."/><div className="hm-connect-grid"><div className="hm-connect-panel"><div className="hm-connect-logos">{featured.slice(0,7).map(entry => <span key={entry.id}><ToolLogo name={entry.name} size={29}/></span>)}</div><ul><li><Check size={16}/>Explore the current integration catalog</li><li><Check size={16}/>Configure access before use</li><li><Check size={16}/>Review permissions and tool actions</li></ul><Link href="/integrations">See all integrations <ArrowRight size={16}/></Link></div><div className="hm-connect-map"><span className="hm-connect-core"><GitBranch size={29}/><small>MCP</small></span>{featured.slice(0,6).map((entry,index)=><button type="button" key={entry.id} className={`hm-connect-node node-${index} ${connection === index ? "active" : ""}`} aria-label={`Inspect ${entry.name} catalog example`} aria-pressed={connection === index} onClick={()=>setConnection(index)}><ToolLogo name={entry.name} size={27}/></button>)}<p role="status"><b>{featured[connection]?.name}</b> · {featured[connection]?.description} Configuration required.</p></div></div></div></section>
-    <section className="hm-section hm-solutions"><div className="hm-shell"><SectionHead eyebrow="SEE THE POSSIBILITIES" title={<>Real workflows. <em>Reviewable outcomes.</em></>} copy="Explore how each solution area could bring its work into a coordinated, human-reviewed flow."/><div className="hm-solution-grid">{solutions.map((solution,index) => <Link href={`/solutions/${solution.slug}`} key={solution.slug} className={`solution-${index}`}><span><ClipboardCheck size={18}/></span><strong>{solution.title}</strong><small>{solutionSummaries[solution.slug]}</small><ArrowUpRight size={17}/></Link>)}</div></div></section>
+    <HomeConnectedContext motion={motion}/>
+    <section className="hm-section hm-solutions"><div className="hm-shell"><SectionHead eyebrow="SEE THE POSSIBILITIES" title={<>Real workflows. <em>Reviewable outcomes.</em></>} copy="Explore how each solution area could bring its work into a coordinated, human-reviewed flow."/><div className="hm-solution-grid">{solutions.map((solution,index) => {const Icon=solutionIcons[index] || BriefcaseBusiness; return <Link href={`/solutions/${solution.slug}`} key={solution.slug} className={`solution-${index}`}><span><Icon size={24}/></span><strong>{solution.title}</strong><small>{solutionSummaries[solution.slug]}</small><ArrowUpRight size={17}/></Link>;})}</div></div></section>
     <GovernanceSection/>
-    <section className="hm-final"><div className="hm-shell hm-final-grid"><div><Eyebrow>GET STARTED</Eyebrow><h2>Make work feel<br/><em>possible again.</em></h2><p>Book a personalized demo and see how a coordinated AI workforce could fit your business.</p><ButtonLink href="/book-demo">Book a demo</ButtonLink></div><div className="hm-final-scene"><span className="hm-final-ring"/><WorkerScene role="orchestrator" characterId="orchestrator"/><span className="hm-final-tool tool-a"><ToolLogo name="Slack" size={26}/></span><span className="hm-final-tool tool-b"><ToolLogo name="Notion" size={26}/></span><span className="hm-final-tool tool-c"><ToolLogo name="Google Drive" size={26}/></span></div></div></section>
-    <section className="hm-afterword"><div className="hm-shell"><details><summary>Questions and contact <ChevronRight size={16}/></summary><div className="hm-afterword-grid"><div>{faqs.map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div><Contact/></div></details></div></section>
+    <section className="hm-final"><div className="hm-shell hm-final-grid"><div><Eyebrow>GET STARTED</Eyebrow><h2>Make work feel{" "}<br/><em>possible again.</em></h2><p>Book a personalized demo and see how a coordinated AI workforce could fit your business.</p><ButtonLink href="/book-demo">Book a demo</ButtonLink></div><div className="hm-final-scene"><span className="hm-final-ring"/><span className="hm-final-platform"/><HomeEmployee id="orchestrator"/>{[["Simpler workdays",ClipboardCheck],["Happier teams",Smile],["Clearer handoffs",Zap],["Visible progress",TrendingUp]].map(([title,Icon],index)=>{const CardIcon=Icon as typeof ClipboardCheck;return <span className={`hm-final-benefit benefit-${index}`} key={String(title)}><CardIcon size={22}/><b>{String(title)}</b></span>;})}</div></div></section>
+    <section className="hm-afterword"><div className="hm-shell"><SectionHead eyebrow="QUESTIONS & CONTACT" title={<>Questions? <em>Let’s talk.</em></>} copy="Find a quick answer, or tell us what your team is hoping to improve."/><div className="hm-afterword-grid"><div className="hm-faq-list" aria-label="Frequently asked questions">{faqs.map(([question,answer],index)=><details key={question} open={index===0}><summary><span>{question}</span><ChevronRight size={18}/></summary><p>{answer}</p></details>)}</div><aside className="hm-contact-card"><span className="hm-contact-icon"><Headphones size={23}/></span><Eyebrow>CONTACT OUR TEAM</Eyebrow><h3>Let’s make work move better.</h3><p>Share your work email and we’ll help you find a useful place to start.</p><Contact/></aside></div></div></section>
   </main></div>;
 }

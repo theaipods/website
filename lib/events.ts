@@ -1,8 +1,8 @@
 export const eventTypes = ["LIVE_DEMO","WEBINAR","WORKSHOP","CONFERENCE","ROUNDTABLE","EXECUTIVE_SESSION","PRODUCT_EVENT","COMMUNITY","ON_DEMAND","PRIVATE_SESSION"] as const;
 export const eventStatuses = ["UPCOMING","REGISTRATION_OPEN","REGISTRATION_CLOSED","LIVE","COMPLETED","CANCELLED","POSTPONED","ON_DEMAND"] as const;
 export type EventType = typeof eventTypes[number];
-export type EventStatus = typeof eventStatuses[number];
-export type AgendaItem = { time:string; title:string; description:string };
+type EventStatus = typeof eventStatuses[number];
+type AgendaItem = { time:string; title:string; description:string };
 export type EventSpeaker = { id:string; name:string; role:string; company:string; bio:string; photo:string; linkedin:string; expertise:string[]; sample:boolean };
 export type PodEvent = {
   id:string; slug:string; title:string; subtitle:string; description:string; type:EventType; status:EventStatus;
@@ -47,4 +47,3 @@ export const sampleEvents:PodEvent[]=[
 ];
 
 export const eventTypeLabel=(type:EventType)=>type.replaceAll("_"," ");
-export const eventIsPast=(event:PodEvent)=>["COMPLETED","ON_DEMAND","CANCELLED"].includes(event.status)||new Date(event.endAt)<new Date();

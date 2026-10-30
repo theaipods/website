@@ -4,6 +4,7 @@ import { db } from "./db";
 import { ApiError } from "./auth";
 import { audit, companyFor, podFor, savePod } from "./repository";
 import { generate, providerStatus } from "./providers";
+import { retrieveKnowledge } from './knowledge-retrieval';
 import { eligibleAgents, registryAgent } from "../agent-registry";
 
 export const event = (pod: Run, who: string, text: string, type: WorkforceEvent["type"] = "POD_EVENT", taskId?: string, agentId?: string) => { pod.events.unshift({ at: new Date().toISOString(), who, text, type, taskId, agentId }); pod.events = pod.events.slice(0, 300); };
@@ -40,15 +41,14 @@ export function buildRun(company: Business, input: PodInput, autonomyLimits: Rec
   return p;
 }
 export async function sourceContext(pod: Run) {
-  const all = await db().all("SELECT c.id,c.knowledge_id,c.content,k.name FROM chunks c JOIN knowledge k ON k.id=c.knowledge_id WHERE c.company_id=?", [pod.companyId]);
-  const terms = `${pod.objective} ${pod.answers.scope}`.toLowerCase().split(/\W+/).filter(t => t.length > 3);
-  return all.filter(r => pod.knowledgeIds.includes(String(r.knowledge_id))).map(r => ({ id: String(r.id), name: String(r.name), text: String(r.content), score: terms.reduce((n, t) => n + (String(r.content).toLowerCase().includes(t) ? 1 : 0), 0) })).sort((a, b) => b.score - a.score).slice(0, 12);
+  return retrieveKnowledge(pod.companyId,`${pod.objective} ${pod.answers.scope}`,pod.knowledgeIds,pod.mode!=='simulation');
 }
-function simulationArtifact(p: Run, c: Business, taskTitle: string, sources: Awaited<ReturnType<typeof sourceContext>>) {
-  return ["# Simulation — configuration rehearsal", "This is an execution brief assembled from your saved answers. It is not model-generated work, a published campaign, or measured business impact.", `## ${taskTitle}`, `Company: ${c.name}\nDepartment: ${domains.find(d => d.id === p.domain)?.name}\nObjective: ${p.objective}`, "## Required result", p.answers.deliverables, "## Acceptance criteria", p.answers.acceptance, "## Measurement", `Baseline (user-provided): ${p.answers.baseline}\nTarget (user-provided): ${p.answers.target}\nDeadline: ${p.answers.deadline}\nBudget: ${p.answers.budget}`, "## Scope and constraints", p.answers.scope, p.answers.constraints, "## Business context", c.about, `Products: ${c.products}\nMarket: ${c.geography}\nBrand voice: ${c.brand.tone || "Not specified"}\nAlways: ${c.brand.always || "Not specified"}\nNever: ${c.brand.never || "Not specified"}`, "## Business rules", ...c.rules.map(r => `- ${r.instruction} (applies: ${r.applies || "company"}; exception: ${r.exception || "none"})`), "## Source excerpts (lexical retrieval)", ...(sources.length ? sources.map(s => `[${s.id}] ${s.name}\n${s.text.slice(0, 700)}`) : ["No readable source selected. Add evidence before relying on a live result."]), "## Review before execution", `Owner / approver: ${p.answers.approver}\nVerify every acceptance criterion. No target has been measured or achieved by this rehearsal.`, "## Next actions", "Configure the required model gateways. Confirm source quality and permissions. Create a live pod after reviewing this simulation. External publishing, payments and deployments require a separately implemented tool adapter and human handoff."].join("\n\n");
+export function simulationArtifact(p: Run, c: Business, taskTitle: string, sources: Awaited<ReturnType<typeof sourceContext>>) {
+  return ["# Simulation - configuration rehearsal", "This is an execution brief assembled from your saved answers. It is not model-generated work, a published campaign, or measured business impact.", `## ${taskTitle}`, `Company: ${c.name}\nDepartment: ${domains.find(d => d.id === p.domain)?.name}\nObjective: ${p.objective}`, "## Required result", p.answers.deliverables, "## Acceptance criteria", p.answers.acceptance, "## Measurement", `Baseline (user-provided): ${p.answers.baseline}\nTarget (user-provided): ${p.answers.target}\nDeadline: ${p.answers.deadline}\nBudget: ${p.answers.budget}`, "## Scope and constraints", p.answers.scope, p.answers.constraints, "## Business context", c.about, `Products: ${c.products}\nMarket: ${c.geography}\nBrand voice: ${c.brand.tone || "Not specified"}\nAlways: ${c.brand.always || "Not specified"}\nNever: ${c.brand.never || "Not specified"}`, "## Business rules", ...c.rules.map(r => `- ${r.instruction} (applies: ${r.applies || "company"}; exception: ${r.exception || "none"})`), "## Source excerpts (lexical retrieval)", ...(sources.length ? sources.map(s => `[${s.id}] ${s.name}\n${s.text.slice(0, 700)}`) : ["No readable source selected. Add evidence before relying on a live result."]), "## Review before execution", `Owner / approver: ${p.answers.approver}\nVerify every acceptance criterion. No target has been measured or achieved by this rehearsal.`, "## Next actions", "Configure the required model gateways. Confirm source quality and permissions. Create a live pod after reviewing this simulation. External publishing, payments and deployments require a separately implemented tool adapter and human handoff."].join("\n\n");
 }
 export async function advancePod(id: string, owner: string) {
   const p = await podFor(id, owner);
+  if (p.templateId) { const { advanceDemo } = await import("./demo-worker"); return advanceDemo(id, owner); }
   if (p.status === "Running" && Date.now() - Date.parse(p.events.find(e => e.who === "Worker lease")?.at || p.created) > 120000) {
     const unfinished = p.tasks.find(t => t.status === "Running"); if (unfinished) { unfinished.status = "Blocked"; unfinished.progress = 0; }
     p.status = "Blocked"; event(p, "Workforce Observer", "Worker lease expired after interruption. Retry to resume the unfinished draft; completed steps are preserved.", "OBSERVER_ALERT", unfinished?.id, unfinished?.agentId); await savePod(p); return;
@@ -79,11 +79,12 @@ export async function advancePod(id: string, owner: string) {
       const attempts = p.modelCalls || 0;
       if (attempts > Number(process.env.MAX_MODEL_CALLS_PER_POD || 100)) throw new ApiError(429, "Pod model-call limit reached. Review the budget before creating another pod.");
       const selectedFiles = await db().all("SELECT id,status FROM knowledge WHERE company_id=?", [p.companyId]);
-      if (p.knowledgeIds.some(id => !selectedFiles.some(f => f.id === id && String(f.status).startsWith("Text indexed")))) throw new ApiError(400, "A selected evidence file is missing or not text-indexed. Create a pod using readable evidence; image, spreadsheet and slide extraction need future adapters.");
+      const readable = await db().all("SELECT DISTINCT knowledge_id FROM chunks WHERE company_id=?", [p.companyId]);
+      if (p.knowledgeIds.some(id => !selectedFiles.some(f => f.id === id) || !readable.some(f => f.knowledge_id === id))) throw new ApiError(400, "A selected evidence file has no readable indexed text.");
       const missing = providerStatus().filter(x => (x.capability === "chat" || p.requested.includes(x.capability)) && !x.configured);
       if (missing.length) throw new ApiError(503, `Configure ${missing.map(x => x.capability).join(", ")} provider(s) before live execution.`);
       // This release executes text/code drafting only. Media capabilities have explicit adapter slots.
-      if (p.requested.some(x => !["chat", "code"].includes(x))) throw new ApiError(503, "Media / embedding execution adapters are placeholders. Use a text or code pod, or implement the adapter contract first.");
+      if (p.requested.some(x => !["chat", "code", "embedding"].includes(x))) throw new ApiError(503, "Media execution adapters are placeholders. Text/code Pods can use embeddings for saved knowledge retrieval.");
       const agent = agents.find(a => a.id === task.agentId)!;
       const capability = p.requested.includes("code") && agent.capabilities.includes("code") ? "code" : "chat";
       task.output = await generate({ capability, instructions: agent.instructions, context: { company: c, brief: p.answers, evidence: sources, upstream: p.tasks.filter(t => t.status === "Completed").map(t => ({ title: t.title, output: t.output })), feedback: task.feedback }, task: `${task.title}\nObjective: ${p.objective}`, acceptance: p.answers.acceptance, maxOutputTokens: 6000 });
@@ -127,8 +128,9 @@ export async function decideTask(p: Run, taskId: string, decision: "approve" | "
     else p.status = "Queued";
   } else if (decision === "changes") { task.status = "Planned"; task.progress = 0; task.startedAt = undefined; task.completedAt = undefined; task.revision++; p.status = "Queued"; p.result = ""; p.resultStatus = "none"; }
   else { task.status = "Rejected"; p.status = "Rejected"; p.resultStatus = "none"; p.result = ""; }
-  event(p, "Owner", `${decision}: ${task.title}${feedback ? ` — ${feedback}` : ""}`, decision === "approve" ? "APPROVAL_GRANTED" : decision === "reject" ? "APPROVAL_REJECTED" : "APPROVAL_REQUESTED", task.id, task.agentId);
+  event(p, "Owner", `${decision}: ${task.title}${feedback ? ` - ${feedback}` : ""}`, decision === "approve" ? "APPROVAL_GRANTED" : decision === "reject" ? "APPROVAL_REJECTED" : "APPROVAL_REQUESTED", task.id, task.agentId);
   if (decision === "approve") handoffs(p, task.id);
+  if (p.templateId && decision !== "reject") { const { demoStatus } = await import("./demo-worker"); demoStatus(p); }
   const saved = await savePod(p); await audit(owner, p.companyId, `Pod ${p.name}: ${decision} task ${task.id}`); return saved;
 }
 export async function workerTick() {

@@ -12,6 +12,10 @@
     "dev:web": "next dev",
     "worker": "node --import tsx scripts/worker.ts",
     "typecheck": "node scripts/typecheck.mjs",
+    "audit:unused": "knip",
+    "video:studio": "remotion studio remotion/index.tsx",
+    "assets:icons": "node --import tsx scripts/tool-icons.mjs",
+    "assets:score": "node scripts/create-showreel-score.mjs",
     "test": "node --import tsx --test tests/*.test.ts",
     "db:import": "node --import tsx scripts/db-transfer.ts import",
     "db:export": "node --import tsx scripts/db-transfer.ts export",
@@ -19,10 +23,10 @@
     "seed:ipo-demo": "node --import tsx scripts/seed-ipo-demo.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1152.0",
     "@remotion/cli": "4.0.530",
     "@remotion/media": "4.0.530",
     "@remotion/player": "4.0.530",
-    "@remotion/three": "4.0.530",
     "cheerio": "^1.2.0",
     "fflate": "^0.8.3",
     "ipaddr.js": "^2.5.0",
@@ -47,6 +51,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.186.0",
+    "knip": "6.42.1",
     "simple-icons-legacy": "npm:simple-icons@^11.15.0",
     "tailwindcss": "^4",
     "typescript": "^5"

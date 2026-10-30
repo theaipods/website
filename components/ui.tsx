@@ -1,18 +1,14 @@
+import { StaticEmployee } from "@/components/StaticEmployee";
 import Link from "next/link";
 import Image from "next/image";
 import { characterAssetForEmployee, characterAssetForRole, employeeCharacterSpecs, workerRoleForEmployee } from "@/lib/employee-presentation";
 import { siteBrand } from "@/lib/site-brand";
 
-export const btn =
+const btn =
   "inline-flex h-10 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none cursor-pointer";
 export const btnPrimary = `${btn} bg-ink text-paper hover:bg-accent`;
-export const btnAccent = `${btn} bg-accent text-paper hover:bg-ink`;
-export const btnGhost = `${btn} border border-line hover:border-ink`;
-export const btnSm =
-  "inline-flex h-8 items-center justify-center rounded-full border border-line px-3 text-xs font-medium hover:border-ink transition-colors cursor-pointer disabled:opacity-40";
 export const input =
   "w-full rounded-lg border border-line bg-white px-3.5 h-11 text-sm outline-none focus:border-ink placeholder:text-muted/70";
-export const label = "mb-1.5 block text-xs font-medium text-muted";
 export const eyebrow = "font-mono text-[11px] uppercase tracking-[0.14em] text-muted";
 
 export function LogoMark({ className = "h-7 w-8" }: { className?: string }) {
@@ -37,44 +33,6 @@ export function Robot({ name, className = "h-8 w-8" }: { name: string; hue?: num
   const character = exactId
     ? characterAssetForEmployee({ id: exactId, name, role: name, category: "" })
     : characterAssetForRole(role);
-  return <Image unoptimized src={character.thumbnailPath} alt="" aria-hidden width={128} height={128}
+  return <StaticEmployee id={character.id}
     className={className + " object-contain drop-shadow-[0_3px_9px_rgba(41,58,92,.18)]"} />;
 }
-
-export function Monogram({ name, active }: { name: string; active?: boolean }) {
-  return (
-    <span
-      title={name}
-      className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg border bg-white ${
-        active ? "border-accent ring-2 ring-accent/25" : "border-line"
-      }`}
-    >
-      <Robot name={name} />
-    </span>
-  );
-}
-
-
-export function StatusPill({ status }: { status: string }) {
-  const style =
-    status === "Running"
-      ? "bg-accent text-paper"
-      : status === "Needs approval"
-        ? "border border-accent text-accent"
-        : status === "Completed"
-          ? "bg-ink text-paper"
-          : status === "Rejected"
-            ? "border border-line text-muted line-through"
-            : "border border-line text-muted";
-  return (
-    <span
-      className={`inline-flex h-6 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 text-[11px] font-medium ${style}`}
-    >
-      {status === "Running" && <i className="pulse-dot h-1.5 w-1.5 rounded-full bg-paper" />}
-      {status}
-    </span>
-  );
-}
-
-export const time = (iso: string) =>
-  new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });

@@ -8,15 +8,15 @@ import { Database, db } from "../lib/server/db";
 import { GET, POST, PUT, PATCH, DELETE } from "../app/api/[...path]/route";
 import { advancePod } from "../lib/server/orchestrator";
 import { podFor, savePod } from "../lib/server/repository";
-import { hash, sendOtp, verifyOtp } from "../lib/server/auth";
+import { passwordHash } from "../lib/server/auth";
 import { validateMcpEndpoint } from "../lib/server/mcp";
 import { integrationRegistry } from "../lib/integration-registry";
 
 const dir = mkdtempSync(path.join(tmpdir(), "ai-pods-test-"));
 process.env.DATABASE_URL = `file:${path.join(dir, "test.sqlite")}`;
 process.env.ENABLE_DEMO_ADMIN = "true";
-process.env.MAIL_MODE = "console";
-delete process.env.RESEND_API_KEY;
+process.env.RESEND_API_KEY = "test-only";
+process.env.RESEND_FROM = "test@theaipods.com";
 delete process.env.APP_URL;
 for (const cap of ["CHAT", "CODE", "IMAGE", "VIDEO", "EMBEDDING", "AUDIO", "VISION"]) for (const key of ["URL", "KEY", "NAME"]) delete process.env[`${cap}_MODEL_${key}`];
 let cookie = "";
@@ -48,44 +48,85 @@ test("persistent workforce API and execution lifecycle", async t => {
   try {
     await t.test("login, session cookie, unauthorized and origin checks", async () => {
       assert.equal((await request("state", "GET", undefined, "")).status, 401);
-      assert.equal((await request("auth/login", "POST", { email: "admin", password: "wrong" })).status, 401);
-      const r = await request("auth/login", "POST", { email: "admin", password: "admin" }); assert.equal(r.status, 200); cookie = r.cookie; assert.ok(cookie.startsWith("workforce_session="));
+      assert.equal((await request("auth/login", "POST", { email: "admin", password: "wrong" })).status, 400);
+      await db().query("UPDATE users SET password=? WHERE email=?", [passwordHash("test-admin-password"), "ram@theaipods.com"]);
+      const r = await request("auth/login", "POST", { email: "ram@theaipods.com", password: "test-admin-password" }); assert.equal(r.status, 200); cookie = r.cookie; assert.ok(cookie.startsWith("workforce_session="));
       const session = await request("auth/session"); owner = session.data.user.id;
+      assert.equal((await request("demo-projects")).data.plan.id, "starter");
+      // This lifecycle fixture needs multiple Pods; upgrading is explicit, never automatic.
+      assert.equal((await request("admin/plans", "POST", { email: "ram@theaipods.com", plan: "enterprise" })).status, 200);
       assert.equal((await request("controls", "POST", { killed: true }, cookie, "https://evil.example")).status, 403);
-      process.env.ENABLE_DEMO_ADMIN = "false"; assert.equal((await request("state")).status, 401); process.env.ENABLE_DEMO_ADMIN = "true";
+      assert.equal(session.data.user.email, "ram@theaipods.com");
     });
-    await t.test("registration, single-use OTP, hashing and second owner", async () => {
-      let code = ""; const info = console.info; console.info = (...args) => { code = String(args[0]).match(/: (\d{6})$/)?.[1] || code; };
-      try { assert.equal((await request("auth/register", "POST", { email: "owner@example.test", password: "test-password-123", name: "Owner two" })).status, 201); } finally { console.info = info; }
+    await t.test("email-first signup, single-use verification and second owner", async () => {
+      assert.equal((await request("auth/register", "POST", { email: "personal@gmail.com" })).status, 400);
+      let code = ""; const original = globalThis.fetch;
+      globalThis.fetch = async (_url, options) => { const mail = JSON.parse(String(options?.body)); code = mail.text.match(/Your code: (\d{6})/)[1]; return Response.json({ id: "test" }); };
+      let start;
+      try { start = await request("auth/register", "POST", { email: "owner@example.test" }); } finally { globalThis.fetch = original; }
+      assert.equal(start.status, 200);
       assert.match(code, /^\d{6}$/);
-      assert.equal((await request("auth/login", "POST", { email: "owner@example.test", password: "test-password-123" })).status, 403);
-      assert.equal((await request("auth/verify", "POST", { email: "owner@example.test", code: "000000" })).status, 400);
-      const r = await request("auth/verify", "POST", { email: "owner@example.test", code }); assert.equal(r.status, 200); otherCookie = r.cookie;
-      assert.equal((await request("auth/verify", "POST", { email: "owner@example.test", code })).status, 400);
-      const row = await db().one("SELECT password FROM users WHERE email=?", ["owner@example.test"]); assert.notEqual(row?.password, "test-password-123");
-    });
-    await t.test("OTP cooldown, expiry and five-attempt cap", async () => {
-      const id = "pending-user"; await db().query("INSERT INTO users(id,email,name,password,created) VALUES(?,?,?,?,?)", [id, "pending@example.test", "Pending", "unused", new Date().toISOString()]);
-      const info = console.info; console.info = () => {}; try { await sendOtp(id, "pending@example.test"); } finally { console.info = info; }
-      await assert.rejects(sendOtp(id, "pending@example.test"), /60 seconds/);
-      await db().query("UPDATE verification SET hash=? WHERE user_id=?", [hash(`${id}:123456`), id]);
-      for (let i = 0; i < 5; i++) await assert.rejects(verifyOtp(id, "000000"));
-      await assert.rejects(verifyOtp(id, "123456"), /attempt limit/);
-      await db().query("UPDATE verification SET attempts=0,expires=? WHERE user_id=?", ["2000-01-01", id]);
-      await assert.rejects(verifyOtp(id, "123456"), /expired/);
+      assert.equal(await db().one("SELECT id FROM users WHERE email=?", ["owner@example.test"]), undefined);
+      const challenge = { email: "owner@example.test", purpose: "signup", challengeId: start.data.challengeId };
+      assert.equal((await request("auth/verify", "POST", { ...challenge, code: "000000" })).status, 400);
+      const verified = await request("auth/verify", "POST", { ...challenge, code }); assert.equal(verified.status, 200);
+      assert.equal((await request("auth/verify", "POST", { ...challenge, code })).status, 400);
+      const r = await request("auth/complete-signup", "POST", { email: challenge.email, grant: verified.data.grant, password: "test-password-123", name: "Owner two" });
+      assert.equal(r.status, 201); otherCookie = r.cookie;
+      const row = await db().one("SELECT password FROM users WHERE email=?", [challenge.email]); assert.notEqual(row?.password, "test-password-123");
     });
     await t.test("onboarding validation, company ownership, concurrency and persistence", async () => {
       assert.equal((await request("companies", "POST", { ...defaultCompany(), name: "Incomplete", status: "active" })).status, 400);
-      const r = await request("companies", "POST", fixture()); assert.equal(r.status, 200); company = r.data;
+      const r = await request("companies", "POST", {...fixture(),status:'draft'}); assert.equal(r.status, 200); company = r.data;
+      const blocked=await request(`companies/${company.id}`,'PUT',{...company,status:'active',baseline:''});assert.equal(blocked.status,400);
+      assert.equal((await request('state')).data.companies.find((c:Business)=>c.id===company.id).status,'draft');
+      const activated=await request(`companies/${company.id}`,'PUT',{...company,status:'active'});assert.equal(activated.status,200);company=activated.data;
+      assert.equal((await request('state')).data.companies.find((c:Business)=>c.id===company.id).status,'active');
       assert.equal((await request(`companies/${company.id}/knowledge`, "GET", undefined, otherCookie)).status, 404);
       assert.equal((await request(`companies/${company.id}/research`, "GET", undefined, otherCookie)).status, 404);
       assert.equal((await request(`companies/${company.id}/research`, "POST", { website: "https://example.com" }, otherCookie)).status, 404);
       assert.equal((await request(`companies/${company.id}/research`)).data, null);
       assert.equal((await request(`companies/${company.id}/research`, "POST", { website: "http://127.0.0.1", mode: "free", render: false, maxPages: 5, extraUrls: [] })).status, 400);
-      const updated = await request(`companies/${company.id}`, "PUT", { ...company, version: company.version }); assert.equal(updated.status, 200);
+      assert.equal((await request(`companies/${company.id}/assist`, 'POST', {draft:company,section:0},otherCookie)).status,404);
+      assert.equal((await request(`companies/${company.id}/assist`, 'POST', {draft:company,section:0})).status,503);
+      const fetchBefore=globalThis.fetch;
+      process.env.CHAT_MODEL_URL='https://model.example.test/responses';process.env.CHAT_MODEL_KEY='test-only';process.env.CHAT_MODEL_NAME='test-model';
+      try {
+        globalThis.fetch=async()=>Response.json({status:'completed',output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({suggestions:[{field:'about',value:'Reviewed description',reason:'From provided company inputs',sources:['company-input'],kind:'evidence'},{field:'permissions',value:{external:true},reason:'Unsafe',sources:[],kind:'proposal'},{field:'industry',value:24,reason:'Invalid value',sources:[],kind:'proposal'}],warnings:[]})}]}]});
+        const assisted=await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0});
+        assert.equal(assisted.status,200);assert.equal(assisted.data.suggestions.length,1);assert.ok(assisted.data.warnings.length);
+        assert.notEqual((await request('state')).data.companies.find((c:Business)=>c.id===company.id).about,'Reviewed description');
+        globalThis.fetch=async()=>Response.json({status:'completed',output:[{type:'message',content:[{type:'output_text',text:'not valid JSON'}]}]});
+        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).status,502);
+        globalThis.fetch=async()=>Response.json({status:'incomplete',output:[]});
+        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).status,502);
+      } finally {globalThis.fetch=fetchBefore;for(const key of ['URL','KEY','NAME'])delete process.env[`CHAT_MODEL_${key}`];}
+      const updated = await request(`companies/${company.id}`, "PUT", { ...company, version: company.version, assistanceHistory:[{field:'about',source:'test-model',at:new Date().toISOString(),kind:'evidence',reason:'Reviewed',sources:['company-input']}] }); assert.equal(updated.status, 200);
+      assert.equal(updated.data.assistanceHistory.length,1);
       assert.equal((await request(`companies/${company.id}`, "PUT", company)).status, 409); company = updated.data;
       const second = new Database(process.env.DATABASE_URL); assert.equal((await second.one("SELECT id FROM companies WHERE id=?", [company.id]))?.id, company.id); await second.close();
+      const persisted = JSON.parse(String((await db().one("SELECT data FROM companies WHERE id=?", [company.id]))?.data));
+      for (const key of ["answers", "processes", "rules", "tools", "processDocumentation", "recommendedPods"] as const) assert.deepEqual(persisted[key], company[key]);
       assert.equal((await request("state", "GET", undefined, otherCookie)).data.companies.length, 0);
+    });
+    await t.test("demo submission checks onboarding and retry preserves pending decisions", async () => {
+      const incomplete = await request("companies", "POST", { ...defaultCompany(), name: "Incomplete demo" });
+      const brief = { companyId: incomplete.data.id, templateId: "marketing-launch", prompt: "Prepare a complete evidence-led marketing launch strategy", mode: "simulation", approvalMode: "smart", knowledgeIds: [] };
+      assert.equal((await request("demo-projects", "POST", brief)).status, 400);
+      const created = await request("demo-projects", "POST", { ...brief, companyId: company.id });
+      assert.equal(created.status, 201);
+      const demo = await podFor(created.data.id, owner);
+      demo.tasks[0].status = "Completed"; demo.tasks[0].output = "Preserved plan";
+      demo.tasks[1].status = "Needs approval"; demo.tasks[1].output = "Pending draft";
+      demo.tasks[2].status = "Blocked"; demo.status = "Needs approval";
+      await savePod(demo);
+      const retried = await request(`pods/${demo.id}/retry-blocked`, "POST", {});
+      assert.equal(retried.status, 200);
+      assert.equal(retried.data.tasks[0].output, "Preserved plan");
+      assert.equal(retried.data.tasks[1].status, "Needs approval");
+      assert.equal(retried.data.tasks[2].status, "Planned");
+      await db().query("DELETE FROM pods WHERE id=?", [demo.id]);
+      await db().query("DELETE FROM projects WHERE id=?", [demo.projectId!]);
     });
     await t.test("MCP registration is company scoped and discovery starts with execution disabled", async () => {
       const catalog = await request("integrations?q=Salesforce", "GET", undefined, "");
@@ -207,6 +248,23 @@ test("persistent workforce API and execution lifecycle", async t => {
       assert.equal((await request(`companies/${company.id}`, "DELETE", { confirmation: company.name })).status, 200);
       assert.equal((await request(`knowledge/${fileId}`)).status, 404); assert.equal((await request(`pods/${pod.id}/download`)).status, 404);
       await request("auth/logout", "POST", {}); assert.equal((await request("state")).status, 401);
+    });
+    await t.test("password recovery API revokes sessions and only accepts the replacement password", async () => {
+      let code = ""; const original = globalThis.fetch;
+      globalThis.fetch = async (_url, options) => { code = JSON.parse(String(options?.body)).text.match(/Your code: (\d{6})/)[1]; return Response.json({ id: "mock-reset" }); };
+      let start;
+      try { start = await request("auth/password-reset", "POST", { email: "owner@example.test" }); } finally { globalThis.fetch = original; }
+      assert.equal(start.status, 200);
+      const proof = await request("auth/verify", "POST", { email: "owner@example.test", purpose: "reset", challengeId: start.data.challengeId, code });
+      assert.equal(proof.status, 200);
+      const input = { email: "owner@example.test", grant: proof.data.grant, password: "replacement-owner-password" };
+      assert.equal((await request("auth/reset-password", "POST", input, otherCookie, "https://evil.example")).status, 403);
+      assert.equal((await request("auth/reset-password", "POST", input, otherCookie)).status, 200);
+      assert.equal((await request("state", "GET", undefined, otherCookie)).status, 401);
+      assert.equal((await request("auth/reset-password", "POST", input)).status, 400);
+      assert.equal((await request("auth/login", "POST", { email: input.email, password: "test-password-123" })).status, 401);
+      assert.equal((await request("auth/login", "POST", { email: input.email, password: input.password })).status, 200);
+      assert.equal((await request("auth/login", "POST", { email: input.email, password: input.password, portal: "admin" })).status, 403);
     });
   } finally { await db().close(); rmSync(dir, { recursive: true, force: true }); }
 });

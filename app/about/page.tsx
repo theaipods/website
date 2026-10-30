@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AboutRedesign } from "@/components/AboutRedesign";
 import { getAboutContent } from "@/lib/server/about";
 import "../about-redesign.css";
+import "../about-product-story.css";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {

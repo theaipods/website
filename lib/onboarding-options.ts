@@ -1,3 +1,4 @@
+import { outcomesComplete } from './company-outcomes';
 import { domains, interview, processFor, type CompanyInput } from './workforce';
 
 export const industries = ['Technology & Software', 'Retail & E-commerce', 'Banking & Financial Services', 'Healthcare & Life Sciences', 'Education & EdTech', 'Manufacturing', 'Professional Services', 'Media & Entertainment', 'Travel & Hospitality', 'Real Estate & Construction', 'Transportation & Logistics', 'Food & Beverage', 'Energy & Utilities', 'Telecommunications', 'Agriculture & Agritech', 'Automotive & Mobility', 'Insurance', 'Consumer Goods', 'Government & Public Services', 'Nonprofit & Social Impact'];
@@ -50,12 +51,12 @@ export function exampleAnswers(id: string, variant = 0): Record<string, string> 
 }
 export function starterProcess(id: string, answers: Record<string, string> = {}) {
   const t = teamTemplates.find(t => t.id === id); const d = domains.find(d => d.id === id)!;
-  return processFor(id, answers).map((p, i) => ({ ...p, owner: t?.lead || `${d.name} Lead`, support: d.roles.length ? d.roles[i % d.roles.length] : 'To assign', approver: t?.lead || `${d.name} Lead`, output: `${p.name} — reviewed deliverable and handoff notes`, duration: 'To confirm' }));
+  return processFor(id, answers).map((p, i) => ({ ...p, owner: t?.lead || `${d.name} Lead`, support: d.roles.length ? d.roles[i % d.roles.length] : 'To assign', approver: t?.lead || `${d.name} Lead`, output: `${p.name} - reviewed deliverable and handoff notes`, duration: 'To confirm' }));
 }
 export function onboardingChecks(c: CompanyInput, documentCount: number) {
   return [
     { name: 'Company profile', step: 0, done: ['name','industry','businessModel','geography','products','about'].every(k => String(c[k as keyof CompanyInput] || '').trim()), detail: 'Identity, market and products' },
-    { name: 'Measurable outcome', step: 1, done: [c.metric,c.baseline,c.target,c.timeframe].every(v => v.trim()), detail: 'Metric, baseline, target and timeframe' },
+    { name: 'Measurable outcome', step: 1, done: outcomesComplete(c), detail: 'Metric, baseline, target and timeframe' },
     { name: 'Department interviews', step: 4, done: c.domains.length > 0 && c.domains.every(id => [...interview,...domains.find(d => d.id === id)!.questions].filter(q => q.required).every(q => c.answers[id]?.[q.id]?.trim())), detail: 'Required answers for every selected team' },
     { name: 'Process & responsibilities', step: 6, done: c.domains.length > 0 && c.domains.every(id => (c.processes[id]?.length || 0) > 0 && c.processes[id].every(p => p.name.trim() && p.owner.trim() && p.approver.trim())), detail: 'Named owners and decision makers' },
     { name: 'Tool inventory', step: 7, done: c.tools.length > 0 || !!c.noExistingTools, detail: 'Select systems or confirm no existing tools' },

@@ -20,57 +20,6 @@ export const capabilityGroups = [
   { title: "Govern & monitor", summary: "Keep permissions, progress and review in view.", items: ["Human Approvals", "Permissions", "Audit Activity", "Workforce Observer", "Performance Metrics", "Cost Visibility"], example: "Pause before a high-impact action and send it to a human reviewer.", href: "/workspace/approvals" },
 ];
 
-export type ProductRole = { name: string; specialization: string; responsibility: string; input: string; output: string; tool: string };
-const roleRows = (rows: string[][]): ProductRole[] => rows.map(([name,specialization,responsibility,input,output,tool]) => ({name,specialization,responsibility,input,output,tool}));
-export const roleGroups: { title: string; roles: ProductRole[] }[] = [
-  { title: "Finance & risk", roles: roleRows([
-    ["Finance Agent","Financial review","Examine statements and trends","Financial reports","Finding summary","Spreadsheets"],
-    ["Audit Agent","Evidence review","Trace figures to source material","Records and policies","Evidence checklist","Documents"],
-    ["Scenario Planning Agent","Scenario planning","Prepare assumptions and scenarios","Operating data","Scenario model","Spreadsheets"],
-    ["Finance Agent","Financial analysis","Organize financial inputs","Financial statements","Financial brief","Spreadsheets"],
-    ["Audit Agent","Evidence assessment","Identify and classify evidence gaps","Reports and policies","Evidence register","Knowledge"],
-    ["Finance Operations Agent","Finance operations","Coordinate recurring finance work","Transactions","Work summary","ERP"]
-  ]) },
-  { title: "Research & intelligence", roles: roleRows([
-    ["Company Research Agent","Company context","Gather public and approved context","Company profile","Research brief","Web search"],
-    ["Market Research Agent","Market landscape","Compare markets and sources","Market reports","Market summary","Documents"],
-    ["Market Research Agent","Market analysis","Structure market differences","Public information","Comparison matrix","Web search"],
-    ["Knowledge Retrieval Agent","Internal context","Locate permitted company knowledge","SOPs and policies","Context packet","Knowledge"],
-    ["Document Intelligence Agent","Document analysis","Extract relevant points from files","Uploaded documents","Evidence summary","Documents"]
-  ]) },
-  { title: "Sales & customer operations", roles: roleRows([
-    ["Sales Agent","Sales workflow","Prepare outreach and follow-up","Lead context","Draft outreach","CRM"],
-    ["Sales Agent","Account research","Summarize account signals","CRM records","Account brief","CRM"],
-    ["Support Workflow Agent","Support workflow","Organize service follow-up","Support request","Response draft","Helpdesk"],
-    ["Customer Success Agent","Customer health","Organize adoption and renewal work","Account activity","Success plan","CRM"],
-    ["Sales Operations Agent","Pipeline operations","Coordinate pipeline hygiene","Pipeline data","Ops summary","CRM"]
-  ]) },
-  { title: "Marketing & growth", roles: roleRows([
-    ["Marketing Agent","Campaign planning","Turn a brief into a campaign plan","Campaign brief","Launch plan","Workspace"],
-    ["SEO Agent","Search strategy","Review search opportunities","Site content","SEO brief","Analytics"],
-    ["Content Agent","Content production","Prepare a reviewed draft","Brand guide","Content draft","Documents"],
-    ["Social Media Agent","Channel planning","Adapt content for channels","Approved copy","Post drafts","Social tools"],
-    ["Marketing Analytics Agent","Performance review","Organize campaign results","Campaign data","Performance summary","Analytics"]
-  ]) },
-  { title: "Engineering & product", roles: roleRows([
-    ["Product Manager Agent","Product discovery","Organize requirements and priorities","Customer feedback","Product brief","Issue tracker"],
-    ["UI/UX Designer Agent","Experience design","Translate needs into interface concepts","Product brief","Design concept","Figma"],
-    ["Frontend Developer Agent","Interface work","Prepare scoped frontend changes","Design spec","Code proposal","GitHub"],
-    ["Backend Developer Agent","Service work","Prepare scoped service changes","Technical spec","Code proposal","GitHub"],
-    ["QA Engineer Agent","Quality checks","Review expected behavior and defects","Acceptance criteria","QA report","Issue tracker"],
-    ["DevOps Agent","Delivery operations","Review deployment requirements","Build status","Release checklist","CI tools"],
-    ["Cloud Engineer Agent","Infrastructure","Review cloud configuration needs","Architecture","Infrastructure plan","Cloud tools"],
-    ["Security Agent","Security review","Surface permissions and risk points","System context","Review findings","Security tools"]
-  ]) },
-  { title: "Business operations", roles: roleRows([
-    ["Business Analyst Agent","Process analysis","Map current and proposed work","Process notes","Process map","Documents"],
-    ["Project Manager Agent","Coordination","Track owners and dependencies","Task plan","Status brief","Project tools"],
-    ["Operations Agent","Operations","Organize repeatable workflows","SOPs","Work plan","Workspace"],
-    ["HR Agent","People operations","Prepare policy-aware drafts","HR policies","Draft response","Knowledge"],
-    ["Employee Assistant","People operations","Structure employee onboarding work","Role brief","Review summary","ATS"],
-    ["Reporting Agent","Reporting","Assemble findings into a clear output","Validated findings","Business report","Documents"]
-  ]) },
-];
 
 export const integrationExamples = [
   { name:"Google Drive",tool:"drive.files.list",type:"Document source",agent:"Research Agent" },

@@ -1,0 +1,44 @@
+# Homepage presentation
+
+The homepage is rendered by `app/page.tsx` and `components/HomeRedesign.tsx`. Its request-to-result hero is exclusive to Home, implemented in `components/HomeWorkforceHero.tsx` and `app/home-workforce-hero.css`. `lib/workforce-hero-stories.ts` retains its story and compact copy for independent marketing heroes. The eleven other page compositions are documented in `docs/workforce-story-heroes.md`. Remaining homepage sections, navigation, footer, objective demo and registry retain their existing implementations.
+
+## Artwork and layout
+
+The hero uses the supplied office-and-city background, copied unchanged to `public/brand/home-workforce-office.webp`. A dark overlay preserves copy contrast. Its live HTML story reveals eight scenes: empty room, woman and laptop, campaign request, Workforce Orchestrator, three-part plan, five campaign specialists, contribution collection, and a review-ready package. Future scene elements are not mounted before their chapter. The existing penguin represents one coordinator; the duplicate intake assistant has been removed. Earlier actors leave the visual as the next part becomes the focus. Research Agent, Marketing Agent, UI/UX Designer, Social Media Manager, and Data Analyst retain their canonical names and distinct artwork. All registered employees are available through the hero's expandable workforce gallery; its count and descriptions come from the registry, not a second catalog. No new AI roles or AI character identities are invented.
+
+AI character images come from `public/ai-workforce/avatars-hd/` and use Next Image responsive sizing. The human requester uses `public/brand/home-requester-woman.png`, a transparent woman-and-laptop cutout reconstructed from the user's reference with the built-in image-generation tool. Her speech bubble, sender label, send icon, and sent state are live HTML. See [asset prompt](home-requester-artwork.md). CSS platforms, contact shadows, speech bubbles, brief handoff motion, staggered specialist entrances, and an arriving output package compose the scene; this is a layered website illustration, not a real-time 3D engine. The simulation never submits a campaign or invokes tools. Entry routes have distinct orchestrator, sales, and engineering artwork; registry cards retain their canonical employee images. Other sections use CSS pastel waves, branded tool icons, and standard outline icons. Headings and body text remain live HTML. Interface text remains HTML. The downloadable campaign ad includes deliberately authored typography.
+
+## Interactions and motion
+
+- The workflow example supports play, pause, replay, and direct selection of all five stages. It performs no external action. Pausing stops its timer; selecting a stage stops playback.
+- The hero has its own pause/play state, independent of the sample demonstration below it. Reduced-motion preferences disable automatic progression and provide Next scene plus direct chapter controls.
+- The hero progresses once through eight scenes. Delays before the next scene are 300, 850, 1600, 1500, 1600, 6500, and 1400 milliseconds, roughly fourteen seconds overall. The specialist stage focuses each contribution for 1.3 seconds; selecting a specialist pauses playback so visitors can read it. The final package holds until Replay; it does not loop. The requester image must load before her entrance advances. Specialists enter at 160ms intervals rather than appearing with the initial scene.
+- Playback starts only when at least 30% of the story viewport is visible. The elapsed clock pauses off-screen and in hidden tabs. Direct chapter selection and previous/next pause autoplay; Play resumes. Finite entrance transitions remain visible when manually selecting a scene, while continuous motion pauses. On mobile, a stable 540px story viewport replaces the former stack of every actor and outcome.
+- Ambient character animations pause outside the viewport. Sample playback advances only when its section is visible and the browser document is active. Section reveals run once and content is visible by default.
+- Category buttons filter the current registry definitions; employee cards link to the matching registry category.
+- The connected-context walkthrough offers Customer handoff and Launch brief examples. Inspect source cards or source references to pause and read authored context. Four chapter controls, pause/play, and replay remain available. It never reads a live account or changes tool permissions.
+- Autonomy buttons change an explanatory example. They do not configure a workspace.
+- The Questions and contact section stays visible below the closing call to action. FAQ items are individual disclosures (the first answer is open initially); the contact form is presented beside them.
+- Contact submissions validate the email on the server, limit repeated requests, and send a notification to `CONTACT_LEADS_TO` (default `contact@theaipods.com`) through Resend. The visitor's address is set as Reply-To so the team can respond directly. The form reports an error rather than showing success if email delivery is not configured or the provider rejects a message.
+
+## Responsive behavior
+
+Wide desktop uses a split hero with the copy on the left and the connected scene on the right. Smaller desktop places the copy above the scene. At 900px and below, the scene becomes a vertical request-to-result story with a two-column specialist team, keeping names readable. The expandable workforce gallery adapts from seven columns to two. Other sections retain three entry cards, four registry cards, and six solution cards on desktop and their existing responsive layouts. Decorative motion, headings, and cards remain within the viewport at 320px and above.
+
+Changes to this presentation should also update the homepage explanation in `lib/docs-content.ts` and the page-local visual guidance in `docs/design-system.md`.
+
+## Original campaign deliverables
+
+`components/HomeCampaignOutputs.tsx` and `app/home-campaign-outputs.css` present an authored Morrow Focus Notebook example. Shared content lives in `lib/campaign-example.json`. Research shows brief inputs versus hypotheses; marketing shows positioning and copy; design shows an original portrait ad; social shows the proposed seven-day calendar; analytics shows event definitions rather than fake results. The final scene holds a creative preview, Copy/Plan views, PNG/PDF downloads, and an accessible scrollable report dialog. Escape closes the dialog, returns focus to its trigger, and restores page scrolling. The dialog includes the entire brief, evidence register, copy, schedule, email, tracking plan, and human-review checklist.
+
+This is a fictional product and an original authored example, not a live agent execution or launched campaign. No research findings or performance numbers are invented. The product image is an AI-generated concept; the ad composition and report are authored files. See [campaign assets and rebuild instructions](morrow-campaign-example.md). The public homepage guide in `lib/docs-content.ts` describes the same boundary.
+
+## Connected context section
+
+`components/HomeConnectedContext.tsx` and `app/home-connected-context.css` replace the static logo orbit in “Everything the pod needs to work.” The `#platform` anchor is preserved. Three authored Google Drive, Notion, and Slack excerpts pass through a visual access boundary into a brief with a source reference beside each finding. Two scenarios cover a Northstar customer handoff and the Morrow launch. The interface labels this as an example and never connects accounts, reads files, sends messages, or changes permission settings.
+
+The four-stage sequence takes 5.4 seconds and holds at the review step. It starts when at least 30% of the resulting brief panel is visible, pauses off-screen and in hidden tabs, and resumes from elapsed time. Inspecting a source or choosing a chapter pauses playback. Switching scenario resets the story; reduced-motion preferences provide manual Next context step controls. The gateway geometry and moving packets are CSS, not a live MCP or security engine. On tablet, the result spans below the source and access panels; mobile uses normal stacked page flow. Links continue to the integration catalog for setup information.
+
+## Stylesheet maintenance
+
+The solutions grid, governance panel, closing character scene, and FAQ/contact layout share `app/home-redesign.css`. Keep CSS comments intact when retiring selectors: an unterminated comment can silently hide later rules even when a production build succeeds. After stylesheet cleanup, verify the whole homepage at desktop and mobile widths, including computed grid layouts and the closing character bounds, rather than checking only the edited section. The connected-context redesign must not change these surrounding section layouts.

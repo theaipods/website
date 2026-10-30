@@ -1,21 +1,16 @@
 "use client";
 
+import { SolutionsAtlasHero } from "@/components/SolutionHeroScenes";
+
 import { ToolLogo } from "@/components/tool-logo";
 import { WorkerScene,type WorkerRole } from "@/components/WorkerScene";
 import { integrationRegistry } from "@/lib/integration-registry";
 import { discoverSolution,finderObjectives } from "@/lib/solution-discovery";
 import { solutionHref,solutions } from "@/lib/solutions";
-import { ArrowDown,ArrowRight,ArrowUpRight,Check,ChevronDown,CirclePlay,Link2,Network,RotateCcw,ShieldCheck } from "lucide-react";
+import { ArrowRight,ArrowUpRight,Check,ChevronDown,Link2,Network,RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useEffect,useRef,useState } from "react";
 
-const heroRoles: { label: string; role: WorkerRole; place: string }[] = [
-  { label: "Research", role: "research", place: "research" },
-  { label: "Finance", role: "finance", place: "finance" },
-  { label: "Marketing", role: "marketing", place: "marketing" },
-  { label: "Operations", role: "operations", place: "operations" },
-  { label: "Engineering", role: "engineering", place: "engineering" },
-];
 const industryArt: Record<string, WorkerRole> = { healthcare: "support", insurance: "security" };
 const workflow = [
   { title: "Receive the request", copy: "A business objective enters a local example workflow with its desired outcome and context." },
@@ -31,16 +26,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) { return <span cla
 
 function Action({ href, children, pale = false }: { href: string; children: React.ReactNode; pale?: boolean }) { return <Link href={href} className={`sr-action${pale ? " sr-action-pale" : ""}`}>{children}<ArrowUpRight size={16}/></Link>; }
 function SectionIntro({ label, title, copy }: { label: string; title: React.ReactNode; copy?: string }) { return <div className="sr-section-intro"><div><Eyebrow>{label}</Eyebrow><h2>{title}</h2></div>{copy && <p>{copy}</p>}</div>; }
-
-function WorkforceUniverse() {
-  const [selected, setSelected] = useState<string | null>(null);
-  return <div className="sr-universe" aria-label="Illustrative AI workforce around a central orchestrator">
-    <svg viewBox="0 0 720 520" preserveAspectRatio="none" aria-hidden="true"><path d="M360 270 Q220 104 144 101M360 270 Q502 74 571 96M360 270 Q625 222 615 276M360 270 Q210 342 157 391M360 270 Q451 430 519 414"/><ellipse cx="360" cy="281" rx="290" ry="170"/></svg>
-    <span className="sr-universe-core"><span><i/><i/><i/><i/><i/><i/></span><small>ORCHESTRATOR</small></span>
-    {heroRoles.map((item, index) => <button key={item.label} type="button" className={`sr-universe-person sr-person-${item.place}${selected === item.label ? " is-selected" : ""}`} style={{ "--order": index } as React.CSSProperties} aria-label={`${item.label} specialist`} aria-pressed={selected === item.label} onClick={() => setSelected(selected === item.label ? null : item.label)} onFocus={() => setSelected(item.label)} onBlur={() => setSelected(null)}><span className="sr-person-art"><WorkerScene role={item.role}/></span><span className="sr-person-label"><i/>{item.label}</span></button>)}
-    <span className="sr-universe-note">Illustrative workforce scene</span>
-  </div>;
-}
 
 function SolutionFinder() {
   const [group, setGroup] = useState("Any area");
@@ -76,5 +61,5 @@ function Governance() { return <section className="sr-governance"><div className
 export function SolutionsRedesign() {
   
   useEffect(() => { if (!("IntersectionObserver" in window)) return; const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); } }), { threshold: .1 }); document.querySelectorAll(".sr-reveal").forEach(node => observer.observe(node)); document.querySelector(".sr-page")?.classList.add("sr-motion-ready"); return () => observer.disconnect(); }, []);
-  return <div className="sr-page"><main><section className="sr-hero"><div className="sr-shell sr-hero-grid"><div className="sr-hero-copy"><Eyebrow>AI PODS / SOLUTIONS</Eyebrow><h1>AI workforce solutions for the work your business <em>needs to get done.</em></h1><p>Bring together specialized AI employees, your tools, and your data so work moves from intent to execution — securely and at scale.</p><div className="sr-hero-actions"><Action href="#find-solution">Explore solutions</Action><a href="#workflow-demo" className="sr-text-link">See how it works <CirclePlay size={21}/></a></div><div className="sr-hero-proof"><span><Network size={18}/><b>Workflows for real work</b><small>Built for practical use</small></span><span><Link2 size={18}/><b>Work with your tools</b><small>Configuration required</small></span><span><ShieldCheck size={18}/><b>Human oversight</b><small>Review where it matters</small></span></div></div><div className="sr-hero-visual"><WorkforceUniverse/></div></div><a href="#find-solution" className="sr-scroll-cue">SCROLL TO EXPLORE <ArrowDown size={14}/></a></section><div className="sr-reveal"><SolutionFinder/></div><div className="sr-reveal"><IndustryCards/></div><div className="sr-reveal"><WorkflowDemo/></div><div className="sr-reveal"><ToolStrip/></div><div className="sr-reveal"><Governance/></div><section className="sr-section sr-more sr-reveal"><div className="sr-shell"><SectionIntro label="EXPLORE MORE SOLUTIONS" title="Explore the platform behind the work." copy="Choose a business solution or learn how the platform connects specialists, tools and review."/><div className="sr-more-grid">{solutions.filter(item => item.category === "Department").map(item => <Link key={item.slug} href={solutionHref(item.slug)}><span>{item.title}</span><small>{item.objective}</small><ArrowUpRight size={17}/></Link>)}</div></div></section><section className="sr-closing sr-reveal"><div className="sr-shell sr-closing-grid"><div><Eyebrow>GET STARTED</Eyebrow><h2>Find the right AI<br/><em>workforce for your business.</em></h2><p>Start with the work you need done. Explore a matching example, then discuss the tools and controls your team would need.</p><div className="sr-hero-actions"><Action href="#find-solution">Explore solutions</Action><Link href="/book-demo" className="sr-text-link">Talk to our team <ArrowUpRight size={17}/></Link></div></div><div className="sr-closing-art"><span/><WorkerScene ensemble ensembleRoles={["research", "finance", "marketing", "engineering", "operations"]}/></div></div></section></main></div>;
+  return <div className="sr-page"><main><SolutionsAtlasHero/><div className="sr-reveal"><SolutionFinder/></div><div className="sr-reveal"><IndustryCards/></div><div className="sr-reveal"><WorkflowDemo/></div><div className="sr-reveal"><ToolStrip/></div><div className="sr-reveal"><Governance/></div><section className="sr-section sr-more sr-reveal"><div className="sr-shell"><SectionIntro label="EXPLORE MORE SOLUTIONS" title="Explore the platform behind the work." copy="Choose a business solution or learn how the platform connects specialists, tools and review."/><div className="sr-more-grid">{solutions.filter(item => item.category === "Department").map(item => <Link key={item.slug} href={solutionHref(item.slug)}><span>{item.title}</span><small>{item.objective}</small><ArrowUpRight size={17}/></Link>)}</div></div></section></main></div>;
 }

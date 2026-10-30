@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 
 const groups = [
   { label: "Build", href: "/product#lifecycle", summary: "Shape a pod around the work you need done.", points: ["AI Pods", "Orchestrator", "Workflow execution"] },
-  { label: "Connect", href: "/integrations", summary: "Give the workforce approved context and tools.", points: ["Integrations & MCP", "Company knowledge"] },
+  { label: "Connect", href: "/product#integrations", summary: "Give the workforce approved context and tools.", points: ["Integrations & MCP", "Company knowledge"] },
   { label: "Operate", href: "/product#deliverables", summary: "Follow progress and review what the team delivers.", points: ["Deliverables & outcomes", "Documentation"] },
 ] as const;
 

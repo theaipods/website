@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowLeft, CalendarDays, Check, Clock3, X } from "lucide-react";
+import { CalendarDays, Check, Clock3, X } from "lucide-react";
 import type { PodEvent } from "@/lib/events";
 import "../../events.css";
 type Data={registration:{id:string;name:string;email:string;status:string;registeredAt:string};event:PodEvent};

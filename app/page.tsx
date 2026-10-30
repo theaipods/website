@@ -4,6 +4,7 @@ import "./future-light.css";
 import "./home-demo.css";
 import "./specialist-workforce.css";
 import "./home-redesign.css";
+import "./home-workforce-hero.css";
 
 export default function Home() {
   return <HomeRedesign />;

@@ -1,0 +1,49 @@
+{
+  "brand": "Morrow",
+  "product": "Focus Notebook",
+  "headline": "Make room for one good idea.",
+  "subhead": "A quieter place to plan what matters.",
+  "cta": "Meet your next page",
+  "status": "Original sample campaign · fictional product · not launched",
+  "brief": {
+    "objective": "Introduce Morrow Focus Notebook and invite people to explore its product page during a seven-day concept launch.",
+    "product": "An A5 linen-cover notebook with dot-grid pages, a lay-flat binding, and a ribbon marker. These are supplied fictional product specifications, not verified claims.",
+    "audience": "Independent designers and knowledge workers who want a paper space for early ideas and daily priorities.",
+    "offer": "Explore the notebook. No launch discount, price, or delivery promise is invented.",
+    "constraint": "Do not claim improved productivity, environmental certification, or customer preference without supporting evidence."
+  },
+  "research": [
+    {"signal":"A5 format, dot-grid paper, lay-flat binding", "source":"Supplied fictional product brief", "decision":"Show the page and binding; use concrete product language.", "status":"Brief input"},
+    {"signal":"Audience values a quiet space away from screens", "source":"Working audience hypothesis", "decision":"Test the focus-led message against a utility-led alternative.", "status":"Needs validation"},
+    {"signal":"Interest could differ between designers and other knowledge workers", "source":"Segmentation hypothesis", "decision":"Keep audience cohorts separate in the measurement sheet.", "status":"Needs validation"}
+  ],
+  "positioning": "For people whose work starts with an idea, Morrow is a considered paper space for thinking before the next tab opens.",
+  "messagePillars": [
+    {"title":"Space to think", "copy":"Lead with a single idea and generous negative space. Avoid productivity promises."},
+    {"title":"Details that support the ritual", "copy":"Show the dot grid, lay-flat page, and linen texture from the supplied brief."},
+    {"title":"A gentle next step", "copy":"Invite a product-page visit. Do not manufacture urgency or social proof."}
+  ],
+  "copy": {
+    "primary":"Before the tabs. Before the notifications. One page for the idea you want to keep. Meet Morrow Focus Notebook: dot-grid pages, a lay-flat binding, and room to begin.",
+    "variant":"Your next idea starts on a blank page. Explore the A5 Morrow Focus Notebook, made around a simple writing ritual.",
+    "social":"Some ideas need a little space. Start with a page, a pencil, and the thought you keep coming back to. Meet Morrow Focus Notebook. #MorrowNotebook #MakeRoomForIdeas",
+    "emailSubject":"A quieter place for your next idea",
+    "emailPreview":"Meet the Morrow Focus Notebook.",
+    "emailBody":"Hello,\n\nNot every idea needs another tab. Sometimes it needs a page.\n\nMorrow Focus Notebook pairs a linen cover with dot-grid pages and a lay-flat binding, giving your notes, sketches, and daily priorities a place of their own.\n\nTake a closer look at the notebook and find your next starting point.\n\nMeet your next page\nThe Morrow team"
+  },
+  "calendar": [
+    {"day":"Day 1","channel":"Instagram","format":"Portrait launch ad","message":"Make room for one good idea.","action":"Visit the product page","owner":"Social Media Manager"},
+    {"day":"Day 2","channel":"LinkedIn","format":"Founder-style text + image","message":"Why we begin our thinking on paper.","action":"Explore product details","owner":"Marketing Agent"},
+    {"day":"Day 3","channel":"Instagram","format":"Three-frame carousel","message":"Cover. Page. Binding. A closer look.","action":"Save or visit the product page","owner":"UI/UX Designer"},
+    {"day":"Day 5","channel":"Email","format":"Opt-in launch email","message":"A quieter place for your next idea.","action":"Meet your next page","owner":"Marketing Agent"},
+    {"day":"Day 7","channel":"Instagram","format":"Message variant test","message":"Your next idea starts on a blank page.","action":"Compare product-page interest","owner":"Data Analyst"}
+  ],
+  "measurement": [
+    {"metric":"Ad click-through rate","definition":"Link clicks / impressions × 100","event":"Platform impression + outbound click","decision":"Compare headline A and B within the same audience and placement."},
+    {"metric":"Product engagement","definition":"Sessions with product_detail_view / campaign landing sessions × 100","event":"product_detail_view","decision":"Check whether visitors explore the product, not just the headline."},
+    {"metric":"Intent rate","definition":"Sessions with product_interest / campaign landing sessions × 100","event":"product_interest","decision":"Use an explicit product-interest action; do not treat a page view as purchase intent."}
+  ],
+  "utm": "utm_source=instagram&utm_medium=paid_social&utm_campaign=morrow_focus_launch&utm_content=idea_a",
+  "analysisRule": "Keep spend, placement, and audience consistent between variants. Review delivery and tracking first. Do not declare a winner from a small or uneven sample; agree on a minimum sample and decision rule before launch.",
+  "review": ["Confirm product specifications, naming rights, price, stock, and destination URL with the product owner.", "Replace the concept product image with an approved production photograph before a real launch.", "Approve the copy, usage rights, tracking consent, and opt-in email audience.", "Configure a real landing page and event tracking; QA links and UTM values.", "Approve channel budgets and measurement thresholds. No campaign has been published or measured."]
+}

@@ -1,8 +1,8 @@
 import { agents, toolGroups, type AgentDefinition, type Run } from "./workforce";
 import { departments } from "./catalog";
 
-export const agentStatuses = ["IDLE", "PLANNING", "WORKING", "WAITING", "BLOCKED", "NEEDS_APPROVAL", "COMPLETED", "ERROR"] as const;
-export type AgentStatus = typeof agentStatuses[number];
+const agentStatuses = ["IDLE", "PLANNING", "WORKING", "WAITING", "BLOCKED", "NEEDS_APPROVAL", "COMPLETED", "ERROR"] as const;
+type AgentStatus = typeof agentStatuses[number];
 export type RegistryAgent = AgentDefinition & {
   category: string; icon: string; description: string; skills: string[]; knowledgeScopes: string[]; compatibleSystems: string[];
   autonomyLevel: number; permissions: string[]; manager: string; status: AgentStatus;

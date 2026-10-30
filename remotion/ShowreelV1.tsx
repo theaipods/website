@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Audio, Composition, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
 
 const white = "#1b2140";
 const lilac = "#7654be";
@@ -10,7 +10,7 @@ function Frame({ children, label }: { children: React.ReactNode; label: string }
   return <AbsoluteFill style={{ background: "radial-gradient(circle at 73% 34%,#e5dcfc 0%,#f9f7fd 46%,#ffffff 100%)", color: white, fontFamily: "Satoshi, Inter, Arial, sans-serif", overflow: "hidden" }}>
     <div style={{ position: "absolute", inset: 48, border: "1px solid #cfc4e3", borderRadius: 22 }} />
     <div style={{ position: "absolute", top: 75, left: 88, color: lilac, fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>{label}</div>
-    <div style={{ position: "absolute", top: 75, right: 88, fontSize: 23, color: "#817b9d" }}>THE AI PODS / 01</div>
+    <div style={{ position: "absolute", top: 75, right: 88, fontSize: 23, color: "#817b9d" }}>THEAIPODS / 01</div>
     {children}
     <div style={{position:"absolute",right:38,bottom:36,width:300,height:350,borderRadius:25,overflow:"hidden",background:"linear-gradient(150deg,#eee7fc,#c9b8ed)",border:"2px solid #d5c5ed",boxShadow:"0 22px 55px #3d28734f",transform:`translateY(${Math.sin(frame/13)*3}px)`}}>
       <div role="img" aria-label="Woman presenter guiding the film" style={{position:"absolute",inset:0,backgroundImage:`url(${staticFile("brand/showreel-presenter.png")})`,backgroundSize:"auto 430px",backgroundPosition:"center top",backgroundRepeat:"no-repeat"}}/>
@@ -28,12 +28,12 @@ function GlassCore({ frame }: { frame: number }) {
   </div>;
 }
 
-export function OpeningScene() {
+function OpeningScene() {
   const frame=useCurrentFrame();
   return <Frame label="01 / THE OBJECTIVE"><div style={{ position:"absolute",left:110,top:285,width:840,opacity:interpolate(frame,[0,25],[0,1],{extrapolateRight:"clamp"}),translate:`0 ${interpolate(frame,[0,25],[35,0],{extrapolateRight:"clamp"})}px` }}><div style={{ color:lilac,fontSize:28,letterSpacing:3,marginBottom:34 }}>ONE CLEAR OUTCOME</div><div style={{ fontSize:95,fontWeight:700,lineHeight:1.05,letterSpacing:-5 }}>Tell us what<br/><span style={{ color:"#b998ff" }}>needs to happen.</span></div><p style={{fontSize:33,color:"#6a718c",marginTop:46,lineHeight:1.45}}>A business objective becomes a coordinated plan.</p></div><GlassCore frame={frame}/></Frame>;
 }
 
-export function PlanScene() {
+function PlanScene() {
   const frame=useCurrentFrame();
   return <Frame label="02 / THE PLAN"><div style={{position:"absolute",left:105,top:160,fontSize:72,fontWeight:700,letterSpacing:-3}}>From goal to workflow.</div><div style={{position:"absolute",left:105,top:290,width:1430,display:"flex",gap:26}}>{[
     ["01","Understand","Company context + approved sources"],
@@ -42,22 +42,18 @@ export function PlanScene() {
   ].map(([n,title,desc],i)=><div key={n} style={{...panel,flex:1,padding:42,minHeight:350,opacity:interpolate(frame,[12+i*20,33+i*20],[0,1],{extrapolateRight:"clamp"}),translate:`0 ${interpolate(frame,[12+i*20,33+i*20],[50,0],{extrapolateRight:"clamp"})}px`}}><div style={{fontSize:29,color:lilac,marginBottom:55}}>{n}</div><div style={{height:64,width:64,background:"linear-gradient(145deg,#d8c7ff,#5147a8)",borderRadius:17,boxShadow:"11px 14px 30px #674ecc66,inset 5px 5px 14px #fff9",marginBottom:35,rotate:"-12deg"}}/><div style={{fontSize:40,fontWeight:650}}>{title}</div><div style={{fontSize:25,color:"#727890",lineHeight:1.45,marginTop:20}}>{desc}</div></div>)}</div></Frame>;
 }
 
-export function WorkforceScene() {
+function WorkforceScene() {
   const frame=useCurrentFrame();
   return <Frame label="03 / THE WORKFORCE"><div style={{position:"absolute",left:105,top:160,fontSize:72,fontWeight:700,letterSpacing:-3}}>Specialists work together.</div><div style={{position:"absolute",left:115,top:320,display:"flex",gap:24}}>{[
     ["R","Research","Evidence gathered"],["C","Create","Drafts prepared"],["Q","Quality","Claims checked"],["H","You","Approval gate"],
   ].map(([initial,title,status],i)=><div key={title} style={{...panel,width:335,height:385,padding:34,opacity:interpolate(frame,[i*18,i*18+22],[0,1],{extrapolateRight:"clamp"}),scale:interpolate(frame,[i*18,i*18+22],[.83,1],{extrapolateRight:"clamp"})}}><div style={{height:143,width:143,borderRadius:35,background:i===3?"linear-gradient(145deg,#f5f1ff,#8685b6)":"linear-gradient(145deg,#c9bbff,#6354d1 52%,#24215a)",boxShadow:"12px 18px 30px #34298e88,inset 8px 8px 16px #ffffff80",display:"grid",placeItems:"center",fontSize:74,fontWeight:750,color:i===3?"#272447":"white",rotate:"-10deg"}}>{initial}</div><div style={{fontSize:36,fontWeight:650,marginTop:39}}>{title}</div><div style={{fontSize:24,color:"#727890",marginTop:18}}>{status}</div></div>)}</div></Frame>;
 }
 
-export function OutcomeScene() {
+function OutcomeScene() {
   const frame=useCurrentFrame();
   return <Frame label="04 / THE RESULT"><div style={{position:"absolute",left:105,top:155,fontSize:75,fontWeight:700,letterSpacing:-3}}>Review the work. Then ship.</div><div style={{position:"absolute",left:115,top:305,width:990,...panel,padding:42,opacity:interpolate(frame,[0,26],[0,1],{extrapolateRight:"clamp"})}}><div style={{color:lilac,fontSize:24,letterSpacing:3}}>DELIVERABLE / READY FOR YOUR REVIEW</div><div style={{fontSize:48,fontWeight:650,marginTop:34}}>Campaign launch brief</div><div style={{height:13,width:"87%",borderRadius:8,background:"#dcd5e8",marginTop:55}}/><div style={{height:13,width:"69%",borderRadius:8,background:"#dcd5e8",marginTop:20}}/><div style={{height:13,width:"77%",borderRadius:8,background:"#dcd5e8",marginTop:20}}/><div style={{marginTop:62,display:"inline-block",background:"#8669d2",color:"#ffffff",padding:"20px 32px",fontSize:27,fontWeight:700,borderRadius:100}}>Approve when ready →</div></div><GlassCore frame={frame}/></Frame>;
 }
 
 export function WorkforceShowreel() {
   return <AbsoluteFill><Sequence from={0} durationInFrames={150} name="The objective"><OpeningScene/><Audio src={staticFile("voiceover/scene-1.wav")}/></Sequence><Sequence from={150} durationInFrames={150} name="The plan"><PlanScene/><Audio src={staticFile("voiceover/scene-2.wav")}/></Sequence><Sequence from={300} durationInFrames={150} name="The workforce"><WorkforceScene/><Audio src={staticFile("voiceover/scene-3.wav")}/></Sequence><Sequence from={450} durationInFrames={150} name="The result"><OutcomeScene/><Audio src={staticFile("voiceover/scene-4.wav")}/></Sequence></AbsoluteFill>;
-}
-
-export function RemotionRoot() {
-  return <Composition id="WorkforceShowreel" component={WorkforceShowreel} fps={30} durationInFrames={600} width={1920} height={1080}/>;
 }

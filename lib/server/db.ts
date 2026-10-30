@@ -6,15 +6,24 @@ import { Pool } from "pg";
 type Value = string | number | null;
 type Row = Record<string, string | number | null>;
 const schema = [
+  // Profile connections are created after users below.
   `CREATE TABLE IF NOT EXISTS schema_migrations (version INTEGER PRIMARY KEY, applied TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, email TEXT UNIQUE NOT NULL, name TEXT NOT NULL, password TEXT NOT NULL, verified INTEGER NOT NULL DEFAULT 0, created TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS profile_mcp (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, name TEXT NOT NULL, endpoint TEXT NOT NULL, secret TEXT NOT NULL, tools TEXT NOT NULL, updated TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS verification (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, hash TEXT NOT NULL, expires TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, sent TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS auth_challenges (email TEXT NOT NULL, purpose TEXT NOT NULL, id TEXT NOT NULL UNIQUE, hash TEXT NOT NULL, expires TEXT NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, sent TEXT NOT NULL, grant_hash TEXT, grant_expires TEXT, PRIMARY KEY(email,purpose))`,
   `CREATE TABLE IF NOT EXISTS rate_limits (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS companies (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, data TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1, created TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS account_plans (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, plan TEXT NOT NULL DEFAULT 'starter', updated TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS projects (id TEXT PRIMARY KEY, owner_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, name TEXT NOT NULL, created TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS knowledge (id TEXT PRIMARY KEY, company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, name TEXT NOT NULL, size INTEGER NOT NULL, type TEXT NOT NULL, category TEXT NOT NULL, status TEXT NOT NULL, content TEXT NOT NULL, blob TEXT NOT NULL, created TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS chunks (id TEXT PRIMARY KEY, knowledge_id TEXT NOT NULL REFERENCES knowledge(id) ON DELETE CASCADE, company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, content TEXT NOT NULL, ordinal INTEGER NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS chunk_embeddings (chunk_id TEXT NOT NULL REFERENCES chunks(id) ON DELETE CASCADE, model TEXT NOT NULL, content_hash TEXT NOT NULL, vector TEXT NOT NULL, created TEXT NOT NULL, PRIMARY KEY(chunk_id,model))`,
+  `CREATE TABLE IF NOT EXISTS research_jobs (id TEXT PRIMARY KEY, company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, owner_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, website TEXT NOT NULL, input TEXT NOT NULL, status TEXT NOT NULL, stage TEXT NOT NULL, completed INTEGER NOT NULL DEFAULT 0, total INTEGER NOT NULL DEFAULT 0, report TEXT, error TEXT, lease TEXT, created TEXT NOT NULL, updated TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS research_jobs_company ON research_jobs(company_id,created)`,
   `CREATE TABLE IF NOT EXISTS pods (id TEXT PRIMARY KEY, company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, data TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1, created TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS demo_requests (owner_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, request_key TEXT NOT NULL, pod_id TEXT NOT NULL REFERENCES pods(id) ON DELETE CASCADE, PRIMARY KEY(owner_id,request_key))`,
   `CREATE TABLE IF NOT EXISTS agent_settings (company_id TEXT NOT NULL REFERENCES companies(id) ON DELETE CASCADE, agent_id TEXT NOT NULL, autonomy INTEGER NOT NULL, manager TEXT NOT NULL, updated TEXT NOT NULL, PRIMARY KEY(company_id,agent_id))`,
   `CREATE TABLE IF NOT EXISTS audit (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, company_id TEXT, action TEXT NOT NULL, at TEXT NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS controls (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, killed INTEGER NOT NULL DEFAULT 0)`,
@@ -44,6 +53,7 @@ const schema = [
   `CREATE INDEX IF NOT EXISTS event_analytics_event ON event_analytics(event,at)`,
 ];
 export class Database {
+  private pending: Promise<unknown> = Promise.resolve();
   sqlite?: DatabaseSync;
   pool?: Pool;
   initialized: Promise<void>;
@@ -73,7 +83,24 @@ export class Database {
     await this.raw("INSERT INTO schema_migrations(version,applied) VALUES(1,?) ON CONFLICT(version) DO NOTHING", [new Date().toISOString()]);
     await this.raw("INSERT INTO schema_migrations(version,applied) VALUES(2,?) ON CONFLICT(version) DO NOTHING", [new Date().toISOString()]);
   }
-  async query(sql: string, values: Value[] = []) { await this.initialized; return this.raw(sql, values); }
+  private serialized<T>(work: () => Promise<T>): Promise<T> {
+    const next = this.pending.then(work, work); this.pending = next.catch(() => {}); return next;
+  }
+  async query(sql: string, values: Value[] = []) { await this.initialized; return this.serialized(() => this.raw(sql, values)); }
+  async transaction<T>(work: (query: (sql: string, values?: Value[]) => Promise<{ rows: Row[]; changes: number }>) => Promise<T>): Promise<T> {
+    await this.initialized;
+    return this.serialized(async () => {
+      const client = this.pool ? await this.pool.connect() : null;
+      const query = async (sql: string, values: Value[] = []) => {
+        if (!client) return this.raw(sql, values);
+        let n = 0; const result = await client.query(sql.replace(/\?/g, () => `$${++n}`), values);
+        return { rows: result.rows as Row[], changes: result.rowCount || 0 };
+      };
+      try { await query(client ? "BEGIN" : "BEGIN IMMEDIATE"); const value = await work(query); await query("COMMIT"); return value; }
+      catch (error) { await query("ROLLBACK"); throw error; }
+      finally { client?.release(); }
+    });
+  }
   async all(sql: string, values: Value[] = []) { return (await this.query(sql, values)).rows; }
   async one(sql: string, values: Value[] = []) { return (await this.all(sql, values))[0]; }
   async close() { await this.initialized; this.sqlite?.close(); await this.pool?.end(); }

@@ -1,13 +1,13 @@
 export const siteBrand = {
-  name: "TheAI Pods",
+  name: "TheAIPods",
   tagline: "AI work, coordinated around your business.",
   logo: "/brand/official-logo.jpg",
-  demoPath: "/book-demo#book",
+  demoPath: "/book-demo",
 } as const;
 
-export const publicSitePaths = [
+const publicSitePaths = [
   "/", "/product", "/solutions", "/docs", "/integrations", "/about",
-  "/events", "/book-demo", "/login", "/news", "/investors", "/agents", "/showreel",
+  "/events", "/book-demo", "/login", "/reset-password", "/news", "/investors", "/agents", "/showreel",
 ] as const;
 
 export function isPublicSitePath(pathname: string): boolean {

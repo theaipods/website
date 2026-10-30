@@ -33,7 +33,7 @@ const at = (x: number, y: number, extra = ""): CSSProperties => ({
 });
 
 // ---- cast -----------------------------------------------------------------
-const OBJECTIVE = "Grow Diwali sale GMV 25% year on year — hold ad spend flat, keep returns under 8%, launch in 6 languages to 4.2M shoppers.";
+const OBJECTIVE = "Grow Diwali sale GMV 25% year on year - hold ad spend flat, keep returns under 8%, launch in 6 languages to 4.2M shoppers.";
 const team = [
   { name: "Research Agent", color: "#ffb020", hue: 40, out: "Market brief", chips: ["5 competitors", "12 categories"] },
   { name: "Data Analyst", color: "#22c55e", hue: 140, out: "Demand forecast", chips: ["4.2M shoppers", "city tiers"] },
@@ -166,14 +166,14 @@ function Pod({ t, scale = 1 }: { t: number; scale?: number }) {
 
 // ---- sound: synthesised music + spoken narration (no audio files) -------------
 const NARRATION: [number, string][] = [
-  [0.4, "Meet TheAI Pods."],
+  [0.4, "Meet TheAIPods."],
   [3.4, "It starts with one complex objective."],
   [6.0, "The Pod Manager reads all of it,"],
   [8.3, "breaks it down, and staffs the right AI employees."],
   [12.3, "Everyone works at once, handing off as they go."],
   [16.9, "Anything customer facing waits for your approval."],
   [20.1, "Objective complete. Finished work, in your brand."],
-  [23.3, "TheAI Pods. Build your AI workforce."],
+  [23.3, "TheAIPods. Build your AI workforce."],
 ];
 const BAR = 2.4;
 const CHORDS = [
@@ -466,7 +466,6 @@ export function Showreel({ embedded = false }: { embedded?: boolean }) {
   const done = Math.floor(47 * out3(seg(t, 12.2, 18.6)));
   const approveClick = t > 18.05;
   const cur = io(seg(t, 17.3, 18));
-  const s5 = seg(t, 19, 20.4);
   const outro = seg(t, 23.1, 23.9);
 
   // Positions are computed floats; render on the client only so server and client markup cannot differ.
@@ -549,7 +548,7 @@ export function Showreel({ embedded = false }: { embedded?: boolean }) {
               })}
             </div>
             <div style={{ fontSize: 158, fontWeight: 800, letterSpacing: -6, lineHeight: 1 }}>
-              {"THE AI PODS".split("").map((ch, k) => {
+              {"THEAIPODS".split("").map((ch, k) => {
                 const p = back(seg(t, 0.45 + k * 0.09, 1.15 + k * 0.09));
                 return (
                   <span
@@ -850,7 +849,7 @@ export function Showreel({ embedded = false }: { embedded?: boolean }) {
               Build your{" "}
               <span style={{ background: "linear-gradient(90deg,#ffb020,#ff5c39,#ec4899,#6366f1)", WebkitBackgroundClip: "text", color: "transparent" }}>AI workforce.</span>
             </div>
-            <div style={{ marginTop: 22, fontSize: 28, opacity: 0.75 }}>TheAI Pods — teams of AI employees that plan, collaborate and deliver.</div>
+            <div style={{ marginTop: 22, fontSize: 28, opacity: 0.75 }}>TheAIPods - teams of AI employees that plan, collaborate and deliver.</div>
             <div style={{ marginTop: 40, display: "flex", gap: 16, justifyContent: "center", opacity: seg(t, 24, 24.6), pointerEvents: t > 24 ? "auto" : "none" }}>
               <Link href="/login" style={{ fontSize: 22, fontWeight: 700, padding: "16px 36px", borderRadius: 60, background: "#ff5c39", color: "#fff" }}>
                 Build your pod
@@ -865,7 +864,7 @@ export function Showreel({ embedded = false }: { embedded?: boolean }) {
 
       {/* chrome */}
       <div className="absolute left-5 top-4 z-10 flex items-center gap-4 font-mono text-[11px] tracking-widest text-white/60">
-        {embedded ? <span>THE AI PODS</span> : <Link href="/" className="hover:text-white">← THE AI PODS</Link>}
+        {embedded ? <span>THEAIPODS</span> : <Link href="/" className="hover:text-white">← THEAIPODS</Link>}
         <span>SHOWREEL</span>
       </div>
       <div className="absolute right-5 top-4 z-10 flex items-center gap-3 font-mono text-[11px] tracking-widest text-white/60">

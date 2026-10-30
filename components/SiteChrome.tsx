@@ -3,19 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { ProductMenu } from "@/components/ProductMenu";
 import { SolutionsMenu } from "@/components/SolutionsMenu";
 import { isPublicSitePath, siteBrand } from "@/lib/site-brand";
 
+function openDemoAtTop(event: { preventDefault: () => void }) {
+  if (window.location.pathname !== siteBrand.demoPath) return;
+  event.preventDefault();
+  window.history.replaceState(window.history.state, "", siteBrand.demoPath);
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
 function Brand({ footer = false }: { footer?: boolean }) {
   return <Link href="/" className={`site-brand${footer ? " site-brand-footer" : ""}`} aria-label={`${siteBrand.name} home`}>
-    <Image src={siteBrand.logo} width={347} height={58} alt={siteBrand.name} priority={!footer} />
+    <Image src={footer ? siteBrand.logo : "/brand/header-logo-transparent.png"} width={footer ? 347 : 2169} height={footer ? 58 : 725} alt={siteBrand.name} priority={!footer} />
   </Link>;
 }
 
-export function SiteHeader() {
+function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   useEffect(() => setMobileOpen(false), [pathname]);
@@ -34,7 +41,7 @@ export function SiteHeader() {
       </nav>
       <div className="site-header-actions">
         <Link href="/login" className="site-login" aria-current={active("/login") ? "page" : undefined}>Log in</Link>
-        <Link href={siteBrand.demoPath} className="site-demo-button" onClick={close}>Book a demo <ArrowRight size={18} /></Link>
+        <Link href={siteBrand.demoPath} className="site-demo-button" onClick={close} onNavigate={openDemoAtTop}>Book a demo <ArrowRight size={18} /></Link>
         <button type="button" className="site-mobile-toggle" aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="site-navigation" onClick={() => setMobileOpen(value => !value)}>{mobileOpen ? <X size={24}/> : <Menu size={24}/>}</button>
       </div>
     </div>
@@ -45,14 +52,19 @@ const productLinks = [["Overview", "/product"], ["Solutions", "/solutions"], ["I
 const resourceLinks = [["Docs", "/docs"], ["Quickstart", "/docs/quickstart"], ["API reference", "/docs/api-reference"], ["Security", "/docs/accounts-security"], ["Troubleshooting", "/docs/troubleshooting"]] as const;
 const companyLinks = [["About", "/about"], ["News & media", "/news"], ["Contact", "mailto:contact@theaipods.com"]] as const;
 
-export function SiteFooter() {
-  return <footer className="site-footer"><div className="site-footer-inner">
+function SiteFooter() {
+  const pathname = usePathname();
+  const artwork = pathname.startsWith("/book-demo") || pathname.startsWith("/integrations") ? "explorers"
+    : pathname.startsWith("/solutions") || pathname.startsWith("/about") ? "aurora"
+    : pathname.startsWith("/product") || pathname.startsWith("/agents") ? "neon-skies"
+    : pathname.startsWith("/docs") ? "neon-stars"
+    : "starry-friends";
+  return <footer className="site-footer" style={{"--footer-art": `url("/brand/footers/${artwork}.webp")`} as CSSProperties}><div className="site-footer-inner">
     <div className="site-footer-grid">
-      <div className="site-footer-brand"><Brand footer/><p>{siteBrand.tagline}</p></div>
-      <div className="site-footer-links"><h2>Product</h2>{productLinks.map(([label,href])=><Link key={label} href={href}>{label}</Link>)}</div>
+      <div className="site-footer-brand"><Brand footer/><div className="site-footer-cta"><h2>Let’s build a more <em>capable way to work.</em></h2><p>Bring specialized AI employees, your tools, and human review together around the work that matters.</p><Link href={siteBrand.demoPath} className="site-demo-button" onNavigate={openDemoAtTop}>Book a demo <ArrowRight size={18}/></Link></div></div>
+      <div className="site-footer-links"><h2>Product</h2>{productLinks.map(([label,href])=><Link key={label} href={href} onNavigate={href === siteBrand.demoPath ? openDemoAtTop : undefined}>{label}</Link>)}</div>
       <div className="site-footer-links"><h2>Resources</h2>{resourceLinks.map(([label,href])=><Link key={label} href={href}>{label}</Link>)}</div>
       <div className="site-footer-links"><h2>Company</h2>{companyLinks.map(([label,href])=><Link key={label} href={href}>{label}</Link>)}</div>
-      <div className="site-footer-cta"><h2>Let’s build a more <em>capable way to work.</em></h2><p>Bring specialized AI employees, your tools, and human review together around the work that matters.</p><Link href={siteBrand.demoPath} className="site-demo-button">Book a demo <ArrowRight size={18}/></Link><Image className="site-footer-team" src="/brand/ai-workforce-team-v2.png" width={800} height={384} alt="AI workforce character team" loading="lazy" /></div>
     </div>
     <div className="site-footer-bottom"><span>© {new Date().getFullYear()} {siteBrand.name}. All rights reserved.</span><span>{siteBrand.tagline}</span><Link href="/docs/documentation-policy">Documentation policy</Link></div>
   </div></footer>;
@@ -61,5 +73,6 @@ export function SiteFooter() {
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   if (!isPublicSitePath(pathname)) return <>{children}</>;
-  return <><SiteHeader/>{children}<SiteFooter/></>;
+  const isLoginPage = ["/login", "/reset-password"].includes(pathname) || pathname.startsWith("/login/");
+  return <><SiteHeader/>{children}{!isLoginPage && <SiteFooter/>}</>;
 }

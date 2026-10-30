@@ -1,7 +1,7 @@
-import Link from "next/link";
+import { Code2, Megaphone, Server, UsersRound, ShieldCheck } from "lucide-react";
 import { Count, Team } from "@/components/pitch";
 import { Reveal } from "@/components/sections";
-import { Logo, btnGhost, btnPrimary, eyebrow, palette } from "@/components/ui";
+import { eyebrow, palette } from "@/components/ui";
 
 // Investor-facing material from the pitch deck: market, competition, team and the ask.
 // Kept off the main navigation; linked from the footer only.
@@ -22,6 +22,7 @@ const funds = [
   ["People & Operations", 10, "Key hires + operating costs"],
   ["Security & Reliability", 10, "Enterprise readiness"],
 ] as const;
+const fundIcons = [Code2, Megaphone, Server, UsersRound, ShieldCheck];
 const path = ["B2B SaaS", "AI-native teams", "Business processes", "Cross-functional AI workforce"];
 
 export default function Investors() {
@@ -98,7 +99,7 @@ export default function Investors() {
             </ul>
             <div className="grad-bg rounded-2xl p-[2px]">
               <div className="flex h-full flex-col justify-center rounded-[14px] bg-[#0b0b12] p-7 text-white">
-                <span className="font-mono text-[11px] tracking-widest text-white/60">THE AI PODS</span>
+                <span className="font-mono text-[11px] tracking-widest text-white/60">THEAIPODS</span>
                 <div className="mt-2 text-3xl font-semibold tracking-tight">Business execution layer</div>
                 <p className="mt-3 text-sm text-white/75">Intent → Process → AI workforce → Outcome</p>
                 <p className="mt-1 text-sm text-white/75">Standard process plus company-specific context. Coordinates work across functions, systems and humans.</p>
@@ -122,7 +123,7 @@ export default function Investors() {
         <section className={`${wrap} py-20`}>
           <p className={eyebrow}>The ask · pre-seed</p>
           <h2 className={h2}>
-            <span className="grad-text">₹5 Cr</span> to build and scale TheAI Pods.
+            <span className="grad-text">₹5 Cr</span> to build and scale TheAIPods.
           </h2>
           <p className="mt-3 max-w-2xl text-muted">
             18–24 months of runway to build the platform, onboard early customers and prove repeatable value.
@@ -131,10 +132,10 @@ export default function Investors() {
             <div>
               <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted">Use of funds</h3>
               <ul className="space-y-4">
-                {funds.map(([n, pct, note], i) => (
+                {funds.map(([n, pct, note], i) => { const Icon = fundIcons[i]; return (
                   <li key={n}>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <span className="font-medium">{n}</span>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-2 font-medium"><Icon size={19} strokeWidth={1.75} className="shrink-0 text-accent" aria-hidden="true"/>{n}</span>
                       <span className="text-sm text-muted">{note}</span>
                       <span className="w-12 text-right text-lg font-semibold tabular-nums">{pct}%</span>
                     </div>
@@ -142,7 +143,7 @@ export default function Investors() {
                       <i className="block h-full rounded-full" style={{ width: `${pct * 2.5}%`, maxWidth: `${pct * 2.5}%`, background: palette[i], animation: "grow 1.2s ease-out both" }} />
                     </div>
                   </li>
-                ))}
+                ); })}
               </ul>
             </div>
             <div className="space-y-4">

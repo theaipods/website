@@ -2,15 +2,16 @@
 import { randomUUID } from "node:crypto";
 import { db } from "../lib/server/db";
 import { seedAdmin } from "../lib/server/auth";
+import { bootstrapAdminEmail } from "../lib/server/bootstrap-admin";
 import { companyFor } from "../lib/server/repository";
 import { advancePod, buildRun, decideTask } from "../lib/server/orchestrator";
 import { agents, defaultCompany, domains, podQuestions, type ProcessStep, type PodInput, type Run } from "../lib/workforce";
 
 async function main() {
-if (process.env.NODE_ENV === "production" || process.env.ENABLE_DEMO_ADMIN === "false") throw new Error("The IPO demo seed runs only with the local demo admin enabled.");
+if (process.env.NODE_ENV === "production" || process.env.ENABLE_DEMO_ADMIN === "false") throw new Error("The IPO demo seed is disabled in this environment.");
 await seedAdmin();
-const admin = await db().one("SELECT id FROM users WHERE email='admin@local.test'");
-if (!admin) throw new Error("Local demo admin is unavailable.");
+const admin = await db().one("SELECT id FROM users WHERE email=?", [bootstrapAdminEmail]);
+if (!admin) throw new Error("The provisioned admin is unavailable.");
 const owner = String(admin.id);
 const demoName = "Investment Bank Demo (fictional)";
 const old = await db().one("SELECT id FROM companies WHERE owner_id=? AND data LIKE ?", [owner, `%${demoName}%`]);

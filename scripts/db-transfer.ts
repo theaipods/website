@@ -1,7 +1,9 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { Database } from "../lib/server/db";
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
-const tables = ["users", "companies", "knowledge", "chunks", "pods", "audit", "controls"] as const;
+if (existsSync(".env")) process.loadEnvFile(".env");
+const originalTables = ["users", "companies", "knowledge", "chunks", "pods", "audit", "controls"] as const;
+const tables = ["users", "companies", "account_plans", "projects", "profile_mcp", "knowledge", "chunks", "chunk_embeddings", "research_jobs", "pods", "audit", "controls"] as const;
 type Backup = { format: 1; created: string; tables: Record<string, Record<string, string | number | null>[]> };
 async function main() {
   const [action, filename] = process.argv.slice(2);
@@ -15,14 +17,14 @@ async function main() {
       console.info(`Exported ${tables.length} tables. Treat this backup as private company data. Sessions are intentionally excluded.`);
     } else {
       const backup = JSON.parse(readFileSync(filename, "utf8")) as Backup;
-      if (backup.format !== 1 || tables.some(t => !Array.isArray(backup.tables?.[t]))) throw new Error("Unsupported backup format");
+      if (backup.format !== 1 || originalTables.some(t => !Array.isArray(backup.tables?.[t]))) throw new Error("Unsupported backup format");
       for (const table of tables) if (Number((await database.one(`SELECT COUNT(*) AS n FROM ${table}`))?.n)) throw new Error(`Import requires an empty destination: ${table} contains data`);
       await database.initialized;
       const client = database.pool ? await database.pool.connect() : null;
       const execute = async (sql: string, values: (string | number | null)[] = []) => { if (client) { let n = 0; await client.query(sql.replace(/\?/g, () => `$${++n}`), values); } else await database.query(sql, values); };
       try {
         await execute("BEGIN");
-        for (const table of tables) for (const row of backup.tables[table]) {
+        for (const table of tables) for (const row of backup.tables[table] || []) {
           const columns = Object.keys(row);
           if (!columns.length || columns.some(c => !/^[a-z_]+$/.test(c))) throw new Error("Invalid backup columns");
           await execute(`INSERT INTO ${table}(${columns.join(",")}) VALUES(${columns.map(() => "?").join(",")})`, Object.values(row));

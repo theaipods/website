@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, MapPin, ShieldCheck } from "lucide-react";
 import { EventVisual } from "./EventVisual";
 import { ToolLogo } from "./tool-logo";
 import { eventTypeLabel, type EventSpeaker, type PodEvent } from "@/lib/events";

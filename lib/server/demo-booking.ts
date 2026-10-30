@@ -2,15 +2,12 @@ import { randomBytes, randomUUID } from "node:crypto";
 import { db } from "./db";
 import { ApiError, hash } from "./auth";
 import { recommendDemoWorkforce, type DemoRecommendationInput } from "../demo-recommendation";
-
-export const bookingStatuses = ["PENDING","CONFIRMED","RESCHEDULED","CANCELLED","COMPLETED","NO_SHOW","FAILED"] as const;
-export const bookingEvents = ["DEMO_BOOKING_STARTED","DEMO_DATE_SELECTED","DEMO_TIME_SELECTED","DEMO_BOOKING_CREATED","DEMO_BOOKING_CONFIRMED","DEMO_BOOKING_RESCHEDULED","DEMO_BOOKING_CANCELLED","DEMO_BOOKING_COMPLETED"] as const;
-export const analyticsEvents = ["book-demo-page-view","calendar-opened","date-selected","time-selected","form-started","form-completed","booking-submitted","booking-confirmed","booking-failed","booking-rescheduled","booking-cancelled","CTA-click","workflow-demo-viewed","integration-demo-viewed","worker-card-viewed","faq-opened"] as const;
+const analyticsEvents = ["book-demo-page-view","calendar-opened","date-selected","time-selected","form-started","form-completed","booking-submitted","booking-confirmed","booking-failed","booking-rescheduled","booking-cancelled","CTA-click","workflow-demo-viewed","integration-demo-viewed","worker-card-viewed","faq-opened"] as const;
 
 export type DemoBookingInput = DemoRecommendationInput & { firstName:string;lastName:string;email:string;company:string;jobTitle:string;additionalContext:string;scheduledAt:string;timezone:string;duration:number;meetingType:string;source?:string;campaign?:string;utm?:Record<string,string>;referrer?:string };
 
 type Slot = { scheduledAt:string; label:string };
-export type AvailabilityDay = { date:string; available:boolean; slots:Slot[] };
+type AvailabilityDay = { date:string; available:boolean; slots:Slot[] };
 
 const partsInZone=(date:Date,timeZone:string)=>Object.fromEntries(new Intl.DateTimeFormat("en-CA",{timeZone,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(date).filter(part=>part.type!=="literal").map(part=>[part.type,part.value]));
 function zonedDate(y:number,m:number,d:number,h:number,minute:number,timeZone:string){const desired=Date.UTC(y,m-1,d,h,minute);let guess=desired;for(let i=0;i<3;i++){const p=partsInZone(new Date(guess),timeZone);const represented=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute);guess+=desired-represented;}return new Date(guess);}
@@ -35,7 +32,7 @@ class InternalSchedulingProvider implements SchedulingProvider {
     return result;
   }
 }
-export function schedulingProvider():SchedulingProvider{return new InternalSchedulingProvider();}
+function schedulingProvider():SchedulingProvider{return new InternalSchedulingProvider();}
 export async function demoAvailability(month:string,timeZone:string){const provider=schedulingProvider();const days=await provider.availability(month,timeZone);return{provider:provider.id,duration:provider.duration,timeZone,days,nextAvailableDate:days.find(day=>day.available)?.date||null};}
 
 async function bookingEvent(bookingId:string|null,type:string,detail:Record<string,unknown>={}){await db().query("INSERT INTO demo_booking_events(id,booking_id,type,detail,at) VALUES(?,?,?,?,?)",[randomUUID(),bookingId,type,JSON.stringify(detail),new Date().toISOString()]);}

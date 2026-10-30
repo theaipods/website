@@ -1,7 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import { registryDefinitions } from "../lib/agent-registry";
-import { workerRoleForEmployee } from "../lib/employee-presentation";
+import { characterAssetForEmployee, workerRoleForEmployee } from "../lib/employee-presentation";
+
+test("every registry employee retains its canonical public artwork", () => {
+  for (const employee of registryDefinitions) {
+    const character = characterAssetForEmployee(employee);
+    assert.equal(character.id, employee.id, `${employee.name} must not silently fall back to another character`);
+    assert.ok(existsSync(resolve("public/ai-workforce/avatars-hd", `${character.id}.png`)), `${employee.name} artwork is missing`);
+  }
+});
 
 test("every registry employee resolves to a supported visual role", () => {
   const supported = new Set(["research", "finance", "sales", "engineering", "operations", "security", "marketing", "data", "legal", "support", "people", "product", "quality", "orchestrator"]);

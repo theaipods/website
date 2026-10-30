@@ -1,3 +1,4 @@
+import { companyOutcomes } from './company-outcomes';
 import { z } from "zod";
 import { allRoles, POD_MANAGER } from "./catalog";
 
@@ -50,12 +51,14 @@ export const toolGroups: Record<string, string[]> = {
   Communication: ["Slack", "Microsoft Teams", "Email", "Google Calendar"], Product: ["Jira", "Linear", "Figma"], Engineering: ["GitHub", "GitLab", "AWS"], Marketing: ["HubSpot", "Google Analytics", "Google Ads", "Meta", "LinkedIn Ads"], Knowledge: ["Notion", "Google Drive", "Confluence"], Sales: ["Salesforce"], Analytics: ["Mixpanel", "Power BI"], People: ["Greenhouse", "BambooHR", "Workday"], Finance: ["QuickBooks", "NetSuite", "Stripe"], Support: ["Zendesk", "Intercom"], Commerce: ["Shopify", "WooCommerce"],
 };
 const text = z.string().max(12000);
-export const answersSchema = z.record(z.string().max(100), text);
-export const stepSchema = z.object({ id: z.string(), name: text, owner: text, support: text, approver: text, tools: text, output: text, duration: text, agentId: z.string().max(160).optional(), control: z.enum(["AI handles", "AI recommends", "Human approves", "Human only"]), accepted: z.boolean() });
+const answersSchema = z.record(z.string().max(100), text);
+const stepSchema = z.object({ id: z.string(), name: text, owner: text, support: text, approver: text, tools: text, output: text, duration: text, agentId: z.string().max(160).optional(), control: z.enum(["AI handles", "AI recommends", "Human approves", "Human only"]), accepted: z.boolean() });
 export type ProcessStep = z.infer<typeof stepSchema>;
 export const companySchema = z.object({
+  trialCheck: z.object({signature:z.string().max(100),at:z.string().datetime(),steps:z.number().int().min(0)}).optional(),
   name: z.string().trim().min(1).max(160), website: text, industry: text, size: text, businessModel: text, geography: text, products: text, about: text,
   goals: z.array(text).max(30), metric: text, baseline: text, target: text, timeframe: text,
+  outcomes: z.array(z.object({id:z.string().min(1).max(160),metric:text,baseline:text,target:text,timeframe:text})).max(20).refine(items=>new Set(items.map(x=>x.id)).size===items.length,"Duplicate outcomes").optional(),
   teams: z.array(z.object({ id: z.string(), name: text, lead: text, count: text, people: text, responsibilities: text, outputs: text })).max(40),
   domains: z.array(z.string().refine(id => domains.some(d => d.id === id), "Unknown department")).max(14).refine(ids => new Set(ids).size === ids.length, "Duplicate departments"), discovery: z.array(text).max(3), answers: z.record(z.string(), answersSchema), processes: z.record(z.string(), z.array(stepSchema).max(40)),
   brand: z.object({ tagline: text, tone: text, typography: text, always: text, never: text, primary: z.string().regex(/^#[0-9a-fA-F]{6}$/), secondary: z.string().regex(/^#[0-9a-fA-F]{6}$/), logoId: z.string() }),
@@ -63,6 +66,7 @@ export const companySchema = z.object({
   tools: z.array(text).max(120), rules: z.array(z.object({ id: z.string(), category: text, priority: z.enum(["High", "Medium", "Low"]), instruction: text, applies: text, exception: text })).max(80),
   permissions: z.object({ readKnowledge: z.boolean(), draft: z.boolean(), external: z.boolean(), financial: z.boolean(), production: z.boolean(), sensitive: z.boolean() }),
   status: z.enum(["draft", "active"]), onboardingStep: z.number().int().min(0).max(18),
+  assistanceHistory: z.array(z.object({ field: z.string().max(80), source: z.string().max(160), at: z.string().datetime(), kind: z.enum(['evidence','proposal']), reason: z.string().max(2000), sources: z.array(z.string().max(2000)).max(20) })).max(100).optional(),
 });
 export type CompanyInput = z.infer<typeof companySchema>;
 export type Business = CompanyInput & { id: string; version: number; created: string };
@@ -78,9 +82,10 @@ export const agents: AgentDefinition[] = [POD_MANAGER, ...allRoles, { id: "orche
 }));
 export const podSchema = z.object({ name: z.string().trim().min(1).max(160), objective: z.string().trim().min(10).max(12000), domain: z.string(), answers: answersSchema, roleIds: z.array(z.string()).min(1).max(25), knowledgeIds: z.array(z.string()).max(100), autonomy: z.number().int().min(1).max(4), mode: z.enum(["simulation", "live"]), requested: z.array(z.enum(["chat", "embedding", "image", "video", "audio", "vision", "code"])).min(1).max(7) });
 export type PodInput = z.infer<typeof podSchema>;
-export type WorkTask = { id: string; title: string; agentId: string; dependencies: string[]; control: ProcessStep["control"]; status: "Planned" | "Running" | "Completed" | "Needs approval" | "Rejected" | "Blocked" | "Cancelled"; output: string; feedback: string; revision: number; createdAt?: string; startedAt?: string; completedAt?: string; priority?: "Normal" | "High"; supportingAgentIds?: string[]; description?: string; progress?: number };
+export type WorkTask = { id: string; title: string; agentId: string; dependencies: string[]; control: ProcessStep["control"]; status: "Planned" | "Running" | "Completed" | "Needs approval" | "Rejected" | "Blocked" | "Cancelled"; output: string; feedback: string; revision: number; createdAt?: string; startedAt?: string; completedAt?: string; priority?: "Normal" | "High"; supportingAgentIds?: string[]; description?: string; progress?: number; reasoningEffort?: "medium" | "high" | "xhigh"; estimatedMinutes?: number; leaseId?: string; toolCalls?: { serverId: string; toolName: string; arguments: Record<string, unknown>; status: "pending" | "approved" | "completed" | "failed"; output?: string }[] };
 export type WorkforceEvent = { at: string; who: string; text: string; type?: "TASK_CREATED" | "TASK_STARTED" | "TASK_COMPLETED" | "TASK_FAILED" | "TASK_ASSIGNED" | "AGENT_MESSAGE" | "APPROVAL_REQUESTED" | "APPROVAL_GRANTED" | "APPROVAL_REJECTED" | "DELIVERABLE_CREATED" | "OBSERVER_ALERT" | "POD_EVENT"; taskId?: string; agentId?: string; fromAgentId?: string; toAgentId?: string; sourceTaskId?: string };
-export type Run = PodInput & { id: string; companyId: string; version: number; created: string; paused: boolean; status: string; tasks: WorkTask[]; events: WorkforceEvent[]; result: string; resultStatus: "none" | "simulation" | "draft" | "approved"; contextVersion: number; modelCalls?: number };
+export type ApprovalMode = "manual" | "smart" | "auto";
+export type Run = PodInput & { id: string; companyId: string; version: number; created: string; paused: boolean; status: string; tasks: WorkTask[]; events: WorkforceEvent[]; result: string; resultStatus: "none" | "simulation" | "draft" | "approved"; contextVersion: number; modelCalls?: number; projectId?: string; templateId?: string; approvalMode?: ApprovalMode; estimatedMinutes?: number };
 export function processFor(domainId: string, answers: Record<string, string>): ProcessStep[] {
   const domain = domains.find(d => d.id === domainId)!;
   return domain.steps.map((name, i) => ({ id: `${domainId}-${i}`, name, owner: answers.people || "", support: "", approver: answers.approver || "", tools: answers.tools || "", output: "", duration: "", control: /approval|sign-off|go\/no-go|counsel|human decision/i.test(name) ? "Human only" : /launch|deploy|handoff/i.test(name) ? "Human approves" : "AI recommends", accepted: true }));
@@ -88,7 +93,10 @@ export function processFor(domainId: string, answers: Record<string, string>): P
 export function missingQuestions(questions: Question[], answers: Record<string, string>) { return questions.filter(q => q.required && !answers[q.id]?.trim()).map(q => q.label); }
 export function companyGaps(c: CompanyInput, processDocuments = 0) {
   const gaps: string[] = [];
-  for (const key of ["industry", "businessModel", "geography", "products", "about", "metric", "baseline", "target", "timeframe"] as const) if (!c[key].trim()) gaps.push(key);
+  for (const key of ["industry", "businessModel", "geography", "products", "about"] as const) if (!c[key].trim()) gaps.push(key);
+  const outcomes=companyOutcomes(c);
+  if(!outcomes.length) gaps.push('Outcomes: choose at least one measurable outcome');
+  outcomes.forEach((o,i)=>{for(const key of ['metric','baseline','target','timeframe'] as const)if(!o[key].trim())gaps.push('Outcomes: '+(o.metric||'Outcome '+(i+1))+' - '+key);});
   if (!c.domains.length) gaps.push("Choose at least one department");
   if (!["Interview", "Existing tools", "SOPs / documents"].every(x => c.discovery.includes(x))) gaps.push("Complete all three discovery methods");
   if (!c.tools.length && !c.noExistingTools) gaps.push("Tools: select your systems or confirm no existing tools");

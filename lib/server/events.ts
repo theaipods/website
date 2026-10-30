@@ -4,7 +4,7 @@ import { db } from "./db";
 import { eventStatuses, eventTypes, sampleEvents, sampleSpeakers, type EventSpeaker, type PodEvent } from "../events";
 
 let seeded=false;
-export async function seedEvents(){
+async function seedEvents(){
   if(seeded)return; seeded=true; const now=new Date().toISOString();
   for(const speaker of sampleSpeakers) await db().query("INSERT INTO event_speakers(id,data,created,updated) VALUES(?,?,?,?) ON CONFLICT(id) DO NOTHING",[speaker.id,JSON.stringify(speaker),now,now]);
   for(const event of sampleEvents) await db().query("INSERT INTO events(id,slug,data,status,type,start_at,end_at,featured,visibility,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING",[event.id,event.slug,JSON.stringify(event),event.status,event.type,event.startAt,event.endAt,event.featured?1:0,event.visibility,event.createdAt,event.updatedAt]);

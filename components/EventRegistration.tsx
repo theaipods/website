@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { ArrowRight, CalendarDays, Check, Clock3, MapPin, X } from "lucide-react";
 import { EventVisual } from "@/components/EventVisual";
-import { eventTypeLabel, type PodEvent } from "@/lib/events";
+import { type PodEvent } from "@/lib/events";
 const fmt=(date:string,options:Intl.DateTimeFormatOptions)=>new Intl.DateTimeFormat("en-IN",options).format(new Date(date));
 const track=(event:string,detail:Record<string,string>={})=>fetch("/api/events/analytics",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event,path:location.pathname,detail})}).catch(()=>{});
 function EventMeta({event}:{event:PodEvent}){return <div className="ev-meta"><span><CalendarDays/>{fmt(event.startAt,{month:"short",day:"numeric",year:"numeric",timeZone:event.timezone})}</span><span><Clock3/>{fmt(event.startAt,{hour:"numeric",minute:"2-digit",timeZone:event.timezone})} {event.timezone}</span><span><MapPin/>{event.location}</span><span>{event.duration} min</span></div>}

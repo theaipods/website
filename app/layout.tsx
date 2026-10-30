@@ -6,9 +6,11 @@ import "./product-menu.css";
 import "./solutions.css";
 import "./docs.css";
 import "./onboarding-studio.css";
-import "./orchestrator-flow.css";
 import "./brand-theme.css";
 import "./site-chrome.css";
+import "./onboarding-refinement.css";
+import "./onboarding-journey.css";
+import "./onboarding-research.css";
 import { PlatformProvider } from "@/components/platform-context";
 import { SiteChrome } from "@/components/SiteChrome";
 import { siteBrand } from "@/lib/site-brand";
@@ -19,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${siteBrand.name} — Build your AI workforce`,
+  title: `${siteBrand.name} - Build your AI workforce`,
   description:
     "Create teams of specialised AI employees that plan, collaborate, execute and deliver real business work.",
 };

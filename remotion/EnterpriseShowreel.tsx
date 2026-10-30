@@ -1,7 +1,6 @@
-import React from "react";
-import { ThreeCanvas } from "@remotion/three";
+import { StaticEmployee } from "../components/StaticEmployee";
 import { Audio } from "@remotion/media";
-import { AbsoluteFill, Composition, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, staticFile, useCurrentFrame } from "remotion";
 import { registryDefinitions } from "../lib/agent-registry";
 
 const FPS = 30;
@@ -16,7 +15,6 @@ const workers = showreelRoles.map(name => {
   if (!agent) throw new Error(`Showreel specialist missing from Agent Registry: ${name}`);
   return [agent.name, showreelCodes[agent.category] || "OPS"] as const;
 });
-const workerColor: Record<string, string> = { OPS: "#a997ff", FIN: "#8bd9f5", AUD: "#b9d4ff", RES: "#9be1d1", RISK: "#e2ba9c", LEGAL: "#d8c7f4", QA: "#e8e8f4", TECH: "#84bbef", DOC: "#c1c9e6" };
 const chapters = [
   { start: 0, end: 5, no: "01", label: "HUMAN OBJECTIVE", title: "One business objective.", sub: "Audit and assess Flipkart.com IPO readiness.", detail: "Financials · operations · market · valuation · risk · legal · technology · evidence" },
   { start: 5, end: 10, no: "02", label: "ORCHESTRATION", title: "The command becomes a plan.", sub: "UNDERSTAND  /  DECOMPOSE  /  PLAN  /  ASSIGN", detail: "High-level operational intent, dependencies and review points." },
@@ -35,47 +33,7 @@ const chapters = [
 const clamp = (v: number, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const smooth = (v: number) => { const x = clamp(v); return x * x * (3 - 2 * x); };
 
-function Worker({ index, frame, shown }: { index: number; frame: number; shown: number }) {
-  const angle = index * Math.PI * 2 / 20 - Math.PI / 2;
-  const ring = index % 2 === 0 ? 5.65 : 7.5;
-  const x = Math.cos(angle) * ring;
-  const z = Math.sin(angle) * ring;
-  const appearing = smooth((shown - index) / 2.8);
-  const active = frame / FPS > 17 + index * .24;
-  const color = workerColor[workers[index][1]];
-  const pulse = .14 * Math.sin(frame * .065 + index);
-  return <group position={[x, Math.sin(index * 2.3) * .28, z]} scale={Math.max(.001, appearing)} rotation={[0, -angle, 0]}>
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -.48, 0]}><cylinderGeometry args={[.68, .76, .08, 6]}/><meshStandardMaterial color="#242b3c" metalness={.85} roughness={.28}/></mesh>
-    <mesh rotation={[.2, frame * .004 * (index % 2 ? 1 : -1), .1]}><icosahedronGeometry args={[.31 + pulse * .1, index % 3 === 0 ? 1 : 0]}/><meshPhysicalMaterial color={color} metalness={.68} roughness={.16} clearcoat={1} emissive={color} emissiveIntensity={active ? .33 : .08}/></mesh>
-    <mesh rotation={[Math.PI / 2, 0, frame * .005 + index]}><torusGeometry args={[.46, .035, 8, 36]}/><meshStandardMaterial color={color} metalness={.8} roughness={.2} emissive={color} emissiveIntensity={active ? .75 : .12}/></mesh>
-    {index % 4 === 0 && <mesh position={[.53, -.04, 0]}><boxGeometry args={[.16, .4, .52]}/><meshStandardMaterial color="#8294b3" metalness={.9} roughness={.22}/></mesh>}
-    {index % 4 === 1 && <mesh position={[-.5, .1, .12]} rotation={[0,.3,.2]}><boxGeometry args={[.09,.55,.42]}/><meshPhysicalMaterial color="#9bb7d8" metalness={.38} roughness={.12} transparent opacity={.75}/></mesh>}
-    {index % 4 === 2 && <mesh position={[.46,.22,-.18]}><octahedronGeometry args={[.18]}/><meshStandardMaterial color={color} metalness={.7} roughness={.18}/></mesh>}
-    {index % 4 === 3 && <mesh position={[-.48,.04,0]} rotation={[0,frame*.01,0]}><torusGeometry args={[.2,.025,8,24]}/><meshStandardMaterial color="#ced9e9" metalness={.78} roughness={.2}/></mesh>}
-  </group>;
-}
-
-function Network({ frame }: { frame: number }) {
-  const sec = frame / FPS;
-  const reveal = clamp((sec - 8) * 2.6, 0, 20);
-  const activity = sec > 17 && sec < 62;
-  const zoom = sec < 5 ? 2.6 : sec < 10 ? interpolate(sec, [5,10], [2.4,1.38]) : sec < 17 ? interpolate(sec,[10,17],[1.38,.83]) : sec < 24 ? .87 : sec < 35 ? 1.1 : sec < 48 ? .84 : sec < 57 ? 1.1 : .82;
-  return <ThreeCanvas width={1920} height={1080} camera={{ position: [0, 10.5, 16], fov: 42, near: .1, far: 100 }} gl={{ antialias: true, alpha: true }} style={{ position:"absolute", inset:0, opacity: sec < 4 ? .22+.78*smooth((sec - 1.6) / 2.4) : 1 }}>
-    <ambientLight intensity={.62}/><directionalLight position={[4,9,5]} intensity={2.1} color="#e4ecff"/><pointLight position={[-7,2,-4]} intensity={75} distance={17} color="#786ac8"/><pointLight position={[7,3,1]} intensity={50} distance={15} color="#4b90bf"/>
-    <group scale={zoom} rotation={[.14, frame * .0017, 0]} position={[sec < 6 ? 2.7 : .8, -.55, 0]}>
-      {workers.map((_,i)=>{
-        const a=i*Math.PI*2/20-Math.PI/2, r=i%2===0?5.65:7.5;
-        const x=Math.cos(a)*r, z=Math.sin(a)*r;
-        const length=Math.hypot(x,z);
-        return <group key={`flow-${i}`}>
-          <mesh position={[x/2,-.33,z/2]} rotation={[0,Math.atan2(x,z),Math.PI/2]} scale={[1,1,clamp((reveal-i)/2)]}><cylinderGeometry args={[.008,.008,length,6]}/><meshBasicMaterial color={workerColor[workers[i][1]]} transparent opacity={activity?.38:.13}/></mesh>
-          {activity && <mesh position={[x*((frame*.018+i*.13)%1),-.31,z*((frame*.018+i*.13)%1)]}><sphereGeometry args={[i%3===0?.065:.039,8,8]}/><meshBasicMaterial color={i%7===0?"#f0a58e":workerColor[workers[i][1]]}/></mesh>}
-        </group>;
-      })}
-      {workers.map((_,i)=><Worker key={i} index={i} frame={frame} shown={reveal}/>)}
-    </group>
-  </ThreeCanvas>;
-}
+function Network({frame}:{frame:number}) {return <div style={{position:"absolute",inset:0}}>{showreelRoles.map((name,i)=>{const employee=registryDefinitions.find(a=>a.name===name);return <div key={name} style={{position:"absolute",left:350+(i%5)*230,top:250+Math.floor(i/5)*300,width:200,opacity:smooth((frame/FPS-8-i*.3)/2)}}><StaticEmployee id={employee?.id || "orchestrator"}/></div>})}</div>;}
 
 function StatusRail({ sec }: { sec: number }) {
   const current = sec < 17 ? "ASSEMBLING" : sec < 44 ? "EXECUTING" : sec < 53 ? "VALIDATING" : sec < 55.6 ? "AWAITING APPROVAL" : sec < 57 ? "APPROVED" : "COMPLETE";
@@ -126,7 +84,7 @@ export function EnterpriseShowreel() {
   return <AbsoluteFill style={{background:"#060910",overflow:"hidden"}}><div style={{position:"absolute",width:1920,height:1080,transform:"scale(2)",transformOrigin:"top left",background:"radial-gradient(circle at 65% 48%,#172133 0,#0c111d 49%,#060910 100%)",fontFamily:"Satoshi, Inter, Arial, sans-serif",overflow:"hidden",opacity:endFade}}>
     <div style={{position:"absolute",inset:0,opacity:.42,backgroundImage:"linear-gradient(#7f96bd12 1px,transparent 1px),linear-gradient(90deg,#7f96bd12 1px,transparent 1px)",backgroundSize:"75px 75px",transform:`perspective(800px) rotateX(38deg) translateY(${frame*.18}px) scale(1.3)`}}/>
     <Network frame={frame}/>
-    <img src={staticFile("brand/orchestrator-core-cinematic.png")} alt="" style={{position:"absolute",left:sec<10?790:sec<17?765:780,top:sec<10?220:355,width:sec<10?710:sec<17?460:390,height:sec<10?710:sec<17?460:390,objectFit:"contain",opacity:sec<5?.66+.27*smooth(sec/4):sec<62?.88:.95,transform:`rotate(${Math.sin(frame*.012)*3}deg) translateY(${Math.sin(frame*.025)*5}px)`,filter:"drop-shadow(0 25px 46px #000c) drop-shadow(0 0 25px #9685ef3a)"}}/>
+    <div style={{position:"absolute",left:780,top:355,width:390}}><StaticEmployee id="orchestrator"/></div>
     <div style={{position:"absolute",inset:0,background:"linear-gradient(90deg,#060910f0 0%,#080d17c7 25%,transparent 61%),linear-gradient(0deg,#050811ee,transparent 28%)"}}/>
     <div style={{position:"absolute",top:scan,left:0,right:0,height:1,background:"linear-gradient(90deg,transparent,#c6c8ff25,transparent)"}}/>
     <StatusRail sec={sec}/><Narrative frame={frame}/><DetailPanels frame={frame}/>
@@ -135,8 +93,4 @@ export function EnterpriseShowreel() {
     <div style={{position:"absolute",bottom:0,left:0,height:4,width:`${(frame/DURATION)*100}%`,background:"linear-gradient(90deg,#718ed0,#b89dff)",boxShadow:"0 0 18px #9f8dff"}}/>
     <Audio src={staticFile("showreel/enterprise-score.wav")}/>
   </div></AbsoluteFill>;
-}
-
-export function EnterpriseRemotionRoot(){
-  return <Composition id="EnterpriseShowreel" component={EnterpriseShowreel} fps={FPS} durationInFrames={DURATION} width={3840} height={2160}/>;
 }

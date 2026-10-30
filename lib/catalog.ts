@@ -86,53 +86,8 @@ export const departments: Department[] = [
 ];
 
 export const allRoles: Role[] = departments.flatMap((x) => x.roles);
-export const roleById = (id: string) =>
-  id === POD_MANAGER.id ? POD_MANAGER : allRoles.find((r) => r.id === id);
 
-const pick = (names: string[]) =>
-  names.map((n) => allRoles.find((r) => r.name === n)!).filter(Boolean);
 
-export type PodTemplate = { id: string; name: string; hint: string; roles: Role[] };
-
-export const podTemplates: PodTemplate[] = [
-  {
-    id: "campaign",
-    name: "Festive Sale Campaign Pod",
-    hint: "Posters, sale landing page, ads and emails for a big sale",
-    roles: pick([
-      "Research Agent",
-      "Data Analyst",
-      "Marketing Agent",
-      "Social Media Manager",
-      "UI/UX Designer",
-      "Frontend Developer",
-      "QA Engineer",
-    ]),
-  },
-  ...departments.map((x) => ({
-    id: x.id,
-    name: x.pod,
-    hint: x.outcome,
-    roles: x.roles.slice(0, 6),
-  })),
-];
-
-export const platform = [
-  ["Pods & Pod Manager", "Goal-oriented teams. Every pod has a manager that plans, assigns and reports."],
-  ["Command Center", "State an objective in plain language. Review the plan, then let it run."],
-  ["AI Employee Roster", "A curated workforce across eleven departments. Hire in a click."],
-  ["Agent Studio", "Describe a new role, compose it on a canvas, or build through API and MCP."],
-  ["Collaboration Room", "Watch employees hand work to each other in real time."],
-  ["Deliverables Studio", "Posters, pages, emails, documents and reports you can open and use."],
-  ["Company Brain", "Your brand, documents and decisions, shared by every employee."],
-  ["Integrations & Triggers", "Connect your tools. Start work on a schedule, an event or a webhook."],
-  ["Model Router", "Each task goes to the best model for accuracy and cost, with failover."],
-  ["Quality & Evals", "Set the bar once. Versions that miss it never ship."],
-  ["Approvals & Autonomy", "Four autonomy levels and a risk-scored approval queue."],
-  ["Observer & Cost", "Health, blocked work, budgets that pause, and one kill switch."],
-  ["Voice & Channels", "Employees that work by phone, chat, email, Slack and Teams."],
-  ["Trust & Security", "Roles and permissions, audit trail, redaction, your data stays yours."],
-];
 
 export const faqs = [
   [
@@ -145,7 +100,7 @@ export const faqs = [
   ],
   [
     "How does it learn my business?",
-    "During onboarding you upload brand guidelines and company documents. TheAI Pods reads them into a Company Brain that every employee uses.",
+    "During onboarding you upload brand guidelines and company documents. TheAIPods reads them into a Company Brain that every employee uses.",
   ],
   [
     "Can I run more than one company?",

@@ -1,0 +1,3 @@
+# Events artwork
+
+The Events hero uses a code-rendered front-row preview with no background image or employee artwork; see `events-hero.md`. The supplied conference image remains in From the stage with a closer crop. Past-session cards use minimal WebP illustrations: a bull with a calculator for finance, a husky with connected cubes for enterprise Pod design, and a deer with an approval tablet for human approval. Each uses a clean pale background, soft lighting and generous empty space. The featured TV demonstration retains its separate scene. All artwork is illustrative; recording availability continues to depend on event data.

@@ -1,5 +1,6 @@
 "use client";
-import { useId, useState, type ReactNode } from "react";
+import { SectionAssistanceContext } from './section-assistance-context';
+import { useContext, useId, useState, type ReactNode, type ButtonHTMLAttributes } from "react";
 export function SelectOrCustom({ label, value, onChange, options, required }: { label: string; value: string; onChange: (v: string) => void; options: string[]; required?: boolean }) {
   const [custom, setCustom] = useState(false);
   const isCustom = custom || (!!value && !options.includes(value));
@@ -7,14 +8,14 @@ export function SelectOrCustom({ label, value, onChange, options, required }: { 
 }
 export function MultiSelect({ label, value, onChange, options }: { label: string; value: string[]; onChange: (v: string[]) => void; options: string[] }) {
   const [custom, setCustom] = useState('');
-  return <details className="wf-multiselect"><summary>{label}<span>{value.length ? `${value.length} selected` : 'Choose options'} ▾</span></summary><div className="space-y-2 p-4"><Chips options={Array.from(new Set([...options, ...value]))} value={value} onChange={onChange} /><div className="flex gap-2 pt-3"><input aria-label={`Other ${label.toLowerCase()}`} placeholder="Other — define your own" value={custom} onChange={e => setCustom(e.target.value)} /><Button secondary disabled={!custom.trim()} onClick={() => { onChange(Array.from(new Set([...value, custom.trim()]))); setCustom(''); }}>Add</Button></div></div></details>;
+  return <details className="wf-multiselect"><summary>{label}<span>{value.length ? `${value.length} selected` : 'Choose options'} ▾</span></summary><div className="space-y-2 p-4"><Chips options={Array.from(new Set([...options, ...value]))} value={value} onChange={onChange} /><div className="flex gap-2 pt-3"><input aria-label={`Other ${label.toLowerCase()}`} placeholder="Other - define your own" value={custom} onChange={e => setCustom(e.target.value)} /><Button secondary disabled={!custom.trim()} onClick={() => { onChange(Array.from(new Set([...value, custom.trim()]))); setCustom(''); }}>Add</Button></div></div></details>;
 }
 export function Field({ label, value, onChange, area, options, type = "text", required, hint }: { label: string; value: string; onChange: (value: string) => void; area?: boolean; options?: string[]; type?: string; required?: boolean; hint?: string }) {
   const id = useId();
   return <div className="wf-field"><label htmlFor={id}>{label}{required && <span className="text-accent"> *</span>}</label>{options ? <select id={id} value={value} onChange={e => onChange(e.target.value)}>{options.map(x => <option key={x} value={x}>{x || "Choose…"}</option>)}</select> : area ? <textarea id={id} value={value} onChange={e => onChange(e.target.value)} rows={3} required={required} /> : <input id={id} type={type} value={value} onChange={e => onChange(e.target.value)} required={required} />}{hint && <p className="text-xs text-muted mt-1">{hint}</p>}</div>;
 }
-export function Button({ children, onClick, secondary, disabled, type = "button" }: { children: ReactNode; onClick?: () => void; secondary?: boolean; disabled?: boolean; type?: "button" | "submit" }) { return <button type={type} disabled={disabled} onClick={onClick} className={secondary ? "wf-button secondary" : "wf-button"}>{children}</button>; }
+export function Button({ children, onClick, secondary, disabled, type = "button", ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode; secondary?: boolean }) { return <button {...props} type={type} disabled={disabled} onClick={onClick} className={secondary ? "wf-button secondary" : "wf-button"}>{children}</button>; }
 export function Notice({ children, error }: { children: ReactNode; error?: boolean }) { return <div role={error ? "alert" : "status"} className={`wf-notice ${error ? "error" : ""}`}>{children}</div>; }
 export function Heading({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) { return <div className="mb-8">{eyebrow && <p className="wf-eyebrow">{eyebrow}</p>}<h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mt-2">{title}</h1>{children && <div className="mt-3 text-muted max-w-3xl leading-relaxed">{children}</div>}</div>; }
-export function Section({ title, children }: { title: string; children: ReactNode }) { return <section className="wf-section"><h2>{title}</h2>{children}</section>; }
+export function Section({ title, children }: { title: ReactNode; children: ReactNode }) { const assistance=useContext(SectionAssistanceContext); return <section className="wf-section"><div className="section-heading"><h2>{title}</h2>{assistance?.(title)}</div>{children}</section>; }
 export function Chips({ options, value, onChange }: { options: string[]; value: string[]; onChange: (value: string[]) => void }) { return <div className="flex flex-wrap gap-2">{options.map(x => <button type="button" key={x} aria-pressed={value.includes(x)} className={`wf-chip ${value.includes(x) ? "selected" : ""}`} onClick={() => onChange(value.includes(x) ? value.filter(v => v !== x) : [...value, x])}>{value.includes(x) ? "✓ " : "+ "}{x}</button>)}</div>; }

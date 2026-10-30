@@ -5,7 +5,7 @@ import ipaddr from "ipaddr.js";
 import { db } from "./db";
 
 export type McpServerRecord = { id: string; companyId: string; name: string; endpoint: string; status: string; health: string; createdAt: string; updatedAt: string; lastHealthCheck: string | null; tools: McpToolRecord[] };
-export type McpToolRecord = { id: string; name: string; description: string; inputSchema: unknown; risk: string; enabled: boolean; discoveredAt: string };
+type McpToolRecord = { id: string; name: string; description: string; inputSchema: unknown; risk: string; enabled: boolean; discoveredAt: string };
 let storageReady: Promise<void> | undefined;
 function ensureMcpStorage() {
   storageReady ??= (async()=>{
@@ -35,7 +35,7 @@ function parseMessage(body: string, contentType: string) {
   }
   try { return JSON.parse(body); } catch { throw new Error("MCP server returned invalid JSON."); }
 }
-async function rpc(endpoint: string, message: object, sessionId?: string, expectResult = true, version = "2025-06-18") {
+export async function rpc(endpoint: string, message: object, sessionId?: string, expectResult = true, version = "2025-06-18", token?: string) {
   const url = validateMcpEndpoint(endpoint);
   const addresses = await lookup(url.hostname, { all: true });
   if (!addresses.length || addresses.some(address => !publicIp(address.address))) throw new Error("MCP endpoint resolves to a private or reserved address.");
@@ -43,7 +43,7 @@ async function rpc(endpoint: string, message: object, sessionId?: string, expect
   const payload = JSON.stringify(message);
   return new Promise<{ message: Record<string, unknown>; sessionId?: string }>((resolve, reject) => {
     const request = https.request(url, { method: "POST", family: address.family, lookup: (_host, _options, callback) => callback(null, address.address, address.family),
-      headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream", "MCP-Protocol-Version": version, ...(sessionId ? { "Mcp-Session-Id": sessionId } : {}), "Content-Length": Buffer.byteLength(payload) }, timeout: 8000 }, response => {
+      headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream", "MCP-Protocol-Version": version, ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(sessionId ? { "Mcp-Session-Id": sessionId } : {}), "Content-Length": Buffer.byteLength(payload) }, timeout: 8000 }, response => {
       if ((response.statusCode || 500) < 200 || (response.statusCode || 500) >= 300) { response.resume(); reject(new Error(`MCP endpoint returned HTTP ${response.statusCode}.`)); return; }
       const chunks: Buffer[] = []; let size = 0;
       response.on("data", (chunk: Buffer) => { size += chunk.length; if (size > 128_000) response.destroy(new Error("MCP response exceeded 128 KB.")); else chunks.push(chunk); });
@@ -54,7 +54,7 @@ async function rpc(endpoint: string, message: object, sessionId?: string, expect
     request.on("error", reject); request.end(payload);
   });
 }
-export async function discoverMcpTools(endpoint: string): Promise<{ name: string; description: string; inputSchema: unknown }[]> {
+async function discoverMcpTools(endpoint: string): Promise<{ name: string; description: string; inputSchema: unknown }[]> {
   const init = await rpc(endpoint, { jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "AI Pod", version: "0.1.0" } } });
   if (init.message.error || !init.message.result) throw new Error("MCP initialization failed.");
   const version = String((init.message.result as { protocolVersion?: string }).protocolVersion || "2025-06-18");
@@ -83,7 +83,7 @@ export async function addMcpServer(companyId: string, name: string, endpoint: st
   await mcpEvent(companyId,id,"SERVER_ADDED","Public HTTPS endpoint registered; no tools have been enabled.");
   return id;
 }
-export async function mcpEvent(companyId: string, serverId: string, type: string, detail: string) {
+async function mcpEvent(companyId: string, serverId: string, type: string, detail: string) {
   await ensureMcpStorage();
   await db().query("INSERT INTO mcp_events(id,company_id,server_id,type,detail,at) VALUES(?,?,?,?,?,?)", [randomUUID(),companyId,serverId,type,detail,new Date().toISOString()]);
 }
