@@ -14,12 +14,12 @@ export function bedrockRequest(input:ModelRequest):ConverseCommandInput {
   if(!["adaptive","extended","omit"].includes(thinking)) throw new ApiError(503,"Bedrock thinking must be adaptive, extended, or omit.");
   return {modelId:model,system:[{text:input.instructions}],messages:[{role:"user",content:[{text:JSON.stringify({task:input.task,acceptance:input.acceptance,context:input.context})}]}],inferenceConfig:{maxTokens:Math.max(outputBudget(input),thinking==="extended"?12000:outputBudget(input))},additionalModelRequestFields:additional};
 }
-export async function generateBedrock(input:ModelRequest) {
+export async function generateBedrock(input:ModelRequest, timeoutMs=120000) {
   const region=modelConfig(input.capability).region;
   if(!region) throw new ApiError(503,"Set AWS_REGION for the Bedrock runtime.");
   const client=new BedrockRuntimeClient({region,maxAttempts:1});
   try {
-    const response=await client.send(new ConverseCommand(bedrockRequest(input)),{abortSignal:AbortSignal.timeout(120000)});
+    const response=await client.send(new ConverseCommand(bedrockRequest(input)),{abortSignal:AbortSignal.timeout(timeoutMs)});
     if(response.stopReason!=="end_turn") throw new ApiError(502,`Bedrock did not complete the artifact (${response.stopReason || "unknown"}). No result was marked complete.`);
     const text=(response.output?.message?.content||[]).map(part=>"text" in part?part.text||"":"").join("\n");
     if(!text.trim()||text.length>200000) throw new ApiError(502,"Bedrock returned no valid text artifact.");

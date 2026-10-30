@@ -30,7 +30,7 @@ export async function generate(input: ModelRequest, options: {provider?:string; 
   const { url, key, model, format } = config;
   if (!config.supported) throw new ApiError(503, "Unsupported provider or generation capability. Chat/code use the selected provider; embeddings use the separate knowledge-retrieval adapter. Media generation is not implemented.");
   if (format === "bedrock") {
-    const { generateBedrock } = await import("./bedrock"); return generateBedrock(input);
+    const { generateBedrock } = await import("./bedrock"); return generateBedrock(input, options.timeoutMs);
   }
   if (!url || !key || !model) throw new ApiError(503, `${input.capability} provider needs configuration.`);
   if (!["responses", "gateway", "chat-completions"].includes(format)) throw new ApiError(503, "Unsupported model API format.");

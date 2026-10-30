@@ -18,6 +18,8 @@ process.env.ENABLE_DEMO_ADMIN = "true";
 process.env.RESEND_API_KEY = "test-only";
 process.env.RESEND_FROM = "test@theaipods.com";
 delete process.env.APP_URL;
+// Keep local provider keys out of tests that assert the unconfigured behaviour.
+for (const key of Object.keys(process.env)) if (/^(AI_PROVIDER|ONBOARDING_AI_PROVIDERS|AWS_|BEDROCK_|AZURE_|NVIDIA_|GROQ_|OPENROUTER_|HUGGINGFACE_|HF_TOKEN|FIRECRAWL_|GOOGLE_SEARCH_)/.test(key)) delete process.env[key];
 for (const cap of ["CHAT", "CODE", "IMAGE", "VIDEO", "EMBEDDING", "AUDIO", "VISION"]) for (const key of ["URL", "KEY", "NAME"]) delete process.env[`${cap}_MODEL_${key}`];
 let cookie = "";
 async function request(route: string, method = "GET", data?: unknown, auth = cookie, origin = "http://localhost:3000") {
@@ -88,7 +90,8 @@ test("persistent workforce API and execution lifecycle", async t => {
       assert.equal((await request(`companies/${company.id}/research`)).data, null);
       assert.equal((await request(`companies/${company.id}/research`, "POST", { website: "http://127.0.0.1", mode: "free", render: false, maxPages: 5, extraUrls: [] })).status, 400);
       assert.equal((await request(`companies/${company.id}/assist`, 'POST', {draft:company,section:0},otherCookie)).status,404);
-      assert.equal((await request(`companies/${company.id}/assist`, 'POST', {draft:company,section:0})).status,503);
+      const starterOnly=await request(`companies/${company.id}/assist`, 'POST', {draft:company,section:0});
+      assert.equal(starterOnly.status,200);assert.ok(starterOnly.data.suggestions.every((s:{sources:string[]})=>!s.sources.length));
       const fetchBefore=globalThis.fetch;
       process.env.CHAT_MODEL_URL='https://model.example.test/responses';process.env.CHAT_MODEL_KEY='test-only';process.env.CHAT_MODEL_NAME='test-model';
       try {
@@ -97,9 +100,9 @@ test("persistent workforce API and execution lifecycle", async t => {
         assert.equal(assisted.status,200);assert.equal(assisted.data.suggestions.length,1);assert.ok(assisted.data.warnings.length);
         assert.notEqual((await request('state')).data.companies.find((c:Business)=>c.id===company.id).about,'Reviewed description');
         globalThis.fetch=async()=>Response.json({status:'completed',output:[{type:'message',content:[{type:'output_text',text:'not valid JSON'}]}]});
-        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).status,502);
+        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).data.model,'Built-in starter');
         globalThis.fetch=async()=>Response.json({status:'incomplete',output:[]});
-        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).status,502);
+        assert.equal((await request(`companies/${company.id}/assist`,'POST',{draft:company,section:0})).data.model,'Built-in starter');
       } finally {globalThis.fetch=fetchBefore;for(const key of ['URL','KEY','NAME'])delete process.env[`CHAT_MODEL_${key}`];}
       const updated = await request(`companies/${company.id}`, "PUT", { ...company, version: company.version, assistanceHistory:[{field:'about',source:'test-model',at:new Date().toISOString(),kind:'evidence',reason:'Reviewed',sources:['company-input']}] }); assert.equal(updated.status, 200);
       assert.equal(updated.data.assistanceHistory.length,1);

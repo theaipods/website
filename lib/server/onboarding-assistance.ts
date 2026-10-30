@@ -19,8 +19,20 @@ export function checkedSuggestions(parsed:unknown,allowed:(keyof CompanyInput)[]
     const item=itemSchema.safeParse(raw);if(!item.success){warnings.push('One malformed field was discarded.');continue;}
     const s=item.data,field=s.field as keyof CompanyInput;
     if(!allowed.includes(field)||seen.has(field)||typeof s.value==='string'&&!s.value.trim())continue;
+    if(field==='answers'&&s.value&&typeof s.value==='object'&&!Array.isArray(s.value)&&current.domains.length===1&&Object.values(s.value).every(v=>typeof v==='string'))s.value={[current.domains[0]]:s.value};
+    if(field==='processes'&&Array.isArray(s.value)&&current.domains.length===1)s.value={[current.domains[0]]:s.value};
     const value=companySchema.shape[field].safeParse(s.value);if(!value.success){warnings.push(`${field}: invalid field structure.`);continue;}
     s.value=value.data;
+    if(Array.isArray(s.value)&&!s.value.length||s.value&&typeof s.value==='object'&&!Object.keys(s.value).length)continue;
+    if(field==='answers'){
+      const proposal=s.value as CompanyInput['answers'];const starter=starterDraft(current);const next:CompanyInput['answers']=structuredClone(current.answers);let usable=false;
+      for(const id of current.domains){
+        const keys=new Set([...interview,...domains.find(d=>d.id===id)!.questions].map(q=>q.id));
+        const values=Object.fromEntries(Object.entries(proposal[id]||{}).filter(([k,v])=>keys.has(k)&&v.trim()).map(([k,v])=>[k,current.answers[id]?.[k]||(/^Trial proposal:/i.test(v)?v:`Trial proposal: ${v}`)]));
+        if(Object.keys(values).length){usable=true;next[id]={...starter.answers[id],...values,...Object.fromEntries(Object.entries(current.answers[id]||{}).filter(([,v])=>v.trim()))};}
+      }
+      if(!usable)continue;s.value=next;s.kind='proposal';s.reason+=' Interview answers are trial proposals, not verified policies. Missing answers use editable starter examples.';
+    }
     if(field==='teams')s.value=(s.value as CompanyInput['teams']).map(t=>{const old=current.teams.find(x=>x.id===t.id);return {...t,count:old?.count||(!t.count?teamSizeEstimate(current.size):/estimate/i.test(t.count)?t.count:`${t.count} (planning estimate)`)};});
     if(field==='outcomes')s.value=(s.value as NonNullable<CompanyInput['outcomes']>).map(o=>{const old=companyOutcomes(current).find(x=>x.id===o.id);const estimate=metricEstimate(o.metric);return {...o,baseline:old?.baseline||(!o.baseline?estimate.baseline:/estimate/i.test(o.baseline)?o.baseline:`${o.baseline} (planning estimate)`),target:old?.target||(!o.target?estimate.target:/estimate/i.test(o.target)?o.target:`${o.target} (planning estimate)`),timeframe:o.timeframe||estimate.timeframe};});
     if(field==='size'&&s.value!==current.size&&!/estimate/i.test(String(s.value)))s.value=`${s.value} (planning estimate)`;
